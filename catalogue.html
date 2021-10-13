@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <style>
+        .bd-sidebar {
+        
+        top: 0rem;
+        /* z-index: 5; */
+         
+        overflow:auto;
+    }
+    li{
+        padding:1rem;
+    }
+    
+    </style>
+    <script src="https://unpkg.com/vue@next"></script>
+
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row flex-xl-nowrap" id="app">
+      <div class="col-12 col-md-3 col-xl-2 bd-sidebar bg-warning sticky-top">
+          <ul class="nav nav-pills flex-column mb-auto">
+              <h5>website logo here</h5>
+              <li class="nav-item">Chair type
+                  <br><input type="radio" id="Gaming" v-model="selectedChairType">Gaming chair
+                  <br><input type="radio" id="Wooden" v-model="selectedChairType">Wooden chair
+                  <br><input type="radio" id="Office" v-model="selectedChairType">Office chair
+                  <br><input type="radio" id="Basic" v-model="selectedChairType">Basic chair
+                  
+              </li>
+              <li class="nav-item">Minimum Rating: {{selectedRating}} <input type="range" id="" min='1' max='5' step='0.5' v-model='selectedRating'></li>
+              <li class="nav-item">Min Price: {{selectedMinPrice}}<input type="range" id="" min='0' max='1000' v-model='selectedMinPrice'></li>
+              <li class="nav-item">Max Price: {{selectedMaxPrice}}<input type="range" id="" min='0' max='1000' v-model='selectedMaxPrice'></li>
+              <li class="nav-item"></li>
+
+          </ul>
+
+      </div>
+    
+      <div id="app" class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content bg-light">
+        <h1>this is VUE content</h1>
+        <!-- THIS SORT BY IS A FUNCTION TO BE COMPUTED -->
+        <p>Sort by:</p>
+        <input class="btn btn-primary active mr-md-1" data-bs-toggle="button" type="button" id="Relevance" value="Relevance" >
+        <input class="btn btn-primary" data-bs-toggle="button" type="submit" id="Latest" value="Latest" >
+        <input class="btn btn-primary" data-bs-toggle="button" type="submit" id="Top" value="Top" >
+        <div class="card bg-dark text-light">
+          <img v-bind:src="featuredCard" class="card-img" alt="...">
+          <div class="card-img-overlay">
+            <h5 class="card-title">Featured chair</h5>
+            <p class="card-text">This is a description of the chair</p>
+            <p class="card-text">Last updated 3 mins ago</p>
+          </div>
+        </div>
+        <div class="row justify-content-around">
+          <div v-for="cardURL of cardsURL" class="col-12 col-sm-6 col-md-4 col-xl-3 my-md-1 card" >
+              <img :src="cardURL" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-text">Chair Name</h5>
+                <p class="card-text">Chair Rating</p>
+                <p class="card-text">Chair Price</p>
+                <p class="card-text">Chair Description</p>
+              </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+    <script>
+      function chairCard(chairName, chairURL, chairDescription, chairRating, chairPrice, chairType) {
+        this.chairName = chairName;
+        this.chairURL = chairURL;
+        this.chairDescription = chairDescription;
+        this.chairRating = chairRating;
+        this.chairPrice = chairPrice;
+        this.chairType = chairType;
+      }
+      vm = Vue.createApp({
+        data(){
+          return{
+            btnSort:"Relevance",
+            featuredCard:"https://media.giphy.com/media/fGX80AAczeBEOOwEoK/giphy.gif",
+            cardsURL:["https://media.giphy.com/media/cgCMnZr84zE40/giphy.gif","https://media2.giphy.com/media/ypBQolo0HfDej1W1X9/giphy.gif?cid=ecf05e474m6rw2v9o0zic290wlr3k410ffngtmcwkhsunvgm&rid=giphy.gif&ct=g","https://media.giphy.com/media/3o6MbmQnyTKNWGHK8g/giphy.gif","https://media.giphy.com/media/S9jIAwgTtISJZKZ3oS/giphy.gif","https://media0.giphy.com/media/8twZKibtk0gyPu4dC0/giphy.gif?cid=ecf05e47y9ohq0f08s4rkthtvxodi7agq6vn7yoeon1441pw&rid=giphy.gif&ct=g","https://media.giphy.com/media/8vJcTuZHB7U8U/giphy.gif"],
+            selectedMaxPrice: "1000",
+            selectedMinPrice: "1",
+            selectedChairType:"",
+            selectedRating: "1",
+            
+          }
+        },
+        computed:{
+
+        }
+      }).mount('#app')
+    </script>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>   
+</body>
+</html>
