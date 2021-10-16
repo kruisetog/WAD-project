@@ -47,25 +47,26 @@
         <h1>this is VUE content</h1>
         <!-- THIS SORT BY IS A FUNCTION TO BE COMPUTED -->
         <p>Sort by:</p>
-        <input class="btn btn-primary active mr-md-1" data-bs-toggle="button" type="button" id="Relevance" value="Relevance" >
-        <input class="btn btn-primary" data-bs-toggle="button" type="submit" id="Latest" value="Latest" >
-        <input class="btn btn-primary" data-bs-toggle="button" type="submit" id="Top" value="Top" >
-        <div class="card bg-dark text-light">
-          <img v-bind:src="featuredCard" class="card-img" alt="...">
+        <input class="btn btn-primary m-md-1" data-bs-toggle="button" type="submit" :id="button1" :value="button1" v-on:click="sortByPopularity" >
+        <input class="btn btn-primary m-md-1" data-bs-toggle="button" type="submit" :id="button2" :value="button2" v-on:click="sortByLatest">
+        <input class="btn btn-primary m-md-1" data-bs-toggle="button" type="submit" :id="button3" :value="button3" v-on:click="sortByRating">
+        <div class="card bg-dark text-dark">
+          <img v-bind:src="featuredChair.imageURL" class="card-img" alt="...">
           <div class="card-img-overlay">
-            <h5 class="card-title">Featured chair</h5>
-            <p class="card-text">This is a description of the chair</p>
-            <p class="card-text">Last updated 3 mins ago</p>
+            <h5 class="card-title">Name: {{featuredChair.name}}</h5>
+            <p class="card-text">Description: {{featuredChair.description}} </p>
+            <p class="card-text">Price: {{featuredChair.price}}</p>
           </div>
         </div>
         <div class="row justify-content-around">
-          <div v-for="cardURL of cardsURL" class="col-12 col-sm-6 col-md-4 col-xl-3 my-md-1 card" >
-              <img :src="cardURL" class="card-img-top" alt="...">
+          <div v-for="chair of sortedChairs" class="col-12 col-sm-6 col-md-4 col-xl-3 my-md-1 card" >
+              <img :src="chair.imageURL" class="card-img-top" alt="...">
               <div class="card-body">
-                <h5 class="card-text">Chair Name</h5>
-                <p class="card-text">Chair Rating</p>
-                <p class="card-text">Chair Price</p>
-                <p class="card-text">Chair Description</p>
+                <h5 class="card-text">Name: {{chair.name}}</h5>
+                <p class="card-text">Rating: {{chair.rating}}</p>
+                <p class="card-text">Price: {{chair.price}}</p>
+                <p class="card-text">Updated: {{chair.date.getUTCDate()}}/{{chair.date.getMonth()}}/{{chair.date.getFullYear()}}</p>
+                <p class="card-text">Description: {{chair.description}}</p>
               </div>
           </div>
         </div>
@@ -73,29 +74,94 @@
       </div>
     </div>
     <script>
-      function chairCard(chairName, chairURL, chairDescription, chairRating, chairPrice, chairType) {
-        this.chairName = chairName;
-        this.chairURL = chairURL;
-        this.chairDescription = chairDescription;
-        this.chairRating = chairRating;
-        this.chairPrice = chairPrice;
-        this.chairType = chairType;
+      function chairObj(name, description, rating, price, type, date, pageURL, imageURL) {
+          this.name = name;
+          this.description = description;
+          this.rating = rating;
+          this.price = price;
+          this.type = type;
+          this.date = date;
+          this.pageURL = pageURL;
+          this.imageURL = imageURL;
+          
       }
+      var chair1 = new chairObj('gaming chair 1',  'a template gaming chair', 5, 200, 'gaming', new Date(2020, 11,17),'#nextpageurl',"https://media.giphy.com/media/cgCMnZr84zE40/giphy.gif");
+      var chair2 = new chairObj('wooden chair 1',  'a template wooden chair', 2, 400, 'wooden', new Date(2020, 11,18), '#nextpageurl',"https://media2.giphy.com/media/ypBQolo0HfDej1W1X9/giphy.gif?cid=ecf05e474m6rw2v9o0zic290wlr3k410ffngtmcwkhsunvgm&rid=giphy.gif&ct=g");
+      var chair3 = new chairObj('gaming chair 2',  'a template gaming chair', 4, 600, 'gaming', new Date(2020, 11,19), '#nextpageurl',"https://media.giphy.com/media/3o6MbmQnyTKNWGHK8g/giphy.gif");
+      var chair4 = new chairObj('office chair 1',  'a template office chair', 3, 800, 'office', new Date(2020, 11,15), 'nextpageurl',"https://media0.giphy.com/media/8twZKibtk0gyPu4dC0/giphy.gif?cid=ecf05e47y9ohq0f08s4rkthtvxodi7agq6vn7yoeon1441pw&rid=giphy.gif&ct=g");
+      var chair5 = new chairObj('office chair 2',  'a office chair chair', 4, 1000, 'office', new Date(2020, 11,12), '#nextpageurl',"https://media.giphy.com/media/8vJcTuZHB7U8U/giphy.gif");
+      var featuredChair = new chairObj('basic chair 1',  'a template basic chair', 5, 200, 'basic', new Date(2020, 11,13), '#nextpageurl',"https://media.giphy.com/media/8vJcTuZHB7U8U/giphy.gif");
+      
       vm = Vue.createApp({
         data(){
           return{
             btnSort:"Relevance",
             featuredCard:"https://media.giphy.com/media/fGX80AAczeBEOOwEoK/giphy.gif",
-            cardsURL:["https://media.giphy.com/media/cgCMnZr84zE40/giphy.gif","https://media2.giphy.com/media/ypBQolo0HfDej1W1X9/giphy.gif?cid=ecf05e474m6rw2v9o0zic290wlr3k410ffngtmcwkhsunvgm&rid=giphy.gif&ct=g","https://media.giphy.com/media/3o6MbmQnyTKNWGHK8g/giphy.gif","https://media.giphy.com/media/S9jIAwgTtISJZKZ3oS/giphy.gif","https://media0.giphy.com/media/8twZKibtk0gyPu4dC0/giphy.gif?cid=ecf05e47y9ohq0f08s4rkthtvxodi7agq6vn7yoeon1441pw&rid=giphy.gif&ct=g","https://media.giphy.com/media/8vJcTuZHB7U8U/giphy.gif"],
-            selectedMaxPrice: "1000",
+            
             selectedMinPrice: "1",
+            selectedMaxPrice: "1000",
             selectedChairType:"",
             selectedRating: "1",
+            chairs : [chair1, chair2,chair3,chair4,chair5],
+            featuredChair : featuredChair,
             
+            button1 : 'Popularity',
+            button2 : 'Latest',
+            button3 : 'Rating',
+
+            button1class : "btn btn-primary m-md-1",
+            button2class : "btn btn-primary m-md-1",
+            button3class : "btn btn-primary m-md-1",
+
+            activeButton : '',
+            sortedChairs : [],
           }
         },
-        computed:{
+        created(){
+          this.sortedChairs = this.chairs;
+          console.log('created',this.sortedChairs);
+        },
+        methods:{
+          sortByPopularity(){
+            this.sortedChairs  = this.chairs;
+            console.log('sortByPopularity');
+          },
+          sortByLatest(){
+            tempSort = [];
+            
+            while (this.sortedChairs.length > 1){
+              
+              minIndex = 0;
+              minDate = this.sortedChairs[0].date;
+              for(let i=1;i < this.sortedChairs.length; i++){
+                if(this.sortedChairs[i].date < minDate){
+                  minDate = this.sortedChairs[i].date;
+                  minIndex = i;
+                }
+              }
+              tempSort.push(this.sortedChairs[minIndex]);
+              this.sortedChairs.splice(minIndex,1);
+              console.log(this.sortedChairs);
+              
+            }
+            tempSort.push(this.sortedChairs[0]);
+            console.log(tempSort);
+            this.sortedChairs = tempSort;
+          },
+          sortByType(){
 
+          },
+          sortByPrice(){
+
+          },
+          sortByRating(){
+
+          },
+          resetSort(){
+
+          }
+
+          
         }
       }).mount('#app')
     </script>
