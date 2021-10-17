@@ -25,16 +25,17 @@
   <div class="container-fluid">
     <div class="row flex-xl-nowrap" id="app">
       <div class="col-12 col-md-3 col-xl-2 bd-sidebar bg-warning sticky-top">
-          <ul class="nav nav-pills flex-column mb-auto">
+          <ul class="nav nav-pills flex-column mb-auto" v-on:change="filterChange">
               <h5>website logo here</h5>
               <li class="nav-item">Chair type
-                  <br><input type="radio" id="Gaming" v-model="selectedChairType">Gaming chair
-                  <br><input type="radio" id="Wooden" v-model="selectedChairType">Wooden chair
-                  <br><input type="radio" id="Office" v-model="selectedChairType">Office chair
-                  <br><input type="radio" id="Basic" v-model="selectedChairType">Basic chair
+                  <br><input type="radio" name="chairType" value="all" v-model="selectedChairType">All
+                  <br><input type="radio" name="chairType" value="gaming" v-model="selectedChairType">Gaming chair
+                  <br><input type="radio" name="chairType" value="wooden" v-model="selectedChairType">Wooden chair
+                  <br><input type="radio" name="chairType" value="office" v-model="selectedChairType">Office chair
+                  <br><input type="radio" name="chairType" value="basic" v-model="selectedChairType">Basic chair
                   
               </li>
-              <li class="nav-item">Minimum Rating: {{selectedRating}} <input type="range" id="" min='1' max='5' step='0.5' v-model='selectedRating'></li>
+              <li class="nav-item">Minimum Rating: {{selectedRating}}<input type="range" id="" min='1' max='5' step='0.5' v-model='selectedRating' ></li>
               <li class="nav-item">Min Price: {{selectedMinPrice}}<input type="range" id="" min='0' max='1000' v-model='selectedMinPrice'></li>
               <li class="nav-item">Max Price: {{selectedMaxPrice}}<input type="range" id="" min='0' max='1000' v-model='selectedMaxPrice'></li>
               <li class="nav-item"></li>
@@ -59,7 +60,7 @@
           </div>
         </div>
         <div class="row justify-content-around">
-          <div v-for="chair of sortedChairs" class="col-12 col-sm-6 col-md-4 col-xl-3 my-md-1 card" >
+          <div v-for="chair of filterChairs" class="col-12 col-sm-6 col-md-4 col-xl-3 my-md-1 card" >
               <img :src="chair.imageURL" class="card-img-top" alt="...">
               <div class="card-body">
                 <h5 class="card-text">Name: {{chair.name}}</h5>
@@ -95,15 +96,16 @@
       vm = Vue.createApp({
         data(){
           return{
+            chairs : [chair1, chair2,chair3,chair4,chair5],
+            featuredChair : featuredChair,
+
             btnSort:"Relevance",
             featuredCard:"https://media.giphy.com/media/fGX80AAczeBEOOwEoK/giphy.gif",
             
-            selectedMinPrice: "1",
-            selectedMaxPrice: "1000",
-            selectedChairType:"",
+            selectedMinPrice: 1,
+            selectedMaxPrice: 1000,
+            selectedChairType:"all",
             selectedRating: "1",
-            chairs : [chair1, chair2,chair3,chair4,chair5],
-            featuredChair : featuredChair,
             
             button1 : 'Popularity',
             button2 : 'Latest',
@@ -114,54 +116,105 @@
             button3class : "btn btn-primary m-md-1",
 
             activeButton : '',
-            sortedChairs : [],
+            filterChairs : [],
           }
         },
         created(){
-          this.sortedChairs = this.chairs;
-          console.log('created',this.sortedChairs);
+          this.filterChairs = this.chairs.slice();
+          console.log('created',this.filterChairs);
         },
         methods:{
           sortByPopularity(){
-            this.sortedChairs  = this.chairs;
+            //idk how to quantify this yet
             console.log('sortByPopularity');
+            this.filterChairs = this.chairs.slice();
+            this.filterChange();
           },
           sortByLatest(){
-            tempSort = [];
-            
-            while (this.sortedChairs.length > 1){
-              
-              minIndex = 0;
-              minDate = this.sortedChairs[0].date;
-              for(let i=1;i < this.sortedChairs.length; i++){
-                if(this.sortedChairs[i].date < minDate){
-                  minDate = this.sortedChairs[i].date;
-                  minIndex = i;
+            lastestList = [];
+            while (this.filterChairs.length > 1){
+              currIndex = 0;
+              maxDate = this.filterChairs[0].date;
+              for(let i=1;i < this.filterChairs.length; i++){
+                if(this.filterChairs[i].date > maxDate){
+                  maxDate = this.filterChairs[i].date;
+                  currIndex = i;
                 }
               }
-              tempSort.push(this.sortedChairs[minIndex]);
-              this.sortedChairs.splice(minIndex,1);
-              console.log(this.sortedChairs);
-              
+              lastestList.push(this.filterChairs[currIndex]);
+              this.filterChairs.splice(currIndex,1);              
             }
-            tempSort.push(this.sortedChairs[0]);
-            console.log(tempSort);
-            this.sortedChairs = tempSort;
-          },
-          sortByType(){
-
-          },
-          sortByPrice(){
-
+            lastestList.push(this.filterChairs[0]);
+            this.filterChairs = lastestList;
           },
           sortByRating(){
-
+            ratingSort = [];
+            while (this.filterChairs.length > 1){
+              currIndex = 0;
+              maxRating = this.filterChairs[0].rating;
+              for(let i=1;i < this.filterChairs.length; i++){
+                if(this.filterChairs[i].rating > maxRating){
+                  maxRating = this.filterChairs[i].rating;
+                  currIndex = i;
+                }
+              }
+              ratingSort.push(this.filterChairs[currIndex]);
+              this.filterChairs.splice(currIndex,1);              
+            }
+            ratingSort.push(this.filterChairs[0]);
+            this.filterChairs = ratingSort;
           },
-          resetSort(){
 
-          }
 
+          filterByPriceRange(){
+            console.log('min:',this.selectedMinPrice);
+            console.log('max:',this.selectedMaxPrice);
+            if(this.selectedMaxPrice > this.selectedMinPrice){
+              for (let i = this.filterChairs.length; i > 0;i--){
+                if(this.filterChairs[i-1].price < this.selectedMinPrice || this.filterChairs[i-1].price > this.selectedMaxPrice ){
+                  this.filterChairs.splice(i-1,1);
+                }
+              }
+            }
+            else{
+              alert('max price less than min price');
+            }
+          },
           
+          filterByType(){
+            console.log(this.selectedChairType);
+            if(this.selectedChairType == 'all'){
+              return
+            }
+            for (let i = this.filterChairs.length; i > 0;i--){
+              if(this.filterChairs[i - 1].type != this.selectedChairType){
+                this.filterChairs.splice(i-1,1);
+              }
+            }
+          },
+          filterByRating(){
+            for (let i = this.filterChairs.length; i > 0;i--){
+              if(this.filterChairs[i-1].rating < this.selectedRating){
+                this.filterChairs.splice(i-1,1);
+              }
+            }
+          },
+
+          filterChange(){
+            setTimeout(()=>{console.log('this is to not spam changes while the person is using the slider')},1000);
+            this.filterChairs = this.chairs.slice();
+            console.log('initial chair:', this.filterChairs)
+            this.filterByType();
+            console.log(this.filterChairs)
+            this.filterByRating();
+            console.log(this.filterChairs)
+            this.filterByPriceRange();
+            console.log(this.filterChairs)
+          }
+          
+        },
+        computed:{
+            
         }
       }).mount('#app')
     </script>
