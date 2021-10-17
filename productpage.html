@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Product Page</title>
+    <!-- using CDN -->
+    <script src="https://unpkg.com/vue@next"></script>
+      <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
+    <!-- Insert this script Sketchfeb -->
+    <script type="text/javascript" src="https://static.sketchfab.com/api/sketchfab-viewer-1.10.1.js"></script>
+
+
+</head>
+<body>
+  <div id="app">
+    {{message}} </br>
+    {{fruit1}} <input type="radio" name="fruit">
+    {{fruit2}} <input type="radio" name="fruit">
+    {{fruit3}} <input type="radio" name="fruit">
+
+
+    <div class="container mt-5 mb-5">
+        <div class="card">
+            <div class="row g-0">
+                <div class="col-md-6 border-end">
+                    <div class="d-flex flex-column justify-content-center">
+                        <div class="main_image"> <img src="https://i.imgur.com/TAzli1U.jpg" id="main_product_image" width="350"> </div>
+                        <!-- Insert an empty iframe with attributes -->
+                        <iframe src="" id="api-frame" allow="autoplay; fullscreen; xr-spatial-tracking" 
+                        xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered 
+                        web-share allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+                        <!-- ^Insert an empty iframe with attributes -->
+                        <div class="thumbnail_images">
+                            <ul id="thumbnail">
+                                <li><img onclick="changeImage(this)" src="https://i.imgur.com/TAzli1U.jpg" width="70"></li>
+                                <li><img onclick="changeImage(this)" src="https://i.imgur.com/w6kEctd.jpg" width="70"></li>
+                                <li><img onclick="changeImage(this)" src="https://i.imgur.com/L7hFD8X.jpg" width="70"></li>
+                                <li><img onclick="changeImage(this)" src="https://i.imgur.com/6ZufmNS.jpg" width="70"></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="p-3 right-side">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h3>IIlana</h3> <span class="heart"><i class='bx bx-heart'></i></span>
+                        </div>
+                        <div class="mt-2 pr-3 content">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+                        </div>
+                        <h3>$430.99</h3>
+                        <div class="ratings d-flex flex-row align-items-center">
+                            <div class="d-flex flex-row"> <i class='bx bxs-star'></i> <i class='bx bxs-star'></i> <i class='bx bxs-star'></i> <i class='bx bxs-star'></i> <i class='bx bx-star'></i> </div> <span>441 reviews</span>
+                        </div>
+                        <div class="mt-5"> <span class="fw-bold">Color</span>
+                            <div class="colors">
+                                <ul id="marker">
+                                    <li id="marker-1"></li>
+                                    <li id="marker-2"></li>
+                                    <li id="marker-3"></li>
+                                    <li id="marker-4"></li>
+                                    <li id="marker-5"></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="buttons d-flex flex-row mt-5 gap-3"> <button class="btn btn-outline-dark">Buy Now</button> <button class="btn btn-dark">Add to Basket</button> </div>
+                        <div class="search-option"> <i class='bx bx-search-alt-2 first-search'></i>
+                            <div class="inputs"> <input type="text" name=""> </div> <i class='bx bx-share-alt share'></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+    //initialize the viewer
+    var iframe = document.getElementById( 'api-frame' );
+    var uid = '7w7pAfrCfjovwykkEeRFLGw5SXS';
+
+    // By default, the latest version of the viewer API will be used.
+    var client = new Sketchfab( iframe );
+
+    // Alternatively, you can request a specific version.
+    // var client = new Sketchfab( '1.10.1', iframe );
+
+    client.init( uid, {
+        success: function onSuccess( api ){
+            api.start();
+            api.addEventListener( 'viewerready', function() {
+
+                // API is ready to use
+                // Insert your code here
+                console.log( 'Viewer is ready' );
+
+            } );
+        },
+        error: function onError() {
+            console.log( 'Viewer error' );
+        }
+    } );
+    //sketchfeb viewr
+
+    </script>
+ 
+</body>
+</html>
