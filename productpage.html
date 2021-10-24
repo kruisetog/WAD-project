@@ -183,7 +183,7 @@
                         <tr class="">
                             <td>
                                 <span>
-                                    <button class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter">5 Stars</button>
+                                    <button class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter">4 Stars</button>
                                 </span>
                             </td>
                             <td class="progress-bar-container">
@@ -198,7 +198,7 @@
                         <tr class="">
                             <td>
                                 <span>
-                                    <button class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter">5 Stars</button>
+                                    <button class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter">3 Stars</button>
                                 </span>
                             </td>
                             <td class="progress-bar-container">
@@ -213,7 +213,7 @@
                         <tr class="">
                             <td>
                                 <span>
-                                    <button class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter">5 Stars</button>
+                                    <button class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter">2 Stars</button>
                                 </span>
                             </td>
                             <td class="progress-bar-container">
@@ -228,7 +228,7 @@
                         <tr class="">
                             <td>
                                 <span>
-                                    <button class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter">5 Stars</button>
+                                    <button class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter">1 Stars</button>
                                 </span>
                             </td>
                             <td class="progress-bar-container">
@@ -394,17 +394,29 @@
     }
 
     //retrieve reviews
-    //from db only 3 colums [rid,rating,reviewtext]
+    //from db only 3 colums [pid,rid,rating,reviewtext]
+    pr1 = [01,03,5,"askljdaklsjflka"];
+    pr2 = [02,04,4,"askljdaklsjflka"];
+    pr3 = [03,05,2,"askljdaklsjflka"];
+    pr4 = [04,06,5,"askljdaklsjflka"];
+    pr5 = [05,07,3,"askljdaklsjflka"];
+    getcount = 9;
+
+    function countstars(){
+        
+    }
+
+
     const app= Vue.createApp({
         data(){
             return{
-                reviewcount: 9,
+                reviewcount: getcount,
                 arrayofreviews: []
             }
         },
         methods: {
             countstars(){
-                
+
             }
         }
     })
