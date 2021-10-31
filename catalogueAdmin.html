@@ -11,25 +11,49 @@
 
     <!-- this is the start of firebase script -->
     <script>
-        const firebaseConfig = {
+        const firebaseConfig ={
 
-        apiKey: "AIzaSyAiym6Wu9dKGrrf4DMbWvSIq55ueqMa4pU",
-        authDomain: "wad-project-test.firebaseapp.com",
-        projectId: "wad-project-test",
-        storageBucket: "wad-project-test.appspot.com",
-        messagingSenderId: "662948509887",
-        appId: "1:662948509887:web:50db4fc23c13746e6dae0a",
-        measurementId: "G-LRN6N246B5",
-        databaseURL: "https://wad-project-test-default-rtdb.asia-southeast1.firebasedatabase.app/"
+            apiKey: "AIzaSyAiym6Wu9dKGrrf4DMbWvSIq55ueqMa4pU",
+            authDomain: "wad-project-test.firebaseapp.com",
+            projectId: "wad-project-test",
+            storageBucket: "wad-project-test.appspot.com",
+            messagingSenderId: "662948509887",
+            appId: "1:662948509887:web:50db4fc23c13746e6dae0a",
+            measurementId: "G-LRN6N246B5",
+            databaseURL: "https://wad-project-test-default-rtdb.asia-southeast1.firebasedatabase.app/"
 
-        };
+        }
+    // firebase.initializeApp(firebaseConfig);
+    // var chairsDB = firebase.database().ref('chairs');
 
-
-        // Initialize Firebase
-
-        firebase.initializeApp(firebaseConfig);
-        var chairsDB = firebase.database().ref('chairs');
     //The following example demostrates how to add data
+        
+    
+        // function getDatabaseOnce(){
+        //     const dbRef = firebase.database().ref();
+        //     dbRef.child("chairs").get().then((snapshot) => {
+        //     if (snapshot.exists()) {
+        //         console.log(snapshot.val());
+        //         return snapshot.val();
+        //     } else {
+        //         console.log("No data available");
+        //     }
+        //     }).catch((error) => {
+        //     console.error(error);
+        //     });
+        // }
+
+        function chairObjList(){
+            
+            chairList = []
+            console.log('computed')
+            console.log(getDatabaseOnce());
+            for (a_chair of getDatabaseOnce()){
+                chairList.push(a_chair);
+            }
+            console.log(chairList);
+            return chairList
+        }
         
 
         //The following writes the data
@@ -43,6 +67,9 @@
             date : chairObj.date,
             pageURL : chairObj.pageURL,
             imageURL : chairObj.imageURL,
+            apiKey : chairObj.apiKey,
+            reviewObjList : chairObj.reviewObjList,
+
 
         }, function(error) {
             if (error) {
@@ -56,7 +83,9 @@
             }
         });
         }
-        function chairObj(name, description, rating, price, type, date, pageURL, imageURL) {
+
+        //constructor functions
+        function chairObj(name, description, rating, price, type, date, pageURL, imageURL, apiKey, reviewObjList) {
           this.name = name;
           this.description = description;
           this.rating = rating;
@@ -65,14 +94,37 @@
           this.date = date;
           this.pageURL = pageURL;
           this.imageURL = imageURL;
+          this.apiKey = apiKey;
+          this.reviewObjList = reviewObjList
         }
+        function reviewObj(reviewId, userId, reviewDescription,likeCount,dislikeCount){
+            this.reviewId = reviewId
+            this.userId = userId;
+            this.reviewDescription = reviewDescription;
+            this.likeCount = likeCount;
+            this.dislikeCount = dislikeCount;
+        }
+        function dateObj(day, month, year){
+            this.day = day;
+            this.month = month;
+            this.year = year;
+            this.dateStr = this.day + '/'+ this.month + '/'+ this.year;
+        }
+        
+        review0 = new reviewObj(122, 1772, 'PogChamp', 10, 0);
+        review1 = new reviewObj(145, 6969, 'NICE CHAIR LOL', 1, 5);
+        review2 = new reviewObj(942, 3333, 'Spooderman is just a sticky boy', 0, 10);
+        review3 = new reviewObj(465, 4444, 'Puke, low effort chair', 5, 3);
+        review4 = new reviewObj(452, 5555, 'My chair died within 2 weeks', 2, 0);
+        review5 = new reviewObj(832, 1234, 'I wanna lick this chair so bad', 99, 6);
+        
 
-        var chair1 = new chairObj('gaming chair 1',  'a template gaming chair', 5, 200, 'gaming', new Date(2020, 11,17),'#nextpageurl',"https://media.giphy.com/media/cgCMnZr84zE40/giphy.gif");
-        var chair2 = new chairObj('wooden chair 1',  'a template wooden chair', 2, 400, 'wooden', new Date(2020, 11,18), '#nextpageurl',"https://media2.giphy.com/media/ypBQolo0HfDej1W1X9/giphy.gif?cid=ecf05e474m6rw2v9o0zic290wlr3k410ffngtmcwkhsunvgm&rid=giphy.gif&ct=g");
-        var chair3 = new chairObj('gaming chair 2',  'a template gaming chair', 4, 600, 'gaming', new Date(2020, 11,19), '#nextpageurl',"https://media.giphy.com/media/3o6MbmQnyTKNWGHK8g/giphy.gif");
-        var chair4 = new chairObj('office chair 1',  'a template office chair', 3, 800, 'office', new Date(2020, 11,15), 'nextpageurl',"https://media0.giphy.com/media/8twZKibtk0gyPu4dC0/giphy.gif?cid=ecf05e47y9ohq0f08s4rkthtvxodi7agq6vn7yoeon1441pw&rid=giphy.gif&ct=g");
-        var chair5 = new chairObj('office chair 2',  'a office chair chair', 4, 1000, 'office', new Date(2020, 11,12), '#nextpageurl',"https://media.giphy.com/media/8vJcTuZHB7U8U/giphy.gif");
-        var featuredChair = new chairObj('basic chair 1',  'a template basic chair', 5, 200, 'basic', new Date(2020, 11,13), '#nextpageurl',"https://media.giphy.com/media/XGU4CyI27f5xBWGJlY/giphy.gif");
+        var chair1 = new chairObj('gaming chair 1',  'a template gaming chair', 5, 200, 'gaming', new dateObj(2020, 11,17),'#nextpageurl',"https://media.giphy.com/media/cgCMnZr84zE40/giphy.gif", 'default_apikey', [review0,review1,review2]);
+        var chair2 = new chairObj('wooden chair 1',  'a template wooden chair', 2, 400, 'wooden', new dateObj(2020, 11,18), '#nextpageurl',"https://media2.giphy.com/media/ypBQolo0HfDej1W1X9/giphy.gif?cid=ecf05e474m6rw2v9o0zic290wlr3k410ffngtmcwkhsunvgm&rid=giphy.gif&ct=g",'default_apikey', [review1]);
+        var chair3 = new chairObj('gaming chair 2',  'a template gaming chair', 4, 600, 'gaming', new dateObj(2020, 11,19), '#nextpageurl',"https://media.giphy.com/media/3o6MbmQnyTKNWGHK8g/giphy.gif",'default_apikey', [review2]);
+        var chair4 = new chairObj('office chair 1',  'a template office chair', 3, 800, 'office', new dateObj(2020, 11,15), 'nextpageurl',"https://media0.giphy.com/media/8twZKibtk0gyPu4dC0/giphy.gif?cid=ecf05e47y9ohq0f08s4rkthtvxodi7agq6vn7yoeon1441pw&rid=giphy.gif&ct=g",'default_apikey', [review3]);
+        var chair5 = new chairObj('office chair 2',  'a office chair chair', 4, 1000, 'office', new dateObj(2020, 11,12), '#nextpageurl',"https://media.giphy.com/media/8vJcTuZHB7U8U/giphy.gif",'default_apikey', [review4]);
+        var featuredChair = new chairObj('basic chair 1',  'a template basic chair', 5, 200, 'basic', new dateObj(2020, 11,13), '#nextpageurl',"https://media.giphy.com/media/XGU4CyI27f5xBWGJlY/giphy.gif",'default_apikey', [review5]);
         
         var chairs = [chair1, chair2,chair3,chair4,chair5]
         function resetChairs(){
@@ -83,12 +135,32 @@
         }
       
         function addChair(){
-            var inputIds = ['Name', 'Description', 'Rating', 'Price', 'Type', 'Date', 'pageURL', 'imageURL'];
+            var inputIds = ['Name', 'Description', 'Rating', 'Price', 'Type', 'Date', 'pageURL', 'imageURL', 'apiKey' ];
             
             // this is going to change, just for testing
-            var addChairObj = new chairObj(document.getElementById(inputIds[0]).value, document.getElementById(inputIds[1]).value, document.getElementById(inputIds[2]).value, document.getElementById(inputIds[3]).value, document.getElementById(inputIds[4]).value,document.getElementById(inputIds[5]).value,document.getElementById(inputIds[6]).value,document.getElementById(inputIds[7]).value) 
+            
+            addDateObj = new dateObj(document.getElementById('Date').value.split('/')[0],document.getElementById('Date').value.split('/')[1],document.getElementById('Date').value.split('/')[2])
+
+            var addChairObj = {
+                name : document.getElementById('Name').value,
+                description : document.getElementById('Description').value,
+                rating : document.getElementById('Rating').value,
+                price : document.getElementById('Price').value,
+                type : document.getElementById('Type').value,
+                date : addDateObj,
+                pageURL : document.getElementById('pageURL').value,
+                imageURL : document.getElementById('imageURL').value,
+                apiKey : document.getElementById('apiKey').value,
+                reviewObjList : []
+            }
+
+           
             writeUserDataWithCompletion(addChairObj);
+            
+
         }
+
+        
         
     </script>
     <!-- this is the end of firebase script -->
@@ -147,12 +219,18 @@
 
   </nav>
   <!-- End of navbar -->
-    <div class="container-fluid mt-5">
+
+
+
+
+
+  <!-- start of Vue -->
+    <div class="container-fluid mt-5" id="inputChairForm">
         <div class="p-3 mb-2 bg-info text-white"  style="font-size: x-large;"id="status">Status</div>
         
         <button onclick="resetChairs()">reset chairs</button>
         <h5>Register new chair</h5>
-        <div class="row" id="inputChairForm">
+        <div class="row" >
             <!-- <div class="col-5">
                 <label for="name">Name</label>
                 <div class="input-group mb-3">
@@ -160,7 +238,8 @@
                     
                 </div>
             </div> -->
-            <singleinput v-for="a_input of charInputText1" :inputtype="a_input"></singleInput>
+            <singleinput v-for="a_input of chairInputText1" :inputtype="a_input"></singleInput>
+            
             <div class="col-5">
                 <label for="Type">Chair Type</label>
                 
@@ -173,23 +252,143 @@
                 
             </div>
             <numberinput v-for="a_input of chairInputNum" :inputtype="a_input"></numberinput>
-            <singleinput v-for="a_input of charInputText2" :inputtype="a_input"></singleInput>
+            <singleinput v-for="a_input of chairInputText2" :inputtype="a_input"></singleInput>
 
+        </div>
+        <button onclick="addChair()" v-on:click="getDatabaseOnce">Add chair</button>
+        
+        <div class= "row">
+            <table class="table table-striped">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col" v-for="col_name of chairInputText1">{{col_name}}</th>
+                    <th scope="col" v-for="col_name of chairInputNum">{{col_name}}</th>
+                    <th scope="col">Type</th>
+                    <th scope="col" v-for="col_name of chairInputText2">{{col_name}}</th>
+                    <th scope="col" >Reviews</th>
+                    <th scope="col" >Delete</th>    
+                  </tr>
+                <tr v-for="chairProps, chairName, index in chairsDB" :name="chairName" >
+                    <td>{{index}}</td>
+                    <td>{{chairName}}</td>
+                    <td>{{chairProps.description}}</td>
+                    <td>{{chairProps.date.dateStr}}</td>
+                    <td>{{chairProps.rating}}</td>
+                    <td>{{chairProps.price}}</td>
+                    <td>{{chairProps.type}}</td>
+                    <td><a href="chairProps.pageURL">{{chairProps.pageURL}}</a></td>
+                    <td><a href="chairProps.imageURL">{{chairProps.imageURL}}</a></td>
+                    <td>{{chairProps.apiKey}}</td>
+                    <td ><span v-for="a_review in chairProps.reviewObjList">{{a_review.reviewId + "\t"}}</span></td>
+                    <td><button type="button" class="btn btn-outline-danger" v-on:click="delete_entry" :name = "chairName">X</button></td>
+
+                </tr>
+            </table>
         </div>
         
     </div>
-    <button onclick="addChair()">Add chair</button>
+    <!-- end of Vue -->
+
+
+
+
     <script>
         const app = Vue.createApp({
             data() {
                 return {
                     //assume the following data is obtained dynamically through Asynchronous requests
-                    charInputText1: ['Name', 'Description', 'Date', ],
+                    chairInputText1: ['Name', 'Description', 'Date' ],
                     chairInputNum: ['Rating', 'Price'],
-                    charInputText2: ['Type', 'Date', 'pageURL', 'imageURL']
-                    
+                    chairInputText2: [ 'pageURL', 'imageURL', 'apiKey'],
+                    chairDatabase : [],
+                    firebaseConfig :{
+
+                        apiKey: "AIzaSyAiym6Wu9dKGrrf4DMbWvSIq55ueqMa4pU",
+                        authDomain: "wad-project-test.firebaseapp.com",
+                        projectId: "wad-project-test",
+                        storageBucket: "wad-project-test.appspot.com",
+                        messagingSenderId: "662948509887",
+                        appId: "1:662948509887:web:50db4fc23c13746e6dae0a",
+                        measurementId: "G-LRN6N246B5",
+                        databaseURL: "https://wad-project-test-default-rtdb.asia-southeast1.firebasedatabase.app/"
+
+                    },
+                    chairsDB : {},
+                    chairsList: [],
+
                 }
+                
+            },
+            computed:{
+                
+            },
+            methods:{
+                //this retrieves the database as an object
+                
+                getDatabaseOnce(){
+                const dbRef = firebase.database().ref();
+                dbRef.child("chairs").get().then((snapshot) => {
+                if (snapshot.exists()) {
+                    console.log(snapshot.val());
+                    this.chairsDB = snapshot.val();
+                    console.log(this.chairsDB);
+                    return snapshot.val();
+                } else {
+                    console.log("No data available");
+                }
+                }).catch((error) => {
+                console.error(error);
+                });
+            },
+                //The following writes the data
+                writeUserDataWithCompletion(chairObj) {
+                        firebase.database().ref('chairs/' + chairObj.name).set({
+                        name: chairObj.name,
+                        description : chairObj.description,
+                        rating : chairObj.rating,
+                        price : chairObj.price,
+                        type : chairObj.type,
+                        date : chairObj.date,
+                        pageURL : chairObj.pageURL,
+                        imageURL : chairObj.imageURL,
+                        apiKey : chairObj.apiKey,
+                        reviewObj : chairObj.reviewObj,
+
+
+                    }, 
+                    function(error) {
+                        if (error) {
+                        document.getElementById("status").innerText = "Chair Registration Failed!";
+                        } else {
+                        document.getElementById("status").innerText = "Chair Registration Done!";
+                        setTimeout(()=>{
+                            document.getElementById("status").innerText = "Status";
+
+                        }, 3000)
+                        }
+                    });
+                },
+                delete_entry(event){
+                    console.log('delete_entry')
+                    console.log(event.target.name)
+                    name= event.target.name
+                    firebase.database().ref('chairs/' + name).set(null)
+                    this.getDatabaseOnce();
+                },
+                
+                
+
+                
+            },
+            created(){
+                firebase.initializeApp(this.firebaseConfig);
+                this.getDatabaseOnce();
+                console.log(this.chairsDB)
+            },
+            computed:{
+                
             }
+            
         })
         // note: template must have a single root element!
         app.component('singleinput', {
@@ -198,7 +397,9 @@
             <div class="col-5">
                 <label :for="inputtype">{{inputtype}}</label>
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" :placeholder="'Chair '+ inputtype" aria-describedby="basic-addon2" :id="inputtype">
+                    <input type="text" class="form-control" :placeholder="'Chair '+ inputtype" aria-describedby="basic-addon2" :id="inputtype" v-if="inputtype != 'Date'">
+                    <input type="text" class="form-control" placeholder="DD/MM/YYYY" aria-describedby="basic-addon2" :id="inputtype"  v-else>
+
                     
                 </div>
             </div>`
@@ -215,7 +416,8 @@
             </div>`
         })
 
-        app.mount('#inputChairForm')
+
+        vm = app.mount('#inputChairForm')
     </script>
 
     
