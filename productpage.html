@@ -143,10 +143,10 @@
 <!-- End of Product Card -->
 
 <!-- Start of Review Card -->
-<div class="container card">
-    <div id="reviews" class="review-section">
+<div id="reviews"class="container card">
+    <div id="reviewswewe" class="review-section">
         <div id="reviewtt" class="d-flex align-items-center justify-content-between mb-4">
-            <h4 class="m-0">{{reviewcount}} Reviews</h4>
+            <h4 class="m-0">{{ reviewcount }} Reviews</h4>
             <select class="custom-select custom-select-sm border-0 shadow-sm ml-2 select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
                 <option data-select2-id="3">Most Relevant</option>
                 <option>Most Recent</option>
@@ -174,11 +174,11 @@
                             <td class="progress-bar-container">
                                 <div class="fit-progressbar fit-progressbar-bar star-progress-bar">
                                     <div class="fit-progressbar-background">
-                                        <span class="progress-fill" style="width: 97.2973%;"></span>
+                                        <span class="progress-fill" :style="countbar(countstars[0],countstars,)"></span>
                                     </div>
                                 </div>
                             </td>
-                            <td class="star-num">(36)</td>
+                            <td class="star-num">({{ countstars[0] }})</td>
                         </tr>
                         <tr class="">
                             <td>
@@ -189,11 +189,11 @@
                             <td class="progress-bar-container">
                                 <div class="fit-progressbar fit-progressbar-bar star-progress-bar">
                                     <div class="fit-progressbar-background">
-                                        <span class="progress-fill" style="width: 2.2973%;"></span>
+                                        <span class="progress-fill" :style="countbar(countstars[1],countstars,)"></span>
                                     </div>
                                 </div>
                             </td>
-                            <td class="star-num">(2)</td>
+                            <td class="star-num">({{ countstars[1] }})</td>
                         </tr>
                         <tr class="">
                             <td>
@@ -204,11 +204,11 @@
                             <td class="progress-bar-container">
                                 <div class="fit-progressbar fit-progressbar-bar star-progress-bar">
                                     <div class="fit-progressbar-background">
-                                        <span class="progress-fill" style="width: 0;"></span>
+                                        <span class="progress-fill" :style="countbar(countstars[2],countstars,)"></span>
                                     </div>
                                 </div>
                             </td>
-                            <td class="star-num">(0)</td>
+                            <td class="star-num">({{ countstars[2] }})</td>
                         </tr>
                         <tr class="">
                             <td>
@@ -219,11 +219,11 @@
                             <td class="progress-bar-container">
                                 <div class="fit-progressbar fit-progressbar-bar star-progress-bar">
                                     <div class="fit-progressbar-background">
-                                        <span class="progress-fill" style="width: 0;"></span>
+                                        <span class="progress-fill" :style="countbar(countstars[3],countstars,)"></span>
                                     </div>
                                 </div>
                             </td>
-                            <td class="star-num">(0)</td>
+                            <td class="star-num">({{ countstars[3] }})</td>
                         </tr>
                         <tr class="">
                             <td>
@@ -234,11 +234,11 @@
                             <td class="progress-bar-container">
                                 <div class="fit-progressbar fit-progressbar-bar star-progress-bar">
                                     <div class="fit-progressbar-background">
-                                        <span class="progress-fill" style="width: 0;"></span>
+                                        <span class="progress-fill" :style="countbar(countstars[4],countstars,)"></span>
                                     </div>
                                 </div>
                             </td>
-                            <td class="star-num">(0)</td>
+                            <td class="star-num">({{ countstars[4] }})</td>
                         </tr>
                     </tbody>
                 </table>
@@ -264,7 +264,7 @@
 
     <div class="review-list">
         <ul>
-            <li>
+            <li v-for="review in chairobj.listofreview">
                 <div class="d-flex">
                     <div class="left">
                         <span>
@@ -281,7 +281,7 @@
                                         d="M1728 647q0 22-26 48l-363 354 86 500q1 7 1 20 0 21-10.5 35.5t-30.5 14.5q-19 0-40-12l-449-236-449 236q-22 12-40 12-21 0-31.5-14.5t-10.5-35.5q0-6 2-20l86-500-364-354q-25-27-25-48 0-37 56-46l502-73 225-455q19-41 49-41t49 41l225 455 502 73q56 9 56 46z"
                                     ></path>
                                 </svg>
-                                5.0
+                                {{review.rating}}
                             </span>
                         </h4>
                         <div class="country d-flex align-items-center">
@@ -292,11 +292,11 @@
                         </div>
                         <div class="review-description">
                             <p>
-                                The process was smooth, after providing the required info, Pragyesh sent me an outstanding packet of wireframes. Thank you a lot!
+                                {{review.reviewDescription}}
                             </p>
                         </div>
                         <span class="publish py-3 d-inline-block w-100">Published 4 weeks ago</span>
-                        <div class="helpful-thumbs">
+                        <!--<div class="helpful-thumbs">
                             <div class="helpful-thumb text-body-2">
                                 <span class="fit-icon thumbs-icon">
                                     <svg width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">
@@ -317,8 +317,8 @@
                                 </span>
                                 <span class="thumb-title">Not Helpful</span>
                             </div>
-                        </div>
-                        <div class="response-item mt-4 d-flex">
+                        </div>-->
+                        <!--<div class="response-item mt-4 d-flex">
                             <div class="left">
                                 <span>
                                     <img src="https://bootdey.com/img/Content/avatar/avatar2.png" class="profile-pict-img img-fluid" alt="" />
@@ -350,7 +350,7 @@
                                 </div>
                                 <span class="publish py-3 d-inline-block w-100">Published 4 weeks ago</span>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </li>
@@ -359,11 +359,53 @@
 </div>
 
 <script type="text/javascript">
+
+    //retrieve reviews
+    //from db only 3 colums [pid,rid,rating,reviewtext]
+    const review_data1 = {
+        ReviewID: "12",
+        userId: '134',
+        reviewDescription: 'What is a baby cow called?',
+        likeCount: 3,
+        dislikeCount: 1,
+        rating: 2
+    };
+    const review_data2 = {
+        ReviewID: "12",
+        userId: '134',
+        reviewDescription: 'What is a baby pig called?',
+        likeCount: 5,
+        dislikeCount: 1,
+        rating: 5
+
+    };
+    const review_data3 = {
+        ReviewID: "12",
+        userId: '134',
+        reviewDescription: 'What is a baby cat called?',
+        likeCount: 8,
+        dislikeCount: 1,
+        rating: 4
+    };
+
+    const chair_data =     {
+        name: "216ao",
+        description: 'short',
+        rating: 'What is a baby cow called?',
+        price: 'calf',
+        type: "216ao",
+        date: 'short',
+        pageURL: 'What is a baby cow called?',
+        imageURL: 'calf',
+        ApiKey: "c922a7282c0a41f3886597d1316cd83b",
+        listofreview: [review_data1,review_data2,review_data3]
+    };
+
     //for the sketchfab api
     //initialize the viewer
     var iframe = document.getElementById( 'api-frame' );
     //object key that can be used to retrieve model from sketchfeb
-    var uid = 'c922a7282c0a41f3886597d1316cd83b';
+    var uid = chair_data.ApiKey;
 
     // By default, the latest version of the viewer API will be used.
     var client = new Sketchfab( iframe );
@@ -393,34 +435,66 @@
         main_prodcut_image.src = element.src;
     }
 
-    //retrieve reviews
-    //from db only 3 colums [pid,rid,rating,reviewtext]
-    pr1 = [01,03,5,"askljdaklsjflka"];
-    pr2 = [02,04,4,"askljdaklsjflka"];
-    pr3 = [03,05,2,"askljdaklsjflka"];
-    pr4 = [04,06,5,"askljdaklsjflka"];
-    pr5 = [05,07,3,"askljdaklsjflka"];
-    getcount = 9;
 
-    function countstars(){
-        
-    }
-
-
+    //vue constructor 
     const app= Vue.createApp({
         data(){
             return{
-                reviewcount: getcount,
-                arrayofreviews: []
+                chairobj: chair_data
             }
         },
-        methods: {
+        computed: {
+            reviewcount(){
+                let reviewcount  = 0;
+                for(var i = 0; i<this.chairobj.listofreview.length; i++){
+                    reviewcount += 1;
+                }
+                return reviewcount;
+            },
             countstars(){
+                let reviews = this.chairobj.listofreview;
+                let listostars = [0,0,0,0,0];
+                for(var i = 0; i<reviews.length;i++){
+                    if(reviews[i].rating == 5){
+                        listostars[0] += 1;
+                    }
+                    else if(reviews[i].rating == 4){
+                        listostars[1] += 1;
+                    }
+                    else if(reviews[i].rating == 3){
+                        listostars[2] += 1;
+                    }
+                    else if(reviews[i].rating == 2){
+                        listostars[3] += 1;
+                    }
+                    else{
+                        listostars[4] += 1;
+                    }
+                }
+                
+                return listostars;                
+            },
 
+        },
+        methods: {
+            countbar(thenum,thefull){
+
+                let str = "width: ";
+                let totalactualcount = 0
+                for(var i = 0; i<thefull.length;i++){
+                    if(thefull[i] != 0){
+                        totalactualcount += 1
+                    }
+                }
+
+                //count percent
+                let num = (thenum/totalactualcount) * 100;
+                str = str + num + "%";
+                return str;
             }
         }
     })
-    const vm = app.mount("#reviewtt")
+    const vm = app.mount("#reviews")
     </script>
  
 </body>
