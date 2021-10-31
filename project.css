@@ -41,6 +41,8 @@ h1 {
     #aboutUsPage {padding-top: 15%;}
     #loginPage {padding-top: 15%; padding-bottom: 8%; padding-left: 10%; padding-right: 10%;}
     #createAccPage {padding-top: 15%; padding-bottom: 8%; padding-left: 10%; padding-right: 10%;}
+    #successPage {padding-top: 15%; padding-bottom: 8%; padding-left: 10%; padding-right: 10%;}
+    #passChangePage {padding-top: 15%; padding-bottom: 8%; padding-left: 10%; padding-right: 10%;}
 }
 
 @media (min-width: 768px) {  
@@ -52,6 +54,8 @@ h1 {
     #aboutUsPage {padding-top: 15%;}
     #loginPage {padding-top: 15%; padding-bottom: 8%; padding-left: 10%; padding-right: 10%;}
     #createAccPage {padding-top: 15%; padding-bottom: 8%; padding-left: 10%; padding-right: 10%;}
+    #successPage {padding-top: 15%; padding-bottom: 8%; padding-left: 10%; padding-right: 10%;}
+    #passChangePage {padding-top: 15%; padding-bottom: 8%; padding-left: 10%; padding-right: 10%;}
 }
 
 @media (min-width: 992px) { 
@@ -63,6 +67,8 @@ h1 {
     #aboutUsPage {padding-top: 15%;}
     #loginPage {padding-top: 15%; padding-bottom: 8%; padding-left: 10%; padding-right: 10%;}
     #createAccPage {padding-top: 15%; padding-bottom: 8%; padding-left: 10%; padding-right: 10%;}
+    #successPage {padding-top: 15%; padding-bottom: 8%; padding-left: 10%; padding-right: 10%;}
+    #passChangePage {padding-top: 15%; padding-bottom: 8%; padding-left: 10%; padding-right: 10%;}
    
 }
 
@@ -75,6 +81,8 @@ h1 {
     #aboutUsPage {padding-top: 10%;}
     #loginPage {padding-top: 10%; padding-bottom: 5%; padding-left: 15%; padding-right: 15%;}
     #createAccPage {padding-top: 10%; padding-bottom: 5%; padding-left: 15%; padding-right: 15%;}
+    #successPage {padding-top: 10%; padding-bottom: 5%; padding-left: 15%; padding-right: 15%;}
+    #passChangePage {padding-top: 10%; padding-bottom: 5%; padding-left: 15%; padding-right: 15%;}
     
 }
 
@@ -118,5 +126,13 @@ h1 {
 }
 
 #createAccPage {
+    background-color: white;
+}
+
+#successPage {
+    background-color: white;
+}
+
+#passChangePage {
     background-color: white;
 }

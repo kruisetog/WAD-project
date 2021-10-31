@@ -124,16 +124,13 @@
                     </form>
                     <div class="breakPara"></div>
                     
-                    <a href="#" class="link-primary">Forgot your ID or password?</a> 
+                    <a href="passwordReset.html" class="link-primary">Forgot password?</a> 
                     <div class="breakPara"></div>
                     <a href="createAccount.html" class="link-primary">Don't have an account? Create one now!</a>
                 
                 </div>
             </div>
-
         </div>
-
-
     </div>
 
     <script src="https://unpkg.com/vue@next"></script>
@@ -173,7 +170,7 @@
             }
             ,
 
-            mounted() {
+            created() {
                 dbUsers.once("value").then((snapshot) => {
                     if(snapshot.exists()) {
                         this.users = snapshot.val();
@@ -181,8 +178,8 @@
                 })
 
                 if (localStorage.loggedUser) {
-                    this.loggedUser = localStorage.loggedUser;
-                }
+                    window.location.href = "homePage.html";
+                } 
             }
             ,
 
