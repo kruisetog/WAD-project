@@ -126,7 +126,7 @@
         var chair5 = new chairObj('office chair 2',  'a office chair chair', 4, 1000, 'office', new dateObj(2020, 11,12), '#nextpageurl',"https://media.giphy.com/media/8vJcTuZHB7U8U/giphy.gif",'default_apikey', [review4]);
         var featuredChair = new chairObj('basic chair 1',  'a template basic chair', 5, 200, 'basic', new dateObj(2020, 11,13), '#nextpageurl',"https://media.giphy.com/media/XGU4CyI27f5xBWGJlY/giphy.gif",'default_apikey', [review5]);
         
-        var chairs = [chair1, chair2,chair3,chair4,chair5]
+        var chairs = [chair1, chair2,chair3,chair4,chair5, featuredChair]
         function resetChairs(){
             
             for(chair of chairs){
@@ -270,7 +270,7 @@
                     <th scope="col" >Delete</th>    
                   </tr>
                 <tr v-for="chairProps, chairName, index in chairsDB" :name="chairName" >
-                    <td>{{index}}</td>
+                    <td>{{index + 1}}</td>
                     <td>{{chairName}}</td>
                     <td>{{chairProps.description}}</td>
                     <td>{{chairProps.date.dateStr}}</td>
