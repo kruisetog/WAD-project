@@ -257,6 +257,7 @@
         </div>
         <button onclick="addChair()" v-on:click="getDatabaseOnce">Add chair</button>
         
+        
         <div class= "row">
             <table class="table table-striped">
                 <tr>
@@ -340,6 +341,7 @@
                 console.error(error);
                 });
             },
+            
                 //The following writes the data
                 writeUserDataWithCompletion(chairObj) {
                         firebase.database().ref('chairs/' + chairObj.name).set({
@@ -370,9 +372,11 @@
                 },
                 delete_entry(event){
                     console.log('delete_entry')
-                    console.log(event.target.name)
+                    
                     name= event.target.name
+                    console.log(firebase.database().ref('chairs/' + name))
                     firebase.database().ref('chairs/' + name).set(null)
+                    
                     this.getDatabaseOnce();
                 },
                 

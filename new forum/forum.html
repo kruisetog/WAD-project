@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Forum :: Home Page</title>
+
+        <!-- Bootstrap -->
+        <link href="bootstrap.min.css" rel="stylesheet">
+
+        <!-- Font api -->
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+        
+        <!-- CSS STYLE -->
+        <link rel="stylesheet" type="text/css" href="style.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="custom.css" media="screen" />
+        
+        <!-- Vue.js -->
+        <script src="vue.js"></script>
+
+    </head>
+
+    <body>
+        <div class="container-fluid">
+
+        <!-- Navigation Bar -->
+            <div class="row">
+                <!-- Navbar -- need myNavbar css Change collapse breakpoint with navbar-expand-*breakpoint* -- -->
+                <nav id="myNavbar" class="navbar navbar-expand-md navbar-custom navbar-dark fixed-top px-3">
+
+                    <!-- Brand -->
+                    <a class="navbar-brand" href="#">ChairGod69</a>
+                    <!-- Navbar toggler -->
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".dual-collapse2" aria-controls=".dual-collapse2" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <!-- Left aligned links -->
+                    <div class="collapse navbar-collapse dual-collapse2" id="navbarCollapseLeft">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link linkText" href="#landingPage">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link linkText" href="#aboutUsPage">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link linkText" href="#guidePage">Choosing Guide</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle linkText" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Buy A Chair</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="">Catalogue</a></li>
+                                <li><a class="dropdown-item" href="">See What Others Recommend</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="">Get Support</a></li>
+                            </ul>
+                        </li>
+                        
+                    </ul>
+                </div>
+                <!-- End of left aligned links -->
+
+                <!-- Right aligned links -->
+                <div class="collapse navbar-collapse dual-collapse2" id="navbarCollapseRight">
+                <ul class="navbar-nav ms-auto navPadding">
+                    <li class="nav-item" v-if="loggedUser == ''">
+                        <a class="nav-link linkText" href="login.html">Login</a>
+                    </li>
+                    <li class="nav-item dropdown" v-if="loggedUser != ''">
+                        <a class="nav-link dropdown-toggle linkText" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">{{ loggedUser }}</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="">Password Change</a></li>
+                            <li><a class="dropdown-item" v-on:click="logout()" >Log Out</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                </div>
+                <!-- End of right aligned links -->
+
+                </nav>
+
+            </div><div class="clearfix"></div><div class="clearfix"></div>
+        <!-- End of navbar -->
+
+        
+
+            <!-- search bar and post new forum -->
+            <div class="headernav">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-3 col-xs-9 col-sm-5 col-md-3 selecttopic">
+                        </div>
+
+                        <div class="col-lg-4 search hidden-xs hidden-sm col-md-3">
+                            <div class="wrap">
+                                <form action="#" method="post" class="form">
+                                    
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search Topics">
+                                        <button class="btn-secondary" style="border-radius: 5px;">Search</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-xs-12 col-sm-5 col-md-4 avt">
+                            <div class="stnt pull-left">                            
+                                <form action="03_new_topic.html" method="post" class="form">
+                                    <button class="btn btn-primary">Start New Topic</button>
+                                </form>
+                            </div>
+
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+                <div id="forum" class="container"> <!-- POST container -->
+                    <div class="row">
+                        <div class="col-lg-8 col-md-8" v-for = "post of forum"> 
+                        
+                            <!-- POST -->
+                            <div class="post">
+                                    <div class="posttext">
+                                        <button type ="button" class="collapsible">
+                                            <h2>{{ post.postHeader }}</h2>
+                                            <div><p>{{ post.postCaption }}</p></div>
+                                        </button>
+                                        <div class="content">
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                                        </div>
+
+
+                                        <div class="table">
+                                            <td>Comment {{post.comment}}</td>
+                                            <td>Upvote</td>
+                                            <td>Downvote</td>
+                                        </div>
+
+                                </div>
+
+
+                            </div>
+                            <!-- POST -->
+
+                        </div> <!-- POST container end -->
+
+
+                        <!-- Side bar container -->
+                        <div class="col-lg-4 col-md-4">
+                            
+                            <div class="sidebarblock">
+                                <h3>Categories</h3>
+                                <div class="divline"></div>
+                                <div class="blocktxt">
+                                    <ul class="cats" style="list-style-type:none;">
+                                        <li><a href="#">Office Chair<span class="badge pull-right">20</span></a></li>
+                                        <li><a href="#">Gaming Chair <span class="badge pull-right">10</span></a></li>
+                                        <li><a href="#">Armchair<span class="badge pull-right">50</span></a></li>
+                                        <li><a href="#">Wheelchair<span class="badge pull-right">36</span></a></li>
+                                        <li><a href="#">Budget Chair &amp; Solves <span class="badge pull-right">41</span></a></li>
+                                        <li><a href="#">Luxurious Chair &amp; Audio Drivers <span class="badge pull-right">11</span></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+            
+            
+                            <div class="sidebarblock">
+                                <h3>Popular Threads</h3>
+                                <div class="divline"></div>
+                                <div class="blocktxt">
+                                    <a href="#">This Dock Turns Your iPhone Into a Bedside Lamp</a>
+                                </div>
+                                <div class="divline"></div>
+                                <div class="blocktxt">
+                                    <a href="#">Who Wins in the Battle for Power on the Internet?</a>
+                                </div>
+                                <div class="divline"></div>
+                                <div class="blocktxt">
+                                    <a href="#">Sony QX10: A Funky, Overpriced Lens Camera for Your Smartphone</a>
+                                </div>
+                                <div class="divline"></div>
+                                <div class="blocktxt">
+                                    <a href="#">FedEx Simplifies Shipping for Small Businesses</a>
+                                </div>
+                                <div class="divline"></div>
+                                <div class="blocktxt">
+                                    <a href="#">Loud and Brave: Saudi Women Set to Protest Driving Ban</a>
+                                </div>
+                            </div>
+                    </div> <!-- Side bar container end -->
+
+                </div>
+    
+        </div>
+        <script src="data.js"></script>
+
+        <!-- Collapsible function for post -->
+        <script>
+            var coll = document.getElementsByClassName("collapsible");
+            var i;
+            console.log(coll)
+            for (i = 0; i < coll.length; i++) {
+              coll[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var content = this.nextElementSibling;
+                if (content.style.display === "block") {
+                  content.style.display = "none";
+                } 
+                else {
+                  content.style.display = "block";
+                }
+              });
+            }
+        </script>
+    </body>
+
+
+
+</html>
