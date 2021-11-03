@@ -38,13 +38,11 @@ h1 {
     #landingPage {padding-top: 15%;}
     .bodyText {font-size: 12px;}
     .btnSize {font-size:11px;}
-    #aboutUsPage {padding-top: 15%; padding-left: 15%; padding-right: 15%;}
-    #guidePage {padding-top: 15%;}
+    #aboutUsPage {padding-top: 15%;}
     #loginPage {padding-top: 15%; padding-bottom: 8%; padding-left: 10%; padding-right: 10%;}
     #createAccPage {padding-top: 15%; padding-bottom: 8%; padding-left: 10%; padding-right: 10%;}
     #successPage {padding-top: 15%; padding-bottom: 8%; padding-left: 10%; padding-right: 10%;}
     #passChangePage {padding-top: 15%; padding-bottom: 8%; padding-left: 10%; padding-right: 10%;}
-    #recoveryPage {padding-top: 15%; padding-bottom: 8%; padding-left: 10%; padding-right: 10%;}
 }
 
 @media (min-width: 768px) {  
@@ -53,13 +51,11 @@ h1 {
     .navPadding {padding-right: 40%;}
     .bodyText {font-size: 14px;}
     .btnSize {font-size:14px;}
-    #aboutUsPage {padding-top: 15%; padding-left: 15%; padding-right: 15%;}
-    #guidePage {padding-top: 15%; padding-left: 10%;}
+    #aboutUsPage {padding-top: 15%;}
     #loginPage {padding-top: 15%; padding-bottom: 8%; padding-left: 10%; padding-right: 10%;}
     #createAccPage {padding-top: 15%; padding-bottom: 8%; padding-left: 10%; padding-right: 10%;}
     #successPage {padding-top: 15%; padding-bottom: 8%; padding-left: 10%; padding-right: 10%;}
     #passChangePage {padding-top: 15%; padding-bottom: 8%; padding-left: 10%; padding-right: 10%;}
-    #recoveryPage {padding-top: 15%; padding-bottom: 8%; padding-left: 10%; padding-right: 10%;}
 }
 
 @media (min-width: 992px) { 
@@ -68,13 +64,11 @@ h1 {
     .navPadding {padding-right: 25%;}
     .bodyText {font-size: 16px;}
     .btnSize {font-size:17px;}
-    #aboutUsPage {padding-top: 15%; padding-left: 15%; padding-right: 15%;}
-    #guidePage {padding-top: 15%; padding-left: 10%;}
+    #aboutUsPage {padding-top: 15%;}
     #loginPage {padding-top: 15%; padding-bottom: 8%; padding-left: 10%; padding-right: 10%;}
     #createAccPage {padding-top: 15%; padding-bottom: 8%; padding-left: 10%; padding-right: 10%;}
     #successPage {padding-top: 15%; padding-bottom: 8%; padding-left: 10%; padding-right: 10%;}
     #passChangePage {padding-top: 15%; padding-bottom: 8%; padding-left: 10%; padding-right: 10%;}
-    #recoveryPage {padding-top: 15%; padding-bottom: 8%; padding-left: 10%; padding-right: 10%;}
    
 }
 
@@ -84,13 +78,11 @@ h1 {
     .navPadding {padding-right: 15%;}
     .bodyText {font-size: 17px;}  
     .btnSize {font-size: 20px;} 
-    #aboutUsPage {padding-top: 10%; padding-left: 15%; padding-right: 15%;}
-    #guidePage {padding-top: 10%; padding-left: 10%;}
+    #aboutUsPage {padding-top: 10%;}
     #loginPage {padding-top: 10%; padding-bottom: 5%; padding-left: 15%; padding-right: 15%;}
     #createAccPage {padding-top: 10%; padding-bottom: 5%; padding-left: 15%; padding-right: 15%;}
     #successPage {padding-top: 10%; padding-bottom: 5%; padding-left: 15%; padding-right: 15%;}
     #passChangePage {padding-top: 10%; padding-bottom: 5%; padding-left: 15%; padding-right: 15%;}
-    #recoveryPage {padding-top: 10%; padding-bottom: 5%; padding-left: 15%; padding-right: 15%;}
     
 }
 
@@ -105,6 +97,8 @@ h1 {
 .bodyText {
     color: black;
     padding-top:2%;
+    padding-left: 15%;
+    padding-right: 15%;
 }
 
 .breakPara {
@@ -127,10 +121,6 @@ h1 {
     background-color: whitesmoke;
 }
 
-#guidePage {
-    background-color: lightcyan;
-}
-
 #loginPage {
     background-color: white;
 }
@@ -144,9 +134,5 @@ h1 {
 }
 
 #passChangePage {
-    background-color: white;
-}
-
-#recoveryPage {
     background-color: white;
 }

@@ -126,7 +126,7 @@
         var chair5 = new chairObj('office chair 2',  'a office chair chair', 4, 1000, 'office', new dateObj(2020, 11,12), '#nextpageurl',"https://media.giphy.com/media/8vJcTuZHB7U8U/giphy.gif",'default_apikey', [review4]);
         var featuredChair = new chairObj('basic chair 1',  'a template basic chair', 5, 200, 'basic', new dateObj(2020, 11,13), '#nextpageurl',"https://media.giphy.com/media/XGU4CyI27f5xBWGJlY/giphy.gif",'default_apikey', [review5]);
         
-        var chairs = [chair1, chair2,chair3,chair4,chair5, featuredChair]
+        var chairs = [chair1, chair2,chair3,chair4,chair5]
         function resetChairs(){
             
             for(chair of chairs){
@@ -153,7 +153,11 @@
                 apiKey : document.getElementById('apiKey').value,
                 reviewObjList : []
             }
+
+           
             writeUserDataWithCompletion(addChairObj);
+            
+
         }
 
         
@@ -221,11 +225,12 @@
 
 
   <!-- start of Vue -->
-    <div class="container-fluid mt-5 bg-light" id="inputChairForm">
+    <div class="container-fluid mt-5" id="inputChairForm">
         <div class="p-3 mb-2 bg-info text-white"  style="font-size: x-large;"id="status">Status</div>
         
-        <h3>Register new chair</h3>
-        <div class="row justify-content-center" >
+        <button onclick="resetChairs()">reset chairs</button>
+        <h5>Register new chair</h5>
+        <div class="row" >
             <!-- <div class="col-5">
                 <label for="name">Name</label>
                 <div class="input-group mb-3">
@@ -235,38 +240,26 @@
             </div> -->
             <singleinput v-for="a_input of chairInputText1" :inputtype="a_input"></singleInput>
             
-            
-            <div class="col-12 col-md-6">
+            <div class="col-5">
                 <label for="Type">Chair Type</label>
-                <div>
-                <select id="Type" class="form-select ">
+                
+                <select id="Type" class="input-group form-control mb-3">
                     <option value="Basic">Basic</option>
                     <option value="Office">Office</option>
                     <option value="Gaming">Gaming</option>
                     <option value="Garden">Garden</option>
                 </select>
-                </div>
                 
             </div>
             <numberinput v-for="a_input of chairInputNum" :inputtype="a_input"></numberinput>
             <singleinput v-for="a_input of chairInputText2" :inputtype="a_input"></singleInput>
-            <div class="col-md-6"></div>
 
         </div>
-        <figure class="text-end">
-            <blockquote class="blockquote">
-                <button class="btn btn-danger m-3" onclick="resetChairs()">Reset chairs</button> 
-                <button onclick="addChair()" class="btn btn-primary" v-on:click="getDatabaseOnce">Add chair</button>
-            </blockquote>
-            <figcaption class="blockquote-footer">
-              Someone famous in <cite title="Source Title">Source Title</cite>
-            </figcaption>
-          </figure>
+        <button onclick="addChair()" v-on:click="getDatabaseOnce">Add chair</button>
         
         
-        
-        <div class= "row my-3 overflow-auto">
-            <table class="table table-striped col-12">
+        <div class= "row">
+            <table class="table table-striped">
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col" v-for="col_name of chairInputText1">{{col_name}}</th>
@@ -277,14 +270,14 @@
                     <th scope="col" >Delete</th>    
                   </tr>
                 <tr v-for="chairProps, chairName, index in chairsDB" :name="chairName" >
-                    <td>{{index + 1}}</td>
+                    <td>{{index}}</td>
                     <td>{{chairName}}</td>
                     <td>{{chairProps.description}}</td>
                     <td>{{chairProps.date.dateStr}}</td>
                     <td>{{chairProps.rating}}</td>
                     <td>{{chairProps.price}}</td>
                     <td>{{chairProps.type}}</td>
-                    <td><div class="overflow-auto "><a href="chairProps.pageURL">{{chairProps.pageURL}}</a></div></td>
+                    <td><a href="chairProps.pageURL">{{chairProps.pageURL}}</a></td>
                     <td><a href="chairProps.imageURL">{{chairProps.imageURL}}</a></td>
                     <td>{{chairProps.apiKey}}</td>
                     <td ><span v-for="a_review in chairProps.reviewObjList">{{a_review.reviewId + "\t"}}</span></td>
@@ -405,7 +398,7 @@
         app.component('singleinput', {
             props: ['inputtype'],
             template: `
-            <div class="col-12 col-md-6">
+            <div class="col-5">
                 <label :for="inputtype">{{inputtype}}</label>
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" :placeholder="'Chair '+ inputtype" aria-describedby="basic-addon2" :id="inputtype" v-if="inputtype != 'Date'">
@@ -418,7 +411,7 @@
         app.component('numberinput', {
             props: ['inputtype'],
             template: `
-            <div class="col-12 col-md-6">
+            <div class="col-5">
                 <label :for="inputtype">{{inputtype}}</label>
                 <div class="input-group mb-3">
                     <input type="number" class="form-control"  aria-describedby="basic-addon2" :id="inputtype">
