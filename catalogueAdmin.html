@@ -60,13 +60,13 @@
         function writeUserDataWithCompletion(chairObj) {
             if(!chairObj){
                 document.getElementById("status").innerText = "Chair Registration Failed!";
-                document.getElementById("status").classList.toggle('bg-info');
-                document.getElementById("status").classList.toggle('bg-danger');
+                document.getElementById("status").classList.remove('bg-info');
+                document.getElementById("status").classList.add('bg-danger');
 
                 setTimeout(()=>{
                     document.getElementById("status").innerText = "Status";
-                    document.getElementById("status").classList.toggle('bg-danger');
-                    document.getElementById("status").classList.toggle('bg-info');
+                    document.getElementById("status").classList.remove('bg-danger');
+                    document.getElementById("status").classList.add('bg-info');
             
                 }, 3000)
                 return
