@@ -58,6 +58,19 @@
 
         //The following writes the data
         function writeUserDataWithCompletion(chairObj) {
+            if(!chairObj){
+                document.getElementById("status").innerText = "Chair Registration Failed!";
+                document.getElementById("status").classList.toggle('bg-info');
+                document.getElementById("status").classList.toggle('bg-danger');
+
+                setTimeout(()=>{
+                    document.getElementById("status").innerText = "Status";
+                    document.getElementById("status").classList.toggle('bg-danger');
+                    document.getElementById("status").classList.toggle('bg-info');
+            
+                }, 3000)
+                return
+            }
         firebase.database().ref('chairs/' + chairObj.name).set({
             name: chairObj.name,
             description : chairObj.description,
@@ -73,11 +86,15 @@
 
         }, function(error) {
             if (error) {
-            document.getElementById("status").innerText = "Chair Registration Failed!";
+                document.getElementById("status").innerText = "Chair Registration Failed!";
+                document.getElementById("status").classList.toggle('bg-info');
+                document.getElementById("status").classList.toggle('bg-danger');
             } else {
             document.getElementById("status").innerText = "Chair Registration Done!";
             setTimeout(()=>{
                 document.getElementById("status").innerText = "Status";
+                document.getElementById("status").classList.toggle('bg-info');
+                document.getElementById("status").classList.toggle('bg-danger');
 
             }, 3000)
             }
@@ -108,17 +125,17 @@
         
 
         function chairObj(name, description, rating, price, type, date, imageURL, apiKey, reviewObjList) {
-          this.name = name;
-          this.description = description;
-          this.rating = rating;
-          this.price = price;
-          this.type = type;
-          this.date = date;
-          this.pageURL = `./product.html?chairName=${name}`;
-          this.imageURL = imageURL;
-          this.apiKey = apiKey;
-          this.reviewObjList = reviewObjList;
-      }
+            this.name = name;
+            this.description = description;
+            this.rating = rating;
+            this.price = price;
+            this.type = type;
+            this.date = date;
+            this.pageURL = `./product.html?chairName=${name}`;
+            this.imageURL = imageURL;
+            this.apiKey = apiKey;
+            this.reviewObjList = reviewObjList;
+        }
         var chair1 = new chairObj('gaming_chair_1',  'a template gaming chair', 5, 200, 'gaming', new dateObj(2020, 11,17),"https://media.giphy.com/media/cgCMnZr84zE40/giphy.gif",'2QpgjMeXKHq6L8KIBAJjRrFV3jg',[review0,review1]);
         var chair2 = new chairObj('wooden_chair_1',  'a template wooden chair', 2, 400, 'wooden', new dateObj(2020, 11,18),"https://media2.giphy.com/media/ypBQolo0HfDej1W1X9/giphy.gif?cid=ecf05e474m6rw2v9o0zic290wlr3k410ffngtmcwkhsunvgm&rid=giphy.gif&ct=g",'9145e102a2b341b8a38fca9b610a496c',[review2,review3]);
         var chair3 = new chairObj('gaming_chair_2',  'a template gaming chair', 4, 600, 'gaming', new dateObj(2020, 11,19),"https://media.giphy.com/media/3o6MbmQnyTKNWGHK8g/giphy.gif",'83b5dc561c9a454aace80c80d87981e2',[review0,review1,review5]);
@@ -136,32 +153,61 @@
       
         function addChair(){
             var inputIds = ['Name', 'Description', 'Rating', 'Price', 'Type', 'Date', 'imageURL', 'apiKey' ];
-            
-            // this is going to change, just for testing
+            console.log('addChair has been clicked')
+            //error validation
+            error_list = document.getElementById('error_list');
+            error_msg = '';
+            for(a_id of inputIds){
+                    if(document.getElementById(a_id).value == ''){
+                    error_msg += `<li>${a_id} is empty</li>`;
+                }
+            }
+            if(document.getElementById('Date').value.split('/').length !=3 ){
+                error_msg += `<li>Please format date in (DD/MM/YYYY) format</li>`;
+            }
+            else{
+                console.log('date.split = ', document.getElementById('Date').value.split('/'))
+                let [day, month, year] = document.getElementById('Date').value.split('/');
+                if(day.length != 2 || month.length != 2 || year.length != 4){
+                    error_msg +=  `<li>Please format date in (DD/MM/YYYY) format</li>`;
+                }
+                if(Number(day) > 31 || Number(day) < 1 ){
+                    error_msg +=  `<li>Day can only be from 01 to </li>`;
+                }
+                if(Number(month) > 12 || Number(month) < 1 ){
+                    error_msg +=  `<li>Month can only be from 01 to 12</li>`;
+                }
+                if(Number(year) > 2030 || Number(year) < 1990 ){
+                    error_msg +=  `<li>Year can only be from 1990 to 2030</li>`;
+                }
+            }
+            if(error_msg != ''){
+                error_list.innerHTML = error_msg;
+                writeUserDataWithCompletion(addChairObj);
+                return
+            }
             
             addDateObj = new dateObj(document.getElementById('Date').value.split('/')[0],document.getElementById('Date').value.split('/')[1],document.getElementById('Date').value.split('/')[2])
 
             var addChairObj = {
-                name : document.getElementById('Name').value,
+                name : document.getElementById('Name').value.replace(' ','_'),
                 description : document.getElementById('Description').value,
                 rating : document.getElementById('Rating').value,
                 price : document.getElementById('Price').value,
                 type : document.getElementById('Type').value,
                 date : addDateObj,
-                pageURL : `./productpage.html??chairName=${document.getElementById('Name').value}`,
+                pageURL : `./productpage.html?chairName=${document.getElementById('Name').value}`,
                 imageURL : document.getElementById('imageURL').value,
                 apiKey : document.getElementById('apiKey').value,
                 reviewObjList : []
             }
+            if(error_msg != ''){
+                error_list.innerHTML = error_msg;
+                return False
+            }
 
-           
             writeUserDataWithCompletion(addChairObj);
-            
-
         }
-
-        
-        
     </script>
     <!-- this is the end of firebase script -->
 
@@ -256,6 +302,12 @@
 
         </div>
         <button onclick="addChair()" v-on:click="getDatabaseOnce">Add chair</button>
+        <!-- this is the error msg if any -->
+        <div>
+            <ol id="error_list" class="text-danger">
+
+            </ol>
+        </div>
         
         
         <div class= "row ">
