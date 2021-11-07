@@ -175,6 +175,8 @@
             activeButton : '',
             filterChairs : [],
 
+            loggedUser : "", 
+
             firebaseConfig :{
 
               apiKey: "AIzaSyAiym6Wu9dKGrrf4DMbWvSIq55ueqMa4pU",
@@ -196,6 +198,12 @@
             this.filterChairs = this.chairs.slice();
             this.filterChange();
           },
+          logout () { 
+                    this.loggedUser = ""; 
+                    localStorage.removeItem("loggedUser"); 
+                    alert("Logged Out Successfully"); 
+                    window.location.href = "homePage.html"; 
+            },
           sortByLatest(){
             lastestList = [];
             while (this.filterChairs.length > 1){
@@ -305,9 +313,11 @@
             
         },
         created(){
-          firebase.initializeApp(this.firebaseConfig);
-          this.getDatabaseOnce();
-          
+            firebase.initializeApp(this.firebaseConfig);
+            this.getDatabaseOnce();
+            if (localStorage.loggedUser) { 
+                    this.loggedUser = localStorage.loggedUser; 
+            } 
         }
       }).mount('#app')
     </script>
