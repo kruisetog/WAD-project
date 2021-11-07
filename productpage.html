@@ -29,9 +29,13 @@
     <link href="http://www.cssscript.com/wp-includes/css/sticky.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
+    <!--for the dropdown list-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+
 
 </head>
 <body data-bs-spy="scroll" data-bs-offset="0">
+<div id="mainapp">
 <!-- header -->
 <div class="container-fluid">
     <div class="row">
@@ -39,7 +43,7 @@
         <nav id="myNavbar" class="navbar navbar-expand-md navbar-custom navbar-dark fixed-top px-3">
 
             <!-- Brand -->
-            <a class="navbar-brand" href="#">ChairGod69</a>
+            <a class="navbar-brand" href="account/homePage.html">ChairGod69</a>
             <!-- Navbar toggler -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".dual-collapse2" aria-controls=".dual-collapse2" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -75,12 +79,12 @@
             <div class="collapse navbar-collapse dual-collapse2" id="navbarCollapseRight">
             <ul class="navbar-nav ms-auto navPadding">
                 <li class="nav-item" v-if="loggedUser == ''">
-                    <a class="nav-link linkText" href="login.html">Login</a>
+                    <a class="nav-link linkText" href="account/login.html">Login</a>
                 </li>
                 <li class="nav-item dropdown" v-if="loggedUser != ''">
                     <a class="nav-link dropdown-toggle linkText" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">{{ loggedUser }}</a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="passwordChange.html">Password Change</a></li>
+                        <li><a class="dropdown-item" href="account/passwordChange.html">Password Change</a></li>
                         <li><a class="dropdown-item" v-on:click="logout()" >Log Out</a></li>
                     </ul>
                 </li>
@@ -117,9 +121,9 @@
                 <div id="reviewswewe" class="review-section">
                     <div id="reviewtt" class="d-flex align-items-center justify-content-between mb-4">
                         <h4 class="m-0">{{ reviewcount }} Reviews</h4>
-                        <select class="custom-select custom-select-sm border-0 shadow-sm ml-2 select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
-                            <option data-select2-id="3">Most Relevant</option>
-                            <option>Most Recent</option>
+                        <select @change="arrangechairAssen($event)" v-model="selectedValue" class="custom-select custom-select-sm border-0 shadow-sm ml-2 select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                            <option data-select2-id="3" value="0">Ascending</option>
+                            <option value="1">Descending</option>
                         </select>
                         <span class="select2 select2-container select2-container--default" dir="ltr" data-select2-id="2" style="width: 188px;">
                             <span class="selection">
@@ -246,7 +250,7 @@
                                 </div>
                                 <div class="right">
                                     <h4>
-                                        {{getname(review.userId)}}
+                                        {{review.userId}}
                                         <span class="gig-rating text-body-2">
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1792 1792" width="15" height="15">
                                                 <path
@@ -279,7 +283,7 @@
             <h3 class="mt-5 text-center">Suggested Picks</h3>
             <ul class="">
                 <li  v-for="chair in allchairDB">
-                    <div class="card mt-1 text-center">
+                    <div class="card mt-2 text-center" V-on:click="redirectpage(chair)">
                         <img :src="chair.imageURL" alt="Denim Jeans" style="width:100%; height: 20%;">
                         <h3>{{chair.name}}</h3>
                         <p>{{chair.description}}</p>
@@ -289,9 +293,35 @@
         </div>
     </div>
     <!--Suggestions Card-->
-
+    </div>
 </div>
+<div>
+<div class="container-fluid mt-5" id="footer">
+    <footer class="text-muted ">
+        <div class="container ">
+            <div class="row ">
+                <div class="col-md-6 mt-5">
+                    <p>&copy; 2021 ChairGod69</p>
+                    <p>Website for a school project. Chairs used in images do not belong to us.</p>
+                </div>
+
+                <div class="col-md-3 mt-5"></div>
+
+                <div class="col-md-3 mt-5">
+                    <p class="lead">Contact Us</p>
+                    <p> <span class="lead">Phone:</span> +65 6123 4567</p>
+                    <p> <span class="lead">Email:</span> ryan.yak.2020@scis.smu.edu.sg</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+
 <script type="text/javascript">
+    let url = window.location.href;
+
+    console.log(url);
+    
 
 
     //vue constructor 
@@ -314,7 +344,9 @@
                 loggedUser: "",
                 stars: "",
                 userreview: "",
-                getchair: ""
+                getchair: "",
+                customchairrevieworder: "",
+                selectedValue: 0
             }
         },
         computed: {
@@ -393,7 +425,7 @@
                 console.error(error);
                 });
             },
-            async getname(userid){
+/*             async getname(userid){
                 let name ="";
                 const dbRef = firebase.database().ref();
                 await dbRef.child("users").child(userid).child("name").get().then((snapshot) => {
@@ -409,9 +441,20 @@
                 console.error(error);
                 });
                 return name;
-            },
+            }, */
             extractchair(){
 
+                let url = window.location.href;
+                console.log(url);
+                if (url.includes("?")){
+                    let stage1 = url.split("?");
+
+                    let stage2 = stage1[1].split("=");
+                    this.getchair = stage2[1];
+                }
+                else{
+                    this.getchair = "office_chair_1";
+                }
             },
             createsketchfab(){
                 var iframe = document.getElementById( 'api-frame' );
@@ -464,7 +507,7 @@
                     var newrev = {
                         "reviewDescription" : this.userreview,
                         "reviewId" : newnum,
-                        "userId" : localStorage.loggedUser,
+                        "userId" : this.loggedUser,
                         "rating" : this.stars
                         };
 
@@ -475,13 +518,52 @@
                     this.getDatabaseOnce();
                 }
             },
+            redirectpage(chair){
+                console.log(chair);
+                window.location=chair.pageURL;
+            },
+            arrangechairAssen(){
+                this.customchairrevieworder = this.chairsDB.reviewObjList;         
+                let n = this.customchairrevieworder.length;
+                if(this.selectedValue == 0){
+                    for (let i = 1; i < n; i++) {
+                        // Choosing the first element in our unsorted subarray
+                        let current = this.customchairrevieworder[i];
+                        // The last element of our sorted subarray
+                        let j = i-1; 
+                        while ((j > -1) && (current.rating < this.customchairrevieworder[j].rating)) {
+                            this.customchairrevieworder[j+1] = this.customchairrevieworder[j];
+                            j--;
+                        }
+                        this.customchairrevieworder[j+1] = current;
+                    }
+                }else{
+                    for (let i = 1; i < n; i++) {
+                        // Choosing the first element in our unsorted subarray
+                        let current = this.customchairrevieworder[i];
+                        // The last element of our sorted subarray
+                        let j = i-1; 
+                        while ((j > -1) && (current.rating > this.customchairrevieworder[j].rating)) {
+                            this.customchairrevieworder[j+1] = this.customchairrevieworder[j];
+                            j--;
+                        }
+                        this.customchairrevieworder[j+1] = current;
+                }
+                }
+            },
+            logout () { 
+                    this.loggedUser = ""; 
+                    localStorage.removeItem("loggedUser"); 
+                    alert("Logged Out Successfully"); 
+                    window.location.href = "account/homePage.html"; 
+                }
         },
         async created(){
-            this.getchair = "office_chair_2";
+            this.extractchair();
 
             firebase.initializeApp(this.firebaseConfig);
             await this.getDatabaseOnce();
-
+            this.arrangechairAssen();
             console.log(this.chairsDB)
 
             if (localStorage.loggedUser) {
@@ -490,7 +572,7 @@
             this.createsketchfab();
         }   
     })
-    const vm = app.mount("#reviews")
+    const vm = app.mount("#mainapp")
     </script>
  
 </body>
