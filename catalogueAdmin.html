@@ -356,6 +356,7 @@
                     chairInputNum: ['Rating', 'Price'],
                     chairInputText2: ['imageURL', 'apiKey'],
                     chairDatabase : [],
+                    loggedUser : "", 
                     firebaseConfig :{
 
                         apiKey: "AIzaSyAiym6Wu9dKGrrf4DMbWvSIq55ueqMa4pU",
@@ -379,7 +380,12 @@
             },
             methods:{
                 //this retrieves the database as an object
-                
+                logout () { 
+                    this.loggedUser = ""; 
+                    localStorage.removeItem("loggedUser"); 
+                    alert("Logged Out Successfully"); 
+                    window.location.href = "homePage.html"; 
+                },
                 getDatabaseOnce(){
                 const dbRef = firebase.database().ref();
                 dbRef.child("chairs").get().then((snapshot) => {
@@ -442,6 +448,9 @@
                 firebase.initializeApp(this.firebaseConfig);
                 this.getDatabaseOnce();
                 console.log(this.chairsDB)
+                if (localStorage.loggedUser) { 
+                    this.loggedUser = localStorage.loggedUser; 
+                } 
             },
             computed:{
                 
