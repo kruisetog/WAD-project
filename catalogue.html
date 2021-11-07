@@ -124,24 +124,24 @@
       </div>
     </div>
     <script>
-      function chairObj(name, description, rating, price, type, date, pageURL, imageURL) {
+      function chairObj(name, description, rating, price, type, date, imageURL, apiKey, reviewObjList) {
           this.name = name;
           this.description = description;
           this.rating = rating;
           this.price = price;
           this.type = type;
           this.date = date;
-          this.pageURL = pageURL;
+          this.pageURL = `./product.html?chairName=${name}`;
           this.imageURL = imageURL;
-          
+          this.apiKey = apiKey;
+          this.reviewObjList = reviewObjList;
       }
-      var chair1 = new chairObj('gaming chair 1',  'a template gaming chair', 5, 200, 'gaming', new Date(2020, 11,17),'#nextpageurl',"https://media.giphy.com/media/cgCMnZr84zE40/giphy.gif");
-      var chair2 = new chairObj('wooden chair 1',  'a template wooden chair', 2, 400, 'wooden', new Date(2020, 11,18), '#nextpageurl',"https://media2.giphy.com/media/ypBQolo0HfDej1W1X9/giphy.gif?cid=ecf05e474m6rw2v9o0zic290wlr3k410ffngtmcwkhsunvgm&rid=giphy.gif&ct=g");
-      var chair3 = new chairObj('gaming chair 2',  'a template gaming chair', 4, 600, 'gaming', new Date(2020, 11,19), '#nextpageurl',"https://media.giphy.com/media/3o6MbmQnyTKNWGHK8g/giphy.gif");
-      var chair4 = new chairObj('office chair 1',  'a template office chair', 3, 800, 'office', new Date(2020, 11,15), 'nextpageurl',"https://media0.giphy.com/media/8twZKibtk0gyPu4dC0/giphy.gif?cid=ecf05e47y9ohq0f08s4rkthtvxodi7agq6vn7yoeon1441pw&rid=giphy.gif&ct=g");
-      var chair5 = new chairObj('office chair 2',  'a office chair chair', 4, 1000, 'office', new Date(2020, 11,12), '#nextpageurl',"https://media.giphy.com/media/8vJcTuZHB7U8U/giphy.gif");
-      var featuredChair = new chairObj('basic chair 1',  'a template basic chair', 5, 200, 'basic', new Date(2020, 11,13), '#nextpageurl',"https://media.giphy.com/media/XGU4CyI27f5xBWGJlY/giphy.gif");
-      
+        var chair1 = new chairObj('gaming_chair_1',  'a template gaming chair', 5, 200, 'gaming', new dateObj(2020, 11,17),"https://media.giphy.com/media/cgCMnZr84zE40/giphy.gif",'2QpgjMeXKHq6L8KIBAJjRrFV3jg',[review0,review1]);
+        var chair2 = new chairObj('wooden_chair_1',  'a template wooden chair', 2, 400, 'wooden', new dateObj(2020, 11,18),"https://media2.giphy.com/media/ypBQolo0HfDej1W1X9/giphy.gif?cid=ecf05e474m6rw2v9o0zic290wlr3k410ffngtmcwkhsunvgm&rid=giphy.gif&ct=g",'9145e102a2b341b8a38fca9b610a496c',[review2,review3]);
+        var chair3 = new chairObj('gaming_chair_2',  'a template gaming chair', 4, 600, 'gaming', new dateObj(2020, 11,19),"https://media.giphy.com/media/3o6MbmQnyTKNWGHK8g/giphy.gif",'83b5dc561c9a454aace80c80d87981e2',[review0,review1,review5]);
+        var chair4 = new chairObj('office_chair_1',  'a template office chair', 3, 800, 'office', new dateObj(2020, 11,15),"https://media0.giphy.com/media/8twZKibtk0gyPu4dC0/giphy.gif?cid=ecf05e47y9ohq0f08s4rkthtvxodi7agq6vn7yoeon1441pw&rid=giphy.gif&ct=g",'1fded5bd02c94164abc39c98640050d6',[review4,review5,review5]);
+        var chair5 = new chairObj('office_chair_2',  'a office chair chair', 4, 1000, 'office', new dateObj(2020, 11,12),"https://media.giphy.com/media/8vJcTuZHB7U8U/giphy.gif",'5f7334fcade8415d98e239039011b8ab',[]);
+        var featuredChair = new chairObj('basic_chair_1',  'a template basic chair', 5, 200, 'basic', new dateObj(2020, 11,13),"https://media.giphy.com/media/XGU4CyI27f5xBWGJlY/giphy.gif",'2ba6a87c89a7467fad910420aae99ed7',[review3]);
       vm = Vue.createApp({
         data(){
           return{
