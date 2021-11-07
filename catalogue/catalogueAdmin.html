@@ -12,17 +12,14 @@
     <!-- this is the start of firebase script -->
     <script>
         const firebaseConfig ={
-
-            apiKey: "AIzaSyAiym6Wu9dKGrrf4DMbWvSIq55ueqMa4pU",
-            authDomain: "wad-project-test.firebaseapp.com",
-            projectId: "wad-project-test",
-            storageBucket: "wad-project-test.appspot.com",
-            messagingSenderId: "662948509887",
-            appId: "1:662948509887:web:50db4fc23c13746e6dae0a",
-            measurementId: "G-LRN6N246B5",
-            databaseURL: "https://wad-project-test-default-rtdb.asia-southeast1.firebasedatabase.app/"
-
-        }
+        apiKey: "AIzaSyAuj6iX0Hqp9owZpvWyZRVEiQYLfnKbT2o",
+        authDomain: "wadii-project-7c7dd.firebaseapp.com",
+        projectId: "wadii-project-7c7dd",
+        storageBucket: "wadii-project-7c7dd.appspot.com",
+        messagingSenderId: "987135629921",
+        appId: "1:987135629921:web:50fd77c89ec38592682820",
+        measurementId: "G-PZBNMH36L8"
+        };
     // firebase.initializeApp(firebaseConfig);
     // var chairsDB = firebase.database().ref('chairs');
 
@@ -213,57 +210,64 @@
 
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="project.css">
+    <link rel="stylesheet" type="text/css" href="../project.css">
     <script src="https://unpkg.com/vue@next"></script>
 </head>
 
 <body>
   <!-- Navbar -- Change collapse breakpoint with navbar-expand-*breakpoint* -- -->
-  <nav id="myNavbar" class="navbar navbar-expand-md navbar-custom navbar-dark nowrap fixed-top px-3">
+  <div class="container-fluid">
+    <div class="row">
+        <!-- Navbar -- Change collapse breakpoint with navbar-expand-*breakpoint* -- -->
+        <nav id="myNavbar" class="navbar navbar-expand-md navbar-custom navbar-dark fixed-top px-3">
 
-      <!-- Brand -->
-      <a class="navbar-brand" href="#">ChairGod69</a>
-      <!-- Navbar toggler -->
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".dual-collapse2" aria-controls=".dual-collapse2" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-      </button>
+            <!-- Brand -->
+            <a class="navbar-brand" href="homePage.html">ChairGod</a>
+            <!-- Navbar toggler -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".dual-collapse2" aria-controls=".dual-collapse2" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-      <!-- Left aligned links -->
-      <div class="collapse navbar-collapse dual-collapse2" id="navbarCollapseLeft">
-      <ul class="navbar-nav me-auto">
-          <li class="nav-item">
-              <a class="nav-link linkText" href="#landingPage">Home</a>
-          </li>
-          <li class="nav-item">
-              <a class="nav-link linkText" href="#aboutUsPage">About Us</a>
-          </li>
-          <li class="nav-item">
-              <a class="nav-link linkText" href="#guidePage">Choosing Guide</a>
-          </li>
-          <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle linkText" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Buy A Chair</a>
-              <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="">Catalogue</a></li>
-                  <li><a class="dropdown-item" href="">See What Others Recommend</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="">Get Support</a></li>
-              </ul>
-          
-      </ul>
-      </div>
-      <!-- End of left aligned links -->
+            <!-- Left aligned links -->
+            <div class="collapse navbar-collapse dual-collapse2" id="navbarCollapseLeft">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link linkText" href="../account/homePage.html#landingPage">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link linkText" href="../account/homePage.html#aboutUsPage">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link linkText" href="../account/homePage.html#guidePage">Choosing Guide</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle linkText" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Buy A Chair</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="catalogue1.html">Catalogue</a></li>
+                        <li><a class="dropdown-item" href="../forum/forum.html">See What Others Recommend</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="../account/homePage.html#footer">Get Support</a></li>
+                    </ul>
+                
+            </ul>
+            </div>
+            <!-- End of left aligned links -->
 
-      <!-- Right aligned links -->
-      <div class="collapse  navbar-collapse dual-collapse2" id="navbarCollapseRight">
-      <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-              <a class="nav-link linkText" href="#loginPage">Login</a>
-          </li>
-      </ul>
-      </div>
-      <!-- End of right aligned links -->
+            <!-- Right aligned links -->
+            <div class="collapse navbar-collapse dual-collapse2" id="navbarCollapseRight">
+            <ul class="navbar-nav ms-auto navPadding">
+                <li class="nav-item">
+                    <a class="nav-link linkText" href="login.html#loginPage">Login</a>
+                </li>
+            </ul>
+            </div>
+            <!-- End of right aligned links -->
 
-  </nav>
+        </nav>
+        <!-- End of navbar -->
+
+    </div>
+</div>
   <!-- End of navbar -->
 
 
@@ -358,16 +362,13 @@
                     chairDatabase : [],
                     loggedUser : "", 
                     firebaseConfig :{
-
-                        apiKey: "AIzaSyAiym6Wu9dKGrrf4DMbWvSIq55ueqMa4pU",
-                        authDomain: "wad-project-test.firebaseapp.com",
-                        projectId: "wad-project-test",
-                        storageBucket: "wad-project-test.appspot.com",
-                        messagingSenderId: "662948509887",
-                        appId: "1:662948509887:web:50db4fc23c13746e6dae0a",
-                        measurementId: "G-LRN6N246B5",
-                        databaseURL: "https://wad-project-test-default-rtdb.asia-southeast1.firebasedatabase.app/"
-
+                        apiKey: "AIzaSyAuj6iX0Hqp9owZpvWyZRVEiQYLfnKbT2o",
+                        authDomain: "wadii-project-7c7dd.firebaseapp.com",
+                        projectId: "wadii-project-7c7dd",
+                        storageBucket: "wadii-project-7c7dd.appspot.com",
+                        messagingSenderId: "987135629921",
+                        appId: "1:987135629921:web:50fd77c89ec38592682820",
+                        measurementId: "G-PZBNMH36L8"
                     },
                     chairsDB : {},
                     chairsList: [],
