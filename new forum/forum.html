@@ -5,23 +5,59 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Forum :: Home Page</title>
 
+        <!-- Ajax jquery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
         <!-- Bootstrap -->
-        <link href="bootstrap.min.css" rel="stylesheet">
+        <link href="href/bootstrap.min.css" rel="stylesheet">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
         <!-- Font api -->
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
         
         <!-- CSS STYLE -->
-        <link rel="stylesheet" type="text/css" href="style.css" media="screen" />
-        <link rel="stylesheet" type="text/css" href="custom.css" media="screen" />
-        
+        <link rel="stylesheet" type="text/css" href="href/style.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="href/custom.css" media="screen" />
+
+
+
         <!-- Vue.js -->
-        <script src="vue.js"></script>
+        <script src="href/vue.js"></script>
 
     </head>
 
     <body>
+
+
         <div class="container-fluid">
+            
+            <!-- Create New post -->
+            <div id = "overlay">
+                <div id ="overlayform">
+                    <form>
+                        <label for="postHeader">Header</label><br>
+                        <input type="text" id="postHeader" name="postHeader" value="" placeholder="Enter your Post Heading here"><br>
+                        <label for="postCaption">Caption</label><br>
+                        <input type="text" id="postCaption" name="postCaption" value="" placeholder="Enter your Post Caption here"><br>
+
+                        <label for="postCategory">Category:</label><br>
+                        <select id="postCategory">
+                            <option value="Office Chair">Office Chair</option>
+                            <option value="Gaming Chair">Gaming Chair</option>
+                            <option value="Armchair">Armchair</option>
+                            <option value="Wheelchair">Wheelchair</option>
+                            <option value="Budget Chair">Budget Chair</option>
+                            <option value="Luxurious Chair">Luxurious Chair</option>
+                        </select><br>
+    
+                        <label for="postBody">Body</label><br>
+                        <textarea id="postBody" name="postBody" rows ="8" style="width:500px;font-size:14pt;" value="" placeholder=""></textarea><br>
+                        <br><input type="submit"><br><br>
+                    </form>
+                    <button onclick="off()">Discard Form</button>
+                </div>>
+
+            </div>
 
         <!-- Navigation Bar -->
             <div class="row">
@@ -86,7 +122,7 @@
         
 
             <!-- search bar and post new forum -->
-            <div class="headernav">
+            <div class="headernav" style= "padding-top: 20px;">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-3 col-xs-9 col-sm-5 col-md-3 selecttopic">
@@ -106,9 +142,7 @@
 
                         <div class="col-lg-4 col-xs-12 col-sm-5 col-md-4 avt">
                             <div class="stnt pull-left">                            
-                                <form action="03_new_topic.html" method="post" class="form">
-                                    <button class="btn btn-primary">Start New Topic</button>
-                                </form>
+                                    <button class="btn btn-primary collapsiblebtn" onclick="on()">Start New Post</button>
                             </div>
 
                             <div class="clearfix"></div>
@@ -117,84 +151,146 @@
                 </div>
             </div>
 
-                <div id="forum" class="container"> <!-- POST container -->
-                    <div class="row">
-                        <div class="col-lg-8 col-md-8" v-for = "post of forum"> 
-                        
-                            <!-- POST -->
-                            <div class="post">
-                                    <div class="posttext">
-                                        <button type ="button" class="collapsible">
-                                            <h2>{{ post.postHeader }}</h2>
-                                            <div><p>{{ post.postCaption }}</p></div>
-                                        </button>
-                                        <div class="content">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                                        </div>
-
-
-                                        <div class="table">
-                                            <td>Comment {{post.comment}}</td>
-                                            <td>Upvote</td>
-                                            <td>Downvote</td>
-                                        </div>
-
+            <div id="forum" class="container"> <!-- POST container -->
+                <div class="row">
+                    <div class="col-lg-8 col-md-8"> 
+                        <!-- POST -->
+                        <div class="post" v-for = "post of forum">
+                            <div class="wraput" style="padding-bottom: 10px;">
+                                <h2>{{ post.postHeader }}</h2>
+                                <div>{{ post.postCaption }} </div>
+                                <button type ="button" class="collapsible">Read More..</button>
+                                <div class="content" style="font-weight: lighter;">
+                                    {{ post.postBody }}
                                 </div>
-
-
                             </div>
-                            <!-- POST -->
+                            <div class="row comments">
+                              
+                                    <table class="table table-bordered table-responsive header">
+                                        <thead>
+                                            <tr style="text-align:center;">
+                                            <td colspan="2"><a data-toggle="reply-form" data-target="comment-1-reply-form">comment: {{post.comments.length}}</a>
+                                            <td colspan="2">upvote: <span class="vote">&#8679;</span> {{post.upvotes.length}}
+                                            <td colspan="2">downvote: <span class="vote">&#8681;</span> {{post.downvotes.length}} 
+                                            <td colspan="6">Posted by {{ post.pUserId }} at {{ post.postDate }}
+                                            </tr>
+                                        </thead>
+                                    </table>
 
-                        </div> <!-- POST container end -->
+                                    <!-- Reply form start -->
+                                    <form method="POST" class="reply-form d-none" id="comment-1-reply-form">
+                                        <textarea placeholder="Comment" rows="4"></textarea>
+                                        <br>
+                                        <button type="submit">Submit</button>
+                                        <button type="button" data-toggle="reply-form" data-target="comment-1-reply-form">Cancel</button>
+                                        <br><br>
+                                    </form>
+                                    <!-- Reply form end -->
 
+                                    <div class="comment-thread">
+                                        <h1 style ="font-size: 20px; margin-left: -20px;margin-bottom: -5px;">Comments</h1>
+                                        <div class="comment-thread" v-for = "comment of post.comments">
+                                            <!-- Comment 1 start -->
+                                            <div class="comment" id="comment-1">
+                                                <div class="comment-heading">
+                                                    <div class="comment-voting">
+                                                        <button type="button" class="vote">
+                                                            <span aria-hidden="true" >&#9650;</span>
+                                                            <span class="sr-only">Vote up</span>
+                                                        </button>
+                                                        <button type="button" class="vote">
+                                                            <span aria-hidden="true">&#9660;</span>
+                                                            <span class="sr-only">Vote down</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="comment-info">
+                                                        <a class="comment-author">{{comment[0]}}</a>
+                                                        <p class="m-0">
+                                                            22 points &bull; 4 days ago
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                        
+                                                <div class="comment-body">
+                                                    <p>
+                                                        {{comment[1]}}
+                                                        This is really great! I fully agree with what you wrote, and this is sure to help me out in the future. Thank you for posting this.
+                                                    </p>
+                                                    <!-- <button type="button">Reply</button>
+                                                    <button type="button">Flag</button> -->
+                                                </div>
+    
+                                            </div>
+                                            <!-- Comment 1 end -->
+                                        </div>
 
-                        <!-- Side bar container -->
-                        <div class="col-lg-4 col-md-4">
+                                    </div>
+
+                                    
+                                    
                             
-                            <div class="sidebarblock">
-                                <h3>Categories</h3>
-                                <div class="divline"></div>
-                                <div class="blocktxt">
-                                    <ul class="cats" style="list-style-type:none;">
-                                        <li><a href="#">Office Chair<span class="badge pull-right">20</span></a></li>
-                                        <li><a href="#">Gaming Chair <span class="badge pull-right">10</span></a></li>
-                                        <li><a href="#">Armchair<span class="badge pull-right">50</span></a></li>
-                                        <li><a href="#">Wheelchair<span class="badge pull-right">36</span></a></li>
-                                        <li><a href="#">Budget Chair &amp; Solves <span class="badge pull-right">41</span></a></li>
-                                        <li><a href="#">Luxurious Chair &amp; Audio Drivers <span class="badge pull-right">11</span></a></li>
-                                    </ul>
-                                </div>
+
                             </div>
-            
-            
-                            <div class="sidebarblock">
-                                <h3>Popular Threads</h3>
-                                <div class="divline"></div>
-                                <div class="blocktxt">
-                                    <a href="#">This Dock Turns Your iPhone Into a Bedside Lamp</a>
-                                </div>
-                                <div class="divline"></div>
-                                <div class="blocktxt">
-                                    <a href="#">Who Wins in the Battle for Power on the Internet?</a>
-                                </div>
-                                <div class="divline"></div>
-                                <div class="blocktxt">
-                                    <a href="#">Sony QX10: A Funky, Overpriced Lens Camera for Your Smartphone</a>
-                                </div>
-                                <div class="divline"></div>
-                                <div class="blocktxt">
-                                    <a href="#">FedEx Simplifies Shipping for Small Businesses</a>
-                                </div>
-                                <div class="divline"></div>
-                                <div class="blocktxt">
-                                    <a href="#">Loud and Brave: Saudi Women Set to Protest Driving Ban</a>
-                                </div>
+                        </div> <!-- POST -->
+                    </div> <!-- POST container end -->
+
+
+                    <!-- Side bar container -->
+                    <div class="col-lg-4 col-md-4">
+                        <div class="sidebarblock">
+                            <h3>Categories</h3>
+                            <div class="divline"></div>
+                            <div class="blocktxt">
+                                <ul class="cats" style="list-style-type:none;">
+                                    <li><input type="radio" name="postCategory" value="Office Chair">Office Chair</li>
+                                    <li><input type="radio" name="postCategory" value="Gaming Chair">Gaming Chair</li>
+                                    <li><input type="radio" name="postCategory" value="Armchair">Armchair</li>
+                                    <li><input type="radio" name="postCategory" value="Wheelchair">Wheelchair</li>
+                                    <li><input type="radio" name="postCategory" value="Budget Chair">Budget Chair</li>
+                                    <li><input type="radio" name="postCategory" value="Luxurious Chair">Luxurious Chair</li>
+                                </ul>
                             </div>
+                        </div>
+        
+        
+                        <div class="sidebarblock">
+                            <h3>Popular Threads</h3>
+                            <div class="divline"></div>
+                            <div class="blocktxt">
+                                <a href="#">This Dock Turns Your iPhone Into a Bedside Lamp</a>
+                            </div>
+                            <div class="divline"></div>
+                            <div class="blocktxt">
+                                <a href="#">Who Wins in the Battle for Power on the Internet?</a>
+                            </div>
+                            <div class="divline"></div>
+                            <div class="blocktxt">
+                                <a href="#">Sony QX10: A Funky, Overpriced Lens Camera for Your Smartphone</a>
+                            </div>
+                            <div class="divline"></div>
+                            <div class="blocktxt">
+                                <a href="#">FedEx Simplifies Shipping for Small Businesses</a>
+                            </div>
+                            <div class="divline"></div>
+                            <div class="blocktxt">
+                                <a href="#">Loud and Brave: Saudi Women Set to Protest Driving Ban</a>
+                            </div>
+                        </div>
                     </div> <!-- Side bar container end -->
 
                 </div>
-    
-        </div>
+
+            </div>
+            
+        <!-- Firebase -->
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+        
+        <!-- Vue.js -->
+        <script src="https://unpkg.com/vue@next"></script>
+        <!--Vuefire-->
+        <script src="https://unpkg.com/vuefire/dist/vuefire.js"></script>
+        <!-- App -->
         <script src="data.js"></script>
 
         <!-- Collapsible function for post -->
@@ -215,6 +311,76 @@
               });
             }
         </script>
+        <script>
+            var coll = document.getElementsByClassName("collapsiblebtn");
+            var i;
+            console.log(coll)
+            for (i = 0; i < coll.length; i++) {
+                coll[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var content = this.nextSibling;
+                if (content.style.display === "block") {
+                    content.style.display = "none";
+                } 
+                else {
+                    content.style.display = "block";
+                }
+                });
+            }
+        </script>
+        <script>
+            var coll = document.getElementsByClassName("collapsiblecomment");
+            var i;
+            for (i = 0; i < coll.length; i++) {
+                coll[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var content = this.
+                console.log("content");
+                if (content.style.display === "block") {
+                    content.style.display = "none";
+                } 
+                else {
+                    content.style.display = "block";
+                }
+                });
+            }
+        </script>
+        <!-- /Collapsible function for post -->   
+        
+        <script>
+            function on() {
+                document.getElementById("overlay").style.display = "block";
+                }
+                
+            function off() {
+                if (confirm("Are you sure you want to discard the form?")) {
+                    document.getElementById("overlay").style.display = "none";
+                }
+            }
+        </script>
+        <!-- Vote function -->
+        <script> 
+            for (const btn of document.querySelectorAll('.vote')) {
+                btn.addEventListener('click', event => {
+                event.currentTarget.classList.toggle('on');
+                });
+            }
+
+            document.addEventListener(
+                "click",
+                function(event) {
+                    var target = event.target;
+                    var replyForm;
+                    if (target.matches("[data-toggle='reply-form']")) {
+                        replyForm = document.getElementById(target.getAttribute("data-target"));
+                        replyForm.classList.toggle("d-none");
+                    }
+                },
+                false
+);
+        </script>
+    
+
     </body>
 
 
