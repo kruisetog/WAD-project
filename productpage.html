@@ -13,7 +13,7 @@
         integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
 
     <!-- Custom CSS-->
-    <link rel="stylesheet" type="text/css" href="project.css">
+    <link rel="stylesheet" type="text/css" href="account/project.css">
     <link rel="stylesheet" type="text/css" href="productpage.css">
 
     <!-- Insert this script Sketchfeb -->
@@ -26,366 +26,278 @@
     <!-- This is the API from Firebase Realtime Database -->
     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-database.js"></script>
 
+    <link href="http://www.cssscript.com/wp-includes/css/sticky.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
 
 </head>
 <body data-bs-spy="scroll" data-bs-offset="0">
+<!-- header -->
+<div class="container-fluid">
+    <div class="row">
+        <!-- Navbar -- Change collapse breakpoint with navbar-expand-*breakpoint* -- -->
+        <nav id="myNavbar" class="navbar navbar-expand-md navbar-custom navbar-dark fixed-top px-3">
 
-    <div class="container-fluid">
-        <div class="row">
-            <!-- Navbar -- Change collapse breakpoint with navbar-expand-*breakpoint* -- -->
-            <nav id="myNavbar" class="navbar navbar-expand-md navbar-custom navbar-dark fixed-top px-3">
+            <!-- Brand -->
+            <a class="navbar-brand" href="#">ChairGod69</a>
+            <!-- Navbar toggler -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".dual-collapse2" aria-controls=".dual-collapse2" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-                <!-- Brand -->
-                <a class="navbar-brand" href="#">ChairGod69</a>
-                <!-- Navbar toggler -->
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".dual-collapse2" aria-controls=".dual-collapse2" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <!-- Left aligned links -->
-                <div class="collapse navbar-collapse dual-collapse2" id="navbarCollapseLeft">
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
-                        <a class="nav-link linkText" href="#landingPage">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link linkText" href="#aboutUsPage">About Us</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link linkText" href="#guidePage">Choosing Guide</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle linkText" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Buy A Chair</a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="">Catalogue</a></li>
-                            <li><a class="dropdown-item" href="">See What Others Recommend</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="">Get Support</a></li>
-                        </ul>
-                    
-                </ul>
-                </div>
-                <!-- End of left aligned links -->
-
-                <!-- Right aligned links -->
-                <div class="collapse navbar-collapse dual-collapse2" id="navbarCollapseRight">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link linkText" href="#loginPage">Login</a>
-                    </li>
-                </ul>
-                </div>
-                <!-- End of right aligned links -->
-
-            </nav>
-            <!-- End of navbar -->
-
-        </div>
-    </div>
-
-
-
-<!-- Start of Product Card -->
-  <div id="app">
-    <div class="container mt-5 mb-5" style="height: 500px;">
-            <div class="card h-100">
-                            <!-- Insert an empty iframe with attributes -->
-                                <iframe class="h-100"src="" id="api-frame" allow="autoplay; fullscreen; xr-spatial-tracking" 
-                                xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered 
-                                web-share allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
-                            <!-- ^Insert an empty iframe with attributes -->          
-                <!--<div class="row g-0">
-                    <div class="col-md-6 border-end">
-                        <div class="d-flex flex-column justify-content-center">
-
-
-
-                            <div class="main_image"> <img src="https://i.imgur.com/TAzli1U.jpg" id="main_product_image" width="350"> </div>
-                            <div class="thumbnail_images">
-                                <ul id="thumbnail">
-                                    <li><img onclick="changeImage(this)" src="https://i.imgur.com/TAzli1U.jpg" width="70"></li>
-                                    <li><img onclick="changeImage(this)" src="https://i.imgur.com/w6kEctd.jpg" width="70"></li>
-                                    <li><img onclick="changeImage(this)" src="https://i.imgur.com/L7hFD8X.jpg" width="70"></li>
-                                    <li><img onclick="changeImage(this)" src="https://i.imgur.com/6ZufmNS.jpg" width="70"></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="p-3 right-side">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <h3>IIlana</h3> <span class="heart"><i class='bx bx-heart'></i></span>
-                            </div>
-                            <div class="mt-2 pr-3 content">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
-                            </div>
-                            <h3>$430.99</h3>
-                            <div class="ratings d-flex flex-row align-items-center">
-                                <div class="d-flex flex-row"> <i class='bx bxs-star'></i> <i class='bx bxs-star'></i> <i class='bx bxs-star'></i> <i class='bx bxs-star'></i> <i class='bx bx-star'></i> </div> <span>441 reviews</span>
-                            </div>
-                            <div class="mt-5"> <span class="fw-bold">Color</span>
-                                <div class="colors">
-                                    <ul id="marker">
-                                        <li id="marker-1"></li>
-                                        <li id="marker-2"></li>
-                                        <li id="marker-3"></li>
-                                        <li id="marker-4"></li>
-                                        <li id="marker-5"></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="buttons d-flex flex-row mt-5 gap-3"> <button class="btn btn-outline-dark">Buy Now</button> <button class="btn btn-dark">Add to Basket</button> </div>
-                            <div class="search-option"> <i class='bx bx-search-alt-2 first-search'></i>
-                                <div class="inputs"> <input type="text" name=""> </div> <i class='bx bx-share-alt share'></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>-->
+            <!-- Left aligned links -->
+            <div class="collapse navbar-collapse dual-collapse2" id="navbarCollapseLeft">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link linkText" href="account/homePage.html#landingPage">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link linkText" href="account/homePage.html#aboutUsPage">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link linkText" href="account/homePage.html#guidePage">Choosing Guide</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle linkText" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Buy A Chair</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="">Catalogue</a></li>
+                        <li><a class="dropdown-item" href="">See What Others Recommend</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="">Get Support</a></li>
+                    </ul>
+                </li>
+                
+            </ul>
             </div>
+            <!-- End of left aligned links -->
+
+            <!-- Right aligned links -->
+            <div class="collapse navbar-collapse dual-collapse2" id="navbarCollapseRight">
+            <ul class="navbar-nav ms-auto navPadding">
+                <li class="nav-item" v-if="loggedUser == ''">
+                    <a class="nav-link linkText" href="login.html">Login</a>
+                </li>
+                <li class="nav-item dropdown" v-if="loggedUser != ''">
+                    <a class="nav-link dropdown-toggle linkText" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">{{ loggedUser }}</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="passwordChange.html">Password Change</a></li>
+                        <li><a class="dropdown-item" v-on:click="logout()" >Log Out</a></li>
+                    </ul>
+                </li>
+            </ul>
+            </div>
+            <!-- End of right aligned links -->
+
+        </nav>
+        <!-- End of navbar -->
+
     </div>
 </div>
-<!-- End of Product Card -->
+<!-- header -->
 
-<!-- Start of Review Card -->
-<div id="reviews"class="container card">
-    <div id="reviewswewe" class="review-section">
-        <div id="reviewtt" class="d-flex align-items-center justify-content-between mb-4">
-            <h4 class="m-0">{{ reviewcount }} Reviews</h4>
-            <select class="custom-select custom-select-sm border-0 shadow-sm ml-2 select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
-                <option data-select2-id="3">Most Relevant</option>
-                <option>Most Recent</option>
-            </select>
-            <span class="select2 select2-container select2-container--default" dir="ltr" data-select2-id="2" style="width: 188px;">
-                <span class="selection">
-                    <span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-qd66-container">
-                        <span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span>
-                    </span>
-                </span>
-                <span class="dropdown-wrapper" aria-hidden="true"></span>
-            </span>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <table class="stars-counters">
-                    <tbody>
-                        <tr class="">
-                            <td>
-                                <span>
-                                    <button class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter">5 Stars</button>
-                                </span>
-                            </td>
-                            <td class="progress-bar-container">
-                                <div class="fit-progressbar fit-progressbar-bar star-progress-bar">
-                                    <div class="fit-progressbar-background">
-                                        <span class="progress-fill" :style="countbar(countstars[0],countstars,)"></span>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="star-num">({{ countstars[0] }})</td>
-                        </tr>
-                        <tr class="">
-                            <td>
-                                <span>
-                                    <button class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter">4 Stars</button>
-                                </span>
-                            </td>
-                            <td class="progress-bar-container">
-                                <div class="fit-progressbar fit-progressbar-bar star-progress-bar">
-                                    <div class="fit-progressbar-background">
-                                        <span class="progress-fill" :style="countbar(countstars[1],countstars,)"></span>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="star-num">({{ countstars[1] }})</td>
-                        </tr>
-                        <tr class="">
-                            <td>
-                                <span>
-                                    <button class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter">3 Stars</button>
-                                </span>
-                            </td>
-                            <td class="progress-bar-container">
-                                <div class="fit-progressbar fit-progressbar-bar star-progress-bar">
-                                    <div class="fit-progressbar-background">
-                                        <span class="progress-fill" :style="countbar(countstars[2],countstars,)"></span>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="star-num">({{ countstars[2] }})</td>
-                        </tr>
-                        <tr class="">
-                            <td>
-                                <span>
-                                    <button class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter">2 Stars</button>
-                                </span>
-                            </td>
-                            <td class="progress-bar-container">
-                                <div class="fit-progressbar fit-progressbar-bar star-progress-bar">
-                                    <div class="fit-progressbar-background">
-                                        <span class="progress-fill" :style="countbar(countstars[3],countstars,)"></span>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="star-num">({{ countstars[3] }})</td>
-                        </tr>
-                        <tr class="">
-                            <td>
-                                <span>
-                                    <button class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter">1 Stars</button>
-                                </span>
-                            </td>
-                            <td class="progress-bar-container">
-                                <div class="fit-progressbar fit-progressbar-bar star-progress-bar">
-                                    <div class="fit-progressbar-background">
-                                        <span class="progress-fill" :style="countbar(countstars[4],countstars,)"></span>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="star-num">({{ countstars[4] }})</td>
-                        </tr>
-                    </tbody>
-                </table>
+<div class="container" id="reviews">
+    <div class="row">
+        <div  class="col-8">
+            <!-- Start of Product Card -->
+            <div id="app">
+                <div class="container mt-5 mb-5" style="height: 500px;">
+                        <div class="card h-100">
+                                        <!-- Insert an empty iframe with attributes -->
+                                            <iframe class="h-100"src="" id="api-frame" allow="autoplay; fullscreen; xr-spatial-tracking" 
+                                            xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered 
+                                            web-share allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+                                        <!-- ^Insert an empty iframe with attributes -->          
+                        </div>
+                </div>
             </div>
-            <div class="col-md-6">
-                <div class="ranking">
-                    <h6 class="text-display-7">Rating Breakdown</h6>
+            <!-- End of Product Card -->
+
+            <!-- Start of Review Card -->
+            <div id="reviewspropage" class="container card">
+                <div id="reviewswewe" class="review-section">
+                    <div id="reviewtt" class="d-flex align-items-center justify-content-between mb-4">
+                        <h4 class="m-0">{{ reviewcount }} Reviews</h4>
+                        <select class="custom-select custom-select-sm border-0 shadow-sm ml-2 select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                            <option data-select2-id="3">Most Relevant</option>
+                            <option>Most Recent</option>
+                        </select>
+                        <span class="select2 select2-container select2-container--default" dir="ltr" data-select2-id="2" style="width: 188px;">
+                            <span class="selection">
+                                <span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-qd66-container">
+                                    <span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span>
+                                </span>
+                            </span>
+                            <span class="dropdown-wrapper" aria-hidden="true"></span>
+                        </span>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <table class="stars-counters">
+                                <tbody>
+                                    <tr class="">
+                                        <td>
+                                            <span>
+                                                <button class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter">5 Stars</button>
+                                            </span>
+                                        </td>
+                                        <td class="progress-bar-container">
+                                            <div class="fit-progressbar fit-progressbar-bar star-progress-bar">
+                                                <div class="fit-progressbar-background">
+                                                    <span class="progress-fill" :style="countbar(countstars[0],countstars,)"></span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="star-num">({{ countstars[0] }})</td>
+                                    </tr>
+                                    <tr class="">
+                                        <td>
+                                            <span>
+                                                <button class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter">4 Stars</button>
+                                            </span>
+                                        </td>
+                                        <td class="progress-bar-container">
+                                            <div class="fit-progressbar fit-progressbar-bar star-progress-bar">
+                                                <div class="fit-progressbar-background">
+                                                    <span class="progress-fill" :style="countbar(countstars[1],countstars,)"></span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="star-num">({{ countstars[1] }})</td>
+                                    </tr>
+                                    <tr class="">
+                                        <td>
+                                            <span>
+                                                <button class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter">3 Stars</button>
+                                            </span>
+                                        </td>
+                                        <td class="progress-bar-container">
+                                            <div class="fit-progressbar fit-progressbar-bar star-progress-bar">
+                                                <div class="fit-progressbar-background">
+                                                    <span class="progress-fill" :style="countbar(countstars[2],countstars,)"></span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="star-num">({{ countstars[2] }})</td>
+                                    </tr>
+                                    <tr class="">
+                                        <td>
+                                            <span>
+                                                <button class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter">2 Stars</button>
+                                            </span>
+                                        </td>
+                                        <td class="progress-bar-container">
+                                            <div class="fit-progressbar fit-progressbar-bar star-progress-bar">
+                                                <div class="fit-progressbar-background">
+                                                    <span class="progress-fill" :style="countbar(countstars[3],countstars,)"></span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="star-num">({{ countstars[3] }})</td>
+                                    </tr>
+                                    <tr class="">
+                                        <td>
+                                            <span>
+                                                <button class="fit-button fit-button-color-blue fit-button-fill-ghost fit-button-size-medium stars-filter">1 Stars</button>
+                                            </span>
+                                        </td>
+                                        <td class="progress-bar-container">
+                                            <div class="fit-progressbar fit-progressbar-bar star-progress-bar">
+                                                <div class="fit-progressbar-background">
+                                                    <span class="progress-fill" :style="countbar(countstars[4],countstars,)"></span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="star-num">({{ countstars[4] }})</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="ranking">
+                                <h6 class="text-display-7">Submit Your Review!</h6>
+                                <textarea v-if='loggedUser != "" ' id="w3review" name="w3review" rows="4" style="width: 100%;" placeholder="Enter Your Review Here!" v-model="userreview"></textarea>
+                                <textarea v-else id="w3review" name="w3review" rows="4" style="width: 100%;" placeholder="Login to submit your review" ></textarea>
+                                <button v-if='loggedUser != "" ' type="button" class="btn btn-primary" @click="insertreview()">Submit</button>
+                                <button v-else type="button" class="btn btn-secondary" >Submit</button>
+                                <input type="radio" id="st1" value="5" v-model="stars"/>
+                                <label for="st1"></label>
+                                <input type="radio" id="st2" value="4" v-model="stars"/>
+                                <label for="st2"></label>
+                                <input type="radio" id="st3" value="3" v-model="stars"/>
+                                <label for="st3"></label>
+                                <input type="radio" id="st4" value="2" v-model="stars"/>
+                                <label for="st4"></label>
+                                <input type="radio" id="st5" value="1" v-model="stars"/>
+                                <label for="st5"></label>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="review-list">
                     <ul>
-                        <li>
-                            Seller communication level<span>5<span class="review-star rate-10 show-one"></span></span>
-                        </li>
-                        <li>
-                            Recommend to a friend<span>5<span class="review-star rate-10 show-one"></span></span>
-                        </li>
-                        <li>
-                            Service as described<span>4.9<span class="review-star rate-10 show-one"></span></span>
+                        <li v-for="review in chairsDB.reviewObjList">
+                            <div class="d-flex">
+                                <div class="left">
+                                    <span>
+                                        <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="profile-pict-img img-fluid" alt="" />
+                                    </span>
+                                </div>
+                                <div class="right">
+                                    <h4>
+                                        {{getname(review.userId)}}
+                                        <span class="gig-rating text-body-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1792 1792" width="15" height="15">
+                                                <path
+                                                    fill="currentColor"
+                                                    d="M1728 647q0 22-26 48l-363 354 86 500q1 7 1 20 0 21-10.5 35.5t-30.5 14.5q-19 0-40-12l-449-236-449 236q-22 12-40 12-21 0-31.5-14.5t-10.5-35.5q0-6 2-20l86-500-364-354q-25-27-25-48 0-37 56-46l502-73 225-455q19-41 49-41t49 41l225 455 502 73q56 9 56 46z"
+                                                ></path>
+                                            </svg>
+                                            {{review.rating}}
+                                        </span>
+                                    </h4>
+                                    <div class="country d-flex align-items-center">
+                                        <span>
+                                        </span>
+                                    </div>
+                                    <div class="review-description">
+                                        <p>
+                                            {{review.reviewDescription}}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="review-list">
-        <ul>
-            <li v-for="review in chairsDB.reviewObjList">
-                <div class="d-flex">
-                    <div class="left">
-                        <span>
-                            <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="profile-pict-img img-fluid" alt="" />
-                        </span>
+        <!--Suggestions Card-->
+        <div class="col">
+            <h3 class="mt-5 text-center">Suggested Picks</h3>
+            <ul class="">
+                <li  v-for="chair in allchairDB">
+                    <div class="card mt-1 text-center">
+                        <img :src="chair.imageURL" alt="Denim Jeans" style="width:100%; height: 20%;">
+                        <h3>{{chair.name}}</h3>
+                        <p>{{chair.description}}</p>
                     </div>
-                    <div class="right">
-                        <h4>
-                            Askbootstrap
-                            <span class="gig-rating text-body-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1792 1792" width="15" height="15">
-                                    <path
-                                        fill="currentColor"
-                                        d="M1728 647q0 22-26 48l-363 354 86 500q1 7 1 20 0 21-10.5 35.5t-30.5 14.5q-19 0-40-12l-449-236-449 236q-22 12-40 12-21 0-31.5-14.5t-10.5-35.5q0-6 2-20l86-500-364-354q-25-27-25-48 0-37 56-46l502-73 225-455q19-41 49-41t49 41l225 455 502 73q56 9 56 46z"
-                                    ></path>
-                                </svg>
-                                {{review.rating}}
-                            </span>
-                        </h4>
-                        <div class="country d-flex align-items-center">
-                            <span>
-                            </span>
-                        </div>
-                        <div class="review-description">
-                            <p>
-                                {{review.reviewDescription}}
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </li>
-        </ul>
+                </li>
+            </ul>
+        </div>
     </div>
+    <!--Suggestions Card-->
+
 </div>
-
 <script type="text/javascript">
-
-    //retrieve reviews
-    //from db only 3 colums [pid,rid,rating,reviewtext]
-    const review_data1 = {
-        ReviewID: "12",
-        userId: '134',
-        reviewDescription: 'What is a baby cow called?',
-        likeCount: 3,
-        dislikeCount: 1,
-        rating: 2
-    };
-    const review_data2 = {
-        ReviewID: "12",
-        userId: '134',
-        reviewDescription: 'What is a baby pig called?',
-        likeCount: 5,
-        dislikeCount: 1,
-        rating: 5
-
-    };
-    const review_data3 = {
-        ReviewID: "12",
-        userId: '134',
-        reviewDescription: 'What is a baby cat called?',
-        likeCount: 8,
-        dislikeCount: 1,
-        rating: 4
-    };
-
-    const chair_data =     {
-        name: "216ao",
-        description: 'short',
-        rating: 'What is a baby cow called?',
-        price: 'calf',
-        type: "216ao",
-        date: 'short',
-        pageURL: 'What is a baby cow called?',
-        imageURL: 'calf',
-        ApiKey: "c922a7282c0a41f3886597d1316cd83b",
-        listofreview: [review_data1,review_data2,review_data3]
-    };
-
-    //for the sketchfab api
-    //initialize the viewer
-    var iframe = document.getElementById( 'api-frame' );
-    //object key that can be used to retrieve model from sketchfeb
-    var uid = chair_data.ApiKey;
-
-    // By default, the latest version of the viewer API will be used.
-    var client = new Sketchfab( iframe );
-
-    // var client = new Sketchfab( '1.10.1', iframe );
-    client.init( uid, {
-        success: function onSuccess( api ){
-            api.start();
-            api.addEventListener( 'viewerready', function() {
-
-                // API is ready to use
-                // Insert your code here
-                console.log( 'Viewer is ready' );
-
-            } );
-        },
-        error: function onError() {
-            console.log( 'Viewer error' );
-        }
-    } );
-    //sketchfeb viewr
-
-
-    //change image
-    function changeImage(element) {
-        var main_prodcut_image = document.getElementById('main_product_image');
-        main_prodcut_image.src = element.src;
-    }
 
 
     //vue constructor 
     const app= Vue.createApp({
         data(){
             return{
-                chairobj: chair_data,
                 firebaseConfig :{
                     apiKey: "AIzaSyDNbFitWWLX27UI4BFMqPV0URaBPXfMT9g",
                     authDomain: "wad-test-4de95.firebaseapp.com",
@@ -397,7 +309,12 @@
                     measurementId: "G-ZNYM8RKG2C"
 
                 },
-                chairsDB: {}
+                chairsDB: {},
+                allchairDB: {},
+                loggedUser: "",
+                stars: "",
+                userreview: "",
+                getchair: ""
             }
         },
         computed: {
@@ -437,11 +354,9 @@
             countbar(thenum,thefull){
 
                 let str = "width: ";
-                let totalactualcount = 0
+                let totalactualcount = 0;
                 for(var i = 0; i<thefull.length;i++){
-                    if(thefull[i] != 0){
-                        totalactualcount += 1
-                    }
+                    totalactualcount += thefull[i];
                 }
 
                 //count percent
@@ -449,9 +364,9 @@
                 str = str + num + "%";
                 return str;
             },
-            getDatabaseOnce(){
+            async getDatabaseOnce(){
                 const dbRef = firebase.database().ref();
-                dbRef.child("chairs").child("gaming_chair_1").get().then((snapshot) => {
+                await dbRef.child("chairs").child(this.getchair).get().then((snapshot) => {
                 if (snapshot.exists()) {
                     //console.log(snapshot.val());
                     Object.assign(this.chairsDB,snapshot.val());
@@ -463,13 +378,117 @@
                 }).catch((error) => {
                 console.error(error);
                 });
-            }
+
+                const dbRef2 = firebase.database().ref();
+                await dbRef2.child("chairs").get().then((snapshot) => {
+                if (snapshot.exists()) {
+                    //console.log(snapshot.val());
+                    Object.assign(this.allchairDB,snapshot.val());
+                    //console.log(this.chairsDB);
+                    //return snapshot.val();
+                } else {
+                    console.log("No data available");
+                }
+                }).catch((error) => {
+                console.error(error);
+                });
+            },
+            async getname(userid){
+                let name ="";
+                const dbRef = firebase.database().ref();
+                await dbRef.child("users").child(userid).child("name").get().then((snapshot) => {
+                if (snapshot.exists()) {
+                    //console.log(snapshot.val());
+                    name = snapshot.val();
+                    //console.log(this.chairsDB);
+                    //return snapshot.val();
+                } else {
+                    console.log("No data available");
+                }
+                }).catch((error) => {
+                console.error(error);
+                });
+                return name;
+            },
+            extractchair(){
+
+            },
+            createsketchfab(){
+                var iframe = document.getElementById( 'api-frame' );
+                //object key that can be used to retrieve model from sketchfeb
+                var uid = this.chairsDB.apiKey;
+
+                // By default, the latest version of the viewer API will be used.
+                var client = new Sketchfab( iframe );
+
+                // var client = new Sketchfab( '1.10.1', iframe );
+                client.init( uid, {
+                    success: function onSuccess( api ){
+                        api.start();
+                        api.addEventListener( 'viewerready', function() {
+
+                            // API is ready to use
+                            // Insert your code here
+                            console.log( 'Viewer is ready' );
+
+                        } );
+                    },
+                    error: function onError() {
+                        console.log( 'Viewer error' );
+                    }
+                } );
+            },
+            insertreview(){
+                if(this.userreview == "" || this.stars == ""){
+                    alert("Please enter all review details");
+                }
+                else{
+                    console.log(this.userreview);
+                    console.log(this.stars);
+                    //copy out reviews 
+                    let newlistoreview = [];
+                    let checkid = [];
+                    let newnum = Math.floor(Math.random() * 100);
+
+                    for(var i = 0; i<this.chairsDB.reviewObjList.length;i++){
+                        newlistoreview.push(this.chairsDB.reviewObjList[i]);
+                        checkid.push(this.chairsDB.reviewObjList[i].rating);
+                    }
+
+                    while (checkid.includes(newnum)){
+                        newnum = Math.floor(Math.random() * 100);
+                    }
+                    
+                    console.log(newlistoreview);
+                    var orderRef = firebase.database().ref().child("chairs").child(this.getchair).child("reviewObjList");
+                    var newrev = {
+                        "reviewDescription" : this.userreview,
+                        "reviewId" : newnum,
+                        "userId" : localStorage.loggedUser,
+                        "rating" : this.stars
+                        };
+
+                    newlistoreview.push(newrev);
+                    console.log(newlistoreview);
+
+                    orderRef.set(newlistoreview);    
+                    this.getDatabaseOnce();
+                }
+            },
         },
         async created(){
+            this.getchair = "office_chair_2";
+
             firebase.initializeApp(this.firebaseConfig);
             await this.getDatabaseOnce();
+
             console.log(this.chairsDB)
-        }
+
+            if (localStorage.loggedUser) {
+                    this.loggedUser = localStorage.loggedUser;
+            }
+            this.createsketchfab();
+        }   
     })
     const vm = app.mount("#reviews")
     </script>
