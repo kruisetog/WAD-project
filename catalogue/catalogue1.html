@@ -55,7 +55,7 @@
                 <div class="collapse navbar-collapse dual-collapse2" id="navbarCollapseRight">
                 <ul class="navbar-nav ms-auto navPadding">
                     <li class="nav-item">
-                        <a class="nav-link linkText" href="login.html#loginPage">Login</a>
+                        <a class="nav-link linkText" href="../account/login.html">Login</a>
                     </li>
                 </ul>
                 </div>
@@ -121,6 +121,7 @@
         <input class="btn btn-primary m-md-1" data-bs-toggle="button" type="submit" :id="button1" :value="button1" v-on:click="sortByPopularity" >
         <input class="btn btn-primary m-md-1" data-bs-toggle="button" type="submit" :id="button2" :value="button2" v-on:click="sortByLatest">
         <input class="btn btn-primary m-md-1" data-bs-toggle="button" type="submit" :id="button3" :value="button3" v-on:click="sortByRating">
+        <input class="btn btn-primary m-md-1" v-if="loggedUser == 'admin'" value="Admin page" onclick="location.href='catalogueAdmin.html'">
         <div class="row justify-content-around">
           <div class="col-5 my-md-1 card bg-dark text-dark">
             <img v-bind:src="featuredChair.imageURL" class="card-img" alt="...">
