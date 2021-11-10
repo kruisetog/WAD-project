@@ -8,7 +8,9 @@
     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
     <!-- This is the API from Firebase Realtime Database -->
     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-database.js"></script>
-
+    <!-- this is default table data -->
+    
+    
     <!-- this is the start of firebase script -->
     <script>
         const firebaseConfig ={
@@ -68,34 +70,34 @@
                 }, 3000)
                 return
             }
-        firebase.database().ref('chairs/' + chairObj.name).set({
-            name: chairObj.name,
-            description : chairObj.description,
-            rating : chairObj.rating,
-            price : chairObj.price,
-            type : chairObj.type,
-            date : chairObj.date,
-            pageURL : chairObj.pageURL,
-            imageURL : chairObj.imageURL,
-            apiKey : chairObj.apiKey,
-            reviewObjList : chairObj.reviewObjList,
+            firebase.database().ref('chairs/' + chairObj.name).set({
+                name: chairObj.name,
+                description : chairObj.description,
+                rating : chairObj.rating,
+                price : chairObj.price,
+                type : chairObj.type,
+                date : chairObj.date,
+                pageURL : chairObj.pageURL,
+                imageURL : chairObj.imageURL,
+                apiKey : chairObj.apiKey,
+                reviewObjList : chairObj.reviewObjList,
 
 
-        }, function(error) {
-            if (error) {
-                document.getElementById("status").innerText = "Chair Registration Failed!";
-                document.getElementById("status").classList.toggle('bg-info');
-                document.getElementById("status").classList.toggle('bg-danger');
-            } else {
-            document.getElementById("status").innerText = "Chair Registration Done!";
-            setTimeout(()=>{
-                document.getElementById("status").innerText = "Status";
-                document.getElementById("status").classList.toggle('bg-info');
-                document.getElementById("status").classList.toggle('bg-danger');
+            }, function(error) {
+                if (error) {
+                    document.getElementById("status").innerText = "Chair Registration Failed!";
+                    document.getElementById("status").classList.toggle('bg-info');
+                    document.getElementById("status").classList.toggle('bg-danger');
+                } else {
+                document.getElementById("status").innerText = "Chair Registration Done!";
+                setTimeout(()=>{
+                    document.getElementById("status").innerText = "Status";
+                    document.getElementById("status").classList.toggle('bg-info');
+                    document.getElementById("status").classList.toggle('bg-danger');
 
-            }, 3000)
-            }
-        });
+                }, 3000)
+                }
+            });
         }
 
 
@@ -133,19 +135,23 @@
             this.apiKey = apiKey;
             this.reviewObjList = reviewObjList;
         }
-        var chair1 = new chairObj('gaming_chair_1',  'a template gaming chair', 5, 200, 'gaming', new dateObj(16,11,2020),"https://media.giphy.com/media/cgCMnZr84zE40/giphy.gif",'2QpgjMeXKHq6L8KIBAJjRrFV3jg',[review0,review1]);
-        var chair2 = new chairObj('wooden_chair_1',  'a template wooden chair', 2, 400, 'wooden', new dateObj(11,11,2020),"https://media2.giphy.com/media/ypBQolo0HfDej1W1X9/giphy.gif?cid=ecf05e474m6rw2v9o0zic290wlr3k410ffngtmcwkhsunvgm&rid=giphy.gif&ct=g",'9145e102a2b341b8a38fca9b610a496c',[review2,review3]);
-        var chair3 = new chairObj('gaming_chair_2',  'a template gaming chair', 4, 600, 'gaming', new dateObj(19,11,2020),"https://media.giphy.com/media/3o6MbmQnyTKNWGHK8g/giphy.gif",'83b5dc561c9a454aace80c80d87981e2',[review0,review1,review5]);
-        var chair4 = new chairObj('office_chair_1',  'a template office chair', 3, 800, 'office', new dateObj(21,11,2020),"https://media0.giphy.com/media/8twZKibtk0gyPu4dC0/giphy.gif?cid=ecf05e47y9ohq0f08s4rkthtvxodi7agq6vn7yoeon1441pw&rid=giphy.gif&ct=g",'1fded5bd02c94164abc39c98640050d6',[review4,review5,review5]);
-        var chair5 = new chairObj('office_chair_2',  'a office chair chair', 4, 1000, 'office', new dateObj(26,12,2020),"https://media.giphy.com/media/8vJcTuZHB7U8U/giphy.gif",'5f7334fcade8415d98e239039011b8ab',[]);
-        var featuredChair = new chairObj('basic_chair_1',  'a template basic chair', 5, 200, 'basic', new dateObj(16,10,2020),"https://media.giphy.com/media/XGU4CyI27f5xBWGJlY/giphy.gif",'2ba6a87c89a7467fad910420aae99ed7',[review3]);
-      
-        var chairs = [chair1, chair2,chair3,chair4,chair5]
+        
+
+        
+        
+
         function resetChairs(){
+            chairs = []
+
+            fetch('chairs.JSON')
+            .then(response => response.json())
+            .then(json => {for(chair_name, a_chairObj of json){
+                console.log(a_chairObj)
+                writeUserDataWithCompletion(a_chairObj)
+            }});
             
-            for(chair of chairs){
-                writeUserDataWithCompletion(chair);
-            }
+            console.log('chairs',chairs)
+
         }
       
         function addChair(){
@@ -215,7 +221,7 @@
 </head>
 
 <body>
-    <div id="app">
+<div id="app">
   <!-- Navbar -- Change collapse breakpoint with navbar-expand-*breakpoint* -- -->
   <div class="container-fluid">
     <div class="row">
@@ -404,9 +410,10 @@
                 const dbRef = firebase.database().ref();
                 dbRef.child("chairs").get().then((snapshot) => {
                 if (snapshot.exists()) {
-                    console.log(snapshot.val());
+                    
                     this.chairsDB = snapshot.val();
-                    console.log(this.chairsDB);
+                    console.log(snapshot.val())
+                    
                     return snapshot.val();
                 } else {
                     console.log("No data available");
