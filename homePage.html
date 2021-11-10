@@ -11,7 +11,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
 
-    <link rel="stylesheet" type="text/css" href="project.css">
+    <link rel="stylesheet" type="text/css" href="account/project.css">
 
 </head>
 
@@ -44,8 +44,8 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle linkText" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Buy A Chair</a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="../catalogue1.html">Catalogue</a></li>
-                            <li><a class="dropdown-item" href="../forum/forum.html">See What Others Recommend</a></li>
+                            <li><a class="dropdown-item" href="catalogue/catalogue1.html">Catalogue</a></li>
+                            <li><a class="dropdown-item" href="forum/forum.html">See What Others Recommend</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="#footer">Get Support</a></li>
                         </ul>
@@ -59,12 +59,12 @@
                 <div class="collapse navbar-collapse dual-collapse2" id="navbarCollapseRight">
                 <ul class="navbar-nav ms-auto navPadding">
                     <li class="nav-item" v-if="loggedUser == ''">
-                        <a class="nav-link linkText" href="login.html">Login</a>
+                        <a class="nav-link linkText" href="account/login.html">Login</a>
                     </li>
                     <li class="nav-item dropdown" v-if="loggedUser != ''">
                         <a class="nav-link dropdown-toggle linkText" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">{{ loggedUser }}</a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="passwordChange.html">Password Change</a></li>
+                            <li><a class="dropdown-item" href="account/passwordChange.html">Password Change</a></li>
                             <li><a class="dropdown-item" v-on:click="logout()" >Log Out</a></li>
                         </ul>
                     </li>
@@ -87,11 +87,11 @@
                 <div class="break"></div>
                 <div id="loginBtns">
                     <a href="#aboutUsPage" class="btn btn-secondary btn-lg btnSize" role="button">Learn More</a>
-                    <a href="#" class="btn btn-secondary btn-lg btnSize" role="button">Buy A Chair</a>
+                    <a href="catalogue/catalogue1.html" class="btn btn-secondary btn-lg btnSize" role="button">Buy A Chair</a>
                 </div>
                 <div class="break"></div>
                 <div id="landingImg">
-                    <img src="images/landingImg.jpg" class="img-fluid">
+                    <img src="account/images/landingImg.jpg" class="img-fluid">
                 </div>
             </div>
             
@@ -115,10 +115,10 @@
                             <!-- start of one card -->
                             <div class="col">
                                 <div class="card shadow-sm">
-                                    <img class="card-img-top img-fluid" src="images/Kevinhviid-brown-3.jpg"> <!-- Use 1500x1500 image res -->
+                                    <img class="card-img-top img-fluid" src="account/images/some chair6.png"> <!-- Use 1500x1500 image res -->
                 
                                     <div class="card-body">
-                                        <p class="card-text">Classic Chairs</p>
+                                        <p class="card-text">Basic Chairs</p>
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div class="btn-group">
                                             <button type="button" class="btn btn-sm btn-outline-secondary">See More</button>
@@ -131,7 +131,7 @@
 
                             <div class="col">
                                 <div class="card shadow-sm">
-                                    <img class="card-img-top img-fluid" src="images/social_meta_main-min_1500x1500.jpg"> <!-- Use 1500x1500 image res -->
+                                    <img class="card-img-top img-fluid" src="account/images/some chair3.png"> <!-- Use 1500x1500 image res -->
                     
                                     <div class="card-body">
                                         <p class="card-text">Gaming Chairs</p>
@@ -146,10 +146,10 @@
 
                             <div class="col">
                                 <div class="card shadow-sm">
-                                    <img class="card-img-top img-fluid" src="images/Kevinhviid-brown-3.jpg"> <!-- Use 1500x1500 image res -->
+                                    <img class="card-img-top img-fluid" src="account/images/some chair.png"> <!-- Use 1500x1500 image res -->
                     
                                     <div class="card-body">
-                                        <p class="card-text">Classic Chairs</p>
+                                        <p class="card-text">Office Chairs</p>
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div class="btn-group">
                                             <button type="button" class="btn btn-sm btn-outline-secondary">See More</button>
@@ -161,70 +161,10 @@
 
                             <div class="col">
                                 <div class="card shadow-sm">
-                                    <img class="card-img-top img-fluid" src="images/Kevinhviid-brown-3.jpg"> <!-- Use 1500x1500 image res -->
+                                    <img class="card-img-top img-fluid" src="account/images/some chair5.png"> <!-- Use 1500x1500 image res -->
                     
                                     <div class="card-body">
-                                        <p class="card-text">Classic Chairs</p>
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div class="btn-group">
-                                            <button type="button" class="btn btn-sm btn-outline-secondary">See More</button>
-                                            </div>
-                                        </div>
-                                    </div>                            
-                                </div>
-                            </div>
-
-                            <div class="col">
-                                <div class="card shadow-sm">
-                                    <img class="card-img-top img-fluid" src="images/Kevinhviid-brown-3.jpg"> <!-- Use 1500x1500 image res -->
-                    
-                                    <div class="card-body">
-                                        <p class="card-text">Classic Chairs</p>
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div class="btn-group">
-                                            <button type="button" class="btn btn-sm btn-outline-secondary">See More</button>
-                                            </div>
-                                        </div>
-                                    </div>                            
-                                </div>
-                            </div>
-
-                            <div class="col">
-                                <div class="card shadow-sm">
-                                    <img class="card-img-top img-fluid" src="images/Kevinhviid-brown-3.jpg"> <!-- Use 1500x1500 image res -->
-                    
-                                    <div class="card-body">
-                                        <p class="card-text">Classic Chairs</p>
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div class="btn-group">
-                                            <button type="button" class="btn btn-sm btn-outline-secondary">See More</button>
-                                            </div>
-                                        </div>
-                                    </div>                            
-                                </div>
-                            </div>
-
-                            <div class="col">
-                                <div class="card shadow-sm">
-                                    <img class="card-img-top img-fluid" src="images/Kevinhviid-brown-3.jpg"> <!-- Use 1500x1500 image res -->
-                    
-                                    <div class="card-body">
-                                        <p class="card-text">Classic Chairs</p>
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div class="btn-group">
-                                            <button type="button" class="btn btn-sm btn-outline-secondary">See More</button>
-                                            </div>
-                                        </div>
-                                    </div>                            
-                                </div>
-                            </div>
-
-                            <div class="col">
-                                <div class="card shadow-sm">
-                                    <img class="card-img-top img-fluid" src="images/Kevinhviid-brown-3.jpg"> <!-- Use 1500x1500 image res -->
-                    
-                                    <div class="card-body">
-                                        <p class="card-text">Classic Chairs</p>
+                                        <p class="card-text">Wooden Chairs</p>
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div class="btn-group">
                                             <button type="button" class="btn btn-sm btn-outline-secondary">See More</button>
@@ -256,12 +196,12 @@
             <div class="row featurette">
                 <div class="col-md-7">
                     <h2 class="featurette-heading">Chair Height.<span class="text-muted"> In case your chair height isn't adjustable</span> </h2>
-                    <p class="lead"> A good rule of thumb is to leave between 25 - 30 centimeters from the chair seat to the underside of the tabletop.
+                    <p class="lead bodyText"> A good rule of thumb is to leave between 25 - 30 centimeters from the chair seat to the underside of the tabletop.
                         This will give you enough space to sit with or without your legs crossed–and feel comfortable.
                     </p>
                 </div>
                 <div class="col-md-5">
-                    <img class="featurette-image img-fluid mx-auto" src="images/bess-low.jpg" alt="Generic placeholder image">
+                    <img class="featurette-image img-fluid mx-auto" src="account/images/bess-low.jpg" alt="Generic placeholder image">
                 </div>
             </div>
 
@@ -270,7 +210,7 @@
             <div class="row featurette">
             <div class="col-md-7 order-md-2">
                 <h2 class="featurette-heading">Oh yeah, it's that good. <span class="text-muted">See for yourself.</span></h2>
-                <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+                <p class="lead bodyText">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
             </div>
             <div class="col-md-5 order-md-1">
                 <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
@@ -282,7 +222,7 @@
             <div class="row featurette">
             <div class="col-md-7">
                 <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
-                <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+                <p class="lead bodyText">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
             </div>
             <div class="col-md-5">
                 <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="Generic placeholder image">

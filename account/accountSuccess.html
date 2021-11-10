@@ -20,7 +20,7 @@
             <nav id="myNavbar" class="navbar navbar-expand-md navbar-custom navbar-dark fixed-top px-3">
 
                 <!-- Brand -->
-                <a class="navbar-brand" href="homePage.html">ChairGod</a>
+                <a class="navbar-brand" href="../homePage.html">ChairGod</a>
                 <!-- Navbar toggler -->
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".dual-collapse2" aria-controls=".dual-collapse2" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -30,21 +30,21 @@
                 <div class="collapse navbar-collapse dual-collapse2" id="navbarCollapseLeft">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link linkText" href="homePage.html#landingPage">Home</a>
+                        <a class="nav-link linkText" href="../homePage.html#landingPage">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link linkText" href="homePage.html#aboutUsPage">About Us</a>
+                        <a class="nav-link linkText" href="../homePage.html#aboutUsPage">About Us</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link linkText" href="homePage.html#guidePage">Choosing Guide</a>
+                        <a class="nav-link linkText" href="../homePage.html#guidePage">Choosing Guide</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle linkText" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Buy A Chair</a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="../catalogue1.html">Catalogue</a></li>
+                            <li><a class="dropdown-item" href="../catalogue/catalogue1.html">Catalogue</a></li>
                             <li><a class="dropdown-item" href="../forum/forum.html">See What Others Recommend</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="homePage.html#footer">Get Support</a></li>
+                            <li><a class="dropdown-item" href="../homePage.html#footer">Get Support</a></li>
                         </ul>
                     
                 </ul>
@@ -87,35 +87,6 @@
                                 <div class="break"></div>
                             </div>
 
-                            <div class="col-md-4">
-                                <div class="mx-auto box"><!-- put the carousel in a box and center it -->
-
-                                    <div id="carousel" class="carousel slide" data-bs-ride="carousel">
-                                        <!-- add button to carousel -->
-                                      <div class="carousel-indicators">
-                                        <button type="button" data-bs-target="#carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                                        <button type="button" data-bs-target="#carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                                      </div>
-                                      <div class="carousel-inner">
-                                          <!-- add new div, class="carousel-item" -->
-                                        <div class="carousel-item active">
-                                          <img src="images/Kevinhviid-brown-3.jpg" class="d-block w-100" alt="...">
-                                        </div>
-                                        <div class="carousel-item">
-                                          <img src="images/social_meta_main-min_1500x1500.jpg" class="d-block w-100" alt="...">
-                                        </div>
-                                      </div>
-                                      <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
-                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                        <span class="visually-hidden">Previous</span>
-                                      </button>
-                                      <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
-                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                        <span class="visually-hidden">Next</span>
-                                      </button>
-                                    </div>
-                                  </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -139,7 +110,7 @@
                 if (localStorage.recovery) {
                     this.revCode = localStorage.recovery;
                 } else {
-                    window.location.href = "homePage.html";
+                    window.location.href = "../homePage.html";
                 }
 
             }
