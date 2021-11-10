@@ -13,6 +13,7 @@
 
 </head>
 <body>
+  <div id="app">
   <!-- Navbar -- Change collapse breakpoint with navbar-expand-*breakpoint* -- -->
   <div class="container-fluid">
         <div class="row">
@@ -53,12 +54,19 @@
 
                 <!-- Right aligned links -->
                 <div class="collapse navbar-collapse dual-collapse2" id="navbarCollapseRight">
-                <ul class="navbar-nav ms-auto navPadding">
-                    <li class="nav-item">
-                        <a class="nav-link linkText" href="../account/login.html">Login</a>
-                    </li>
-                </ul>
-                </div>
+                  <ul class="navbar-nav ms-auto navPadding">
+                      <li class="nav-item" v-if="loggedUser == ''">
+                          <a class="nav-link linkText" href="../account/login.html">Login</a>
+                      </li>
+                      <li class="nav-item dropdown" v-if="loggedUser != ''">
+                          <a class="nav-link dropdown-toggle linkText" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">{{ loggedUser }}</a>
+                          <ul class="dropdown-menu">
+                              <li><a class="dropdown-item" href="../account/passwordChange.html">Password Change</a></li>
+                              <li><a class="dropdown-item" v-on:click="logout()" >Log Out</a></li>
+                          </ul>
+                      </li>
+                  </ul>
+                  </div>
                 <!-- End of right aligned links -->
 
             </nav>
@@ -82,7 +90,7 @@
   <!-- End of navbar -->
   <!-- Start of filter -->
   <div class="container-fluid bg-light">
-    <div class="row flex-xl-nowrap" id="app">
+    <div class="row flex-xl-nowrap">
       <div class="col-12 col-md-3 col-xl-2 bd-sidebar " style="margin-top: 55px;background-color: #d2f4ea;">
         <div class="d-flex flex-row-reverse align-items-center">
           <button class="navbar-toggler d-md-none btn m-3 navbar-light" type="button" data-bs-toggle="collapse" data-bs-target=".filterCollapse" aria-controls=".filterCollapse" aria-expanded="false" aria-label="Toggle navigation" >
@@ -121,8 +129,8 @@
         <input class="btn btn-primary m-md-1" data-bs-toggle="button" type="submit" :id="button1" :value="button1" v-on:click="sortByPopularity" >
         <input class="btn btn-primary m-md-1" data-bs-toggle="button" type="submit" :id="button2" :value="button2" v-on:click="sortByLatest">
         <input class="btn btn-primary m-md-1" data-bs-toggle="button" type="submit" :id="button3" :value="button3" v-on:click="sortByRating">
-        <input class="btn btn-primary m-md-1" v-if="loggedUser == 'admin'" value="Admin page" onclick="location.href='catalogueAdmin.html'">
-        <div class="row justify-content-around">
+        <input class="btn btn-success m-md-1 float-end" v-if="loggedUser == 'admin'" value="Go to admin page" onclick="location.href='catalogueAdmin.html'">
+        <div class="row justify-content-around align-right">
           <div class="col-5 my-md-1 card bg-dark text-dark">
             <img v-bind:src="featuredChair.imageURL" class="card-img" alt="...">
             <div class="card-img-overlay ">
@@ -151,6 +159,7 @@
         
       </div>
     </div>
+  </div>
     <script>
       function chairObj(name, description, rating, price, type, date, pageURL, imageURL, apiKey, reviewObjList) {
           this.name = name;
@@ -334,7 +343,7 @@
             firebase.initializeApp(this.firebaseConfig);
             this.getDatabaseOnce();
             if (localStorage.loggedUser) { 
-                    this.loggedUser = localStorage.loggedUser; 
+                this.loggedUser = localStorage.loggedUser; 
             } 
         }
       }).mount('#app')
