@@ -143,14 +143,16 @@
         function resetChairs(){
             chairs = []
 
-            fetch('chairs.JSON')
-            .then(response => response.json())
-            .then(json => {for(chair_name, a_chairObj of json){
-                console.log(a_chairObj)
-                writeUserDataWithCompletion(a_chairObj)
-            }});
+            fetch('chairs.JSON').then(response => response.json())
+            .then((json) => {
+                for(chair_name in json){
+                console.log(json[chair_name])
+                writeUserDataWithCompletion(json[chair_name])
+                }
+            })
+
             
-            console.log('chairs',chairs)
+            // console.log('chairs',chairs)
 
         }
       
