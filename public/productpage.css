@@ -151,29 +151,16 @@ body{margin-top:20px;
         max-height:450px;
      }
 
-     .price {
+    .price {
         color: grey;
         font-size: 22px;
-      }
+    }
 
-    input {
-        border: 0;
-        width: 1px;
-        height: 1px;
-        overflow: hidden;
-        position: absolute !important;
-        clip: rect(1px 1px 1px 1px);
-        clip: rect(1px, 1px, 1px, 1px);
-        opacity: 0;
+    input{display: inline-block;
+        vertical-align: middle;
     }
       
-    label {
-        position: relative;
-        float: right;
-        color: #C8C8C8;
-    }
-      
-    label:before {
+ /*     label:before {
         margin: 5px;
         content: "\f005";
         font-family: FontAwesome;
@@ -195,4 +182,4 @@ body{margin-top:20px;
       
     label:hover:before {
         color: #FFC107;
-    }
+    } */
