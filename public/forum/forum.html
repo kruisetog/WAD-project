@@ -35,12 +35,12 @@
             <div id = "overlay">
                 <div id ="overlayform">
                         <label for="postHeader">Header</label><br>
-                        <input type="text" id="postHeader" name="postHeader" value="" placeholder="Enter your Post Heading here"><br>
+                        <input type="text" id="postHeader" name="postHeader" v-model="postHeader" placeholder="Enter your Post Heading here"><br>
                         <label for="postCaption">Caption</label><br>
-                        <input type="text" id="postCaption" name="postCaption" value="" placeholder="Enter your Post Caption here"><br>
+                        <input type="text" id="postCaption" name="postCaption" v-model="postCaption"  placeholder="Enter your Post Caption here"><br>
 
                         <label for="postCategory">Category:</label><br>
-                        <select id="postCategory">
+                        <select id="postCategory" v-model="postCategory">
                             <option value="Office Chair">Office Chair</option>
                             <option value="Gaming Chair">Gaming Chair</option>
                             <option value="Armchair">Armchair</option>
@@ -49,67 +49,66 @@
                             <option value="Luxurious Chair">Luxurious Chair</option>
                         </select><br>
                         <label for="postBody">Body</label><br>
-                        <textarea id="postBody" name="postBody" rows ="8" style="width:500px;font-size:14pt;" value="" placeholder=""></textarea><br>
-                        <br><button id="submit">Submit</button><br><br>
+                        <textarea id="postBody" name="postBody" v-model="postBody" rows ="8" style="width:500px;font-size:14pt;" placeholder=""></textarea><br>
+                        <button v-on:click="newPost()">Submit</button><br><br>
                     <button onclick="off()">Discard Form</button>
                 </div>
 
             </div>
 
         <!-- Navigation Bar -->
-        <nav id="myNavbar" class="navbar navbar-expand-md navbar-custom navbar-dark fixed-top px-3">
-
-            <!-- Brand -->
-            <a class="navbar-brand" href="#">ChairGod69</a>
-            <!-- Navbar toggler -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".dual-collapse2" aria-controls=".dual-collapse2" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <!-- Left aligned links -->
-            <div class="collapse navbar-collapse dual-collapse2" id="navbarCollapseLeft">
-            <ul class="navbar-nav me-auto">
-                <li class="nav-item">
-                    <a class="nav-link linkText" href="#landingPage">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link linkText" href="#aboutUsPage">About Us</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link linkText" href="#guidePage">Choosing Guide</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle linkText" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Buy A Chair</a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="">Catalogue</a></li>
-                        <li><a class="dropdown-item" href="">See What Others Recommend</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="">Get Support</a></li>
+        <div class="container-fluid">
+            <div class="row">
+                <!-- Navbar -- Change collapse breakpoint with navbar-expand-*breakpoint* -- -->
+                <nav id="myNavbar" class="navbar navbar-expand-md navbar-custom navbar-dark fixed-top px-3">
+    
+                    <!-- Brand -->
+                    <a class="navbar-brand" href="../index.html">ChairGod</a>
+                    <!-- Navbar toggler -->
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".dual-collapse2" aria-controls=".dual-collapse2" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+    
+                    <!-- Left aligned links -->
+                    <div class="collapse navbar-collapse dual-collapse2" id="navbarCollapseLeft">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link linkText" href="../index.html#landingPage">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link linkText" href="../index.html#aboutUsPage">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link linkText" href="../index.html#guidePage">Choosing Guide</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle linkText" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Buy A Chair</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="../catalogue/catalogue1.html">Catalogue</a></li>
+                                <li><a class="dropdown-item" href="../forum/forum.html">See What Others Recommend</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="../index.html#footer">Get Support</a></li>
+                            </ul>
+                        
                     </ul>
-                </li>
-                
-            </ul>
-            </div>
-            <!-- End of left aligned links -->
-
-            <!-- Right aligned links -->
-            <div class="collapse navbar-collapse dual-collapse2" id="navbarCollapseRight">
-            <ul class="navbar-nav ms-auto navPadding">
-                <li class="nav-item" v-if="loggedUser == ''">
-                    <a class="nav-link linkText" href="login.html">Login</a>
-                </li>
-                <li class="nav-item dropdown" v-if="loggedUser != ''">
-                    <a class="nav-link dropdown-toggle linkText" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">{{ loggedUser }}</a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="passwordChange.html">Password Change</a></li>
-                        <li><a class="dropdown-item" v-on:click="logout()" >Log Out</a></li>
+                    </div>
+                    <!-- End of left aligned links -->
+    
+                    <!-- Right aligned links -->
+                    <div class="collapse navbar-collapse dual-collapse2" id="navbarCollapseRight">
+                    <ul class="navbar-nav ms-auto navPadding">
+                        <li class="nav-item">
+                            <a class="nav-link linkText" href="#loginPage">Login</a>
+                        </li>
                     </ul>
-                </li>
-            </ul>
+                    </div>
+                    <!-- End of right aligned links -->
+    
+                </nav>
+                <!-- End of navbar -->
+    
             </div>
-            <!-- End of right aligned links -->
-
-        </nav>
+        </div>
         <!-- End of navbar -->
         <!-- End of navbar -->
 
@@ -162,27 +161,27 @@
                                     <table class="table table-borderless" style ="border-top:solid #687074 2px">
                                         <td class="btn-group" role="group" style="width: 80%;">
                                             <button type="button" class="btn btn-outline-secondary" data-toggle="reply-form" :data-target="post.postID" style="color: black;">comment: {{post.comments.length}}</button>
-                                            <button type="button" class="btn btn-outline-secondary vote">upvote: {{post.upvotes.length}} </button>
-                                            <button type="button" class="btn btn-outline-secondary vote">downvote: {{post.downvotes.length}} </button>
+                                            <button type="button" class="btn btn-outline-secondary vote" id="vote" v-on:click = "upVote(index)">upvote: {{post.upvotes.length}} </button>
+                                            <button type="button" class="btn btn-outline-secondary vote" id="vote" v-on:click = "downVote(index)">downvote: {{post.downvotes.length}} </button>
                                         </td>
                                         <td colspan="6" style="text-align: right;">Posted by {{ post.pUserId }} at {{ post.postDate }}</td>
                                     </table>
 
                                     
 
-                                    <div class="comment-thread d-none" :id="post.postID">
-                                        <button type="button" data-toggle="reply-form" :data-target="post.postHeader" style="margin-bottom: 10px;">Post Comment</button>
+                                    <div class="comment-thread d-none" :id="post.postID" style="margin-left: 25px;">
+                                        <button type="button" data-toggle="reply-form" :data-target="post.postHeader" style="margin-bottom: 10px;margin-left: -10px;">Post Comment</button>
                                         <!-- Reply form start -->
-                                        <form method="POST" class="reply-form d-none" :id="post.postHeader">
-                                            <textarea placeholder="Comment" rows="4"></textarea>
+                                        <div class="reply-form d-none" :id="post.postHeader">
+                                            <textarea rows="4" placeholder = "Comment" v-model="postComment"></textarea>
                                             <br>
-                                            <button type="submit">Submit</button>
+                                            <button type="submit" v-on:click="addComment(index)">Submit</button>
                                             <button type="button" data-toggle="reply-form" :data-target="post.postHeader">Cancel</button>
                                             <br><br>
-                                        </form>
+                                        </div>
                                         <!-- Reply form end -->
                                         <h1 style ="font-size: 20px; margin-left: -10px;margin-bottom: -5px;">Comments</h1>
-                                        <div class="comment-thread" v-for = "comment of post.comments">
+                                        <div class="comment-thread" v-for = "comment of post.comments" style="border-bottom:solid 1px rgb(199, 199, 199);">
                                             <!-- Comment 1 start -->
                                             <div class="comment" id="comment-1">
                                                 <div class="comment-heading">
@@ -207,7 +206,6 @@
                                                 <div class="comment-body">
                                                     <p>
                                                         {{comment[1]}}
-                                                        This is really great! I fully agree with what you wrote, and this is sure to help me out in the future. Thank you for posting this.
                                                     </p>
                                                     <!-- <button type="button">Reply</button>
                                                     <button type="button">Flag</button> -->
@@ -256,47 +254,11 @@
 
 
 
-        
-        <!-- Collapsible function for post -->
-        <script>
 
-            var coll = document.getElementsByClassName("collapsible");
-            var i;
-            console.log(coll);
-            for (i = 0; i < coll.length; i++) {
-                console.log(coll)
-                coll[i].addEventListener("click", function() {
-                    this.classList.toggle("active");
-                    var content = this.nextElementSibling;
-                    if (content.style.display === "block") {
-                    content.style.display = "none";
-                    } 
-                    else {
-                    content.style.display = "block";
-                    }
-                });
-            }
-        </script>
-        <script>
-            var coll = document.getElementsByClassName("collapsiblebtn");
-            var i;
-            console.log(coll)
-            for (i = 0; i < coll.length; i++) {
-                coll[i].addEventListener("click", function() {
-                this.classList.toggle("active");
-                var content = this.nextElementSibling;
-                if (content.style.display === "block") {
-                    content.style.display = "none";
-                } 
-                else {
-                    content.style.display = "block";
-                }
-                });
-            }
-        </script>
+        <!-- All the HTML DOMs -->
+        <script> 
 
-        <!-- Collapsible function for create new post -->   
-        <script>
+            // Overlay for creating new post
             function on() {
                 document.getElementById("overlay").style.display = "block";
                 }
@@ -306,25 +268,36 @@
                     document.getElementById("overlay").style.display = "none";
                 }
             }
-        </script>
-
-        <!-- Vote function for colour -->
-        <script> 
-            for (const btn of document.querySelectorAll('.vote')) {
-                btn.addEventListener('click', event => {
-                event.currentTarget.classList.toggle('on');
-                });
-            }
 
             document.addEventListener(
                 "click",
                 function(event) {
                     var target = event.target;
                     var replyForm;
+
+                    // Comment box form
                     if (target.matches("[data-toggle='reply-form']")) {
                         replyForm = document.getElementById(target.getAttribute("data-target"));
                         replyForm.classList.toggle("d-none");
                     }
+
+                    // Read more postBody
+                    if (target.matches("[class=collapsible]")){
+                        var content = target.nextElementSibling;
+                        if (content.style.display === "block") {
+                            content.style.display = "none";
+                        } 
+                        else {
+                            content.style.display = "block";
+                        }
+                    }
+
+                    // Voting Colour
+                    if (target.matches("[id=vote]")){
+                        console.log("fuck")
+                        event.target.classList.toggle('on');
+                    }
+                    
                 },
                 false
             );
