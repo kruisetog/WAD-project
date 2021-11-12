@@ -1,6 +1,5 @@
 var dateTime = (new Date()).toDateString()
 
-
 const firebaseConfig = {
     apiKey: "AIzaSyCgxQMgggon4MDJ6Yj0wExgGMnUTPZsRCw",
     authDomain: "wad-test-4f31e.firebaseapp.com",
@@ -18,42 +17,11 @@ firebase.initializeApp(firebaseConfig);
 //Variable to access database collection
 const db = firebase.database().ref("forum")
 
+var postHeader = document.getElementById('postHeader').value
+var postCaption = document.getElementById('postCaption').value
+var postCategory = document.getElementById('postCategory').value
+var postBody = document.getElementById('postBody').value
 
-function newPost(){
-
-        //Get Form Values
-        let postHeader = document.getElementById('postHeader').value
-        let postCaption = document.getElementById('postCaption').value
-        let postCategory = document.getElementById('postCategory').value
-        let postBody = document.getElementById('postBody').value
-        let postID = 5 + 1
-        console.log(postID)
-        console.log(postHeader)
-        console.log(postCaption)
-        console.log(postCategory)
-        console.log(postHeader)
-
-        //Save Form Data to Firebase
-        firebase.database().ref("forum").set({
-            postID: postID,
-            category:postCategory,
-            postDate: this.dateTime,
-            postHeader:postHeader,
-            postCaption:postCaption,
-            postBody:postBody,
-            pUserId:"",
-            upvotes:[],
-            downvotes:[],
-            comments:[],
-
-        }). then( () =>{
-            console.log("Data saved")
-        }).catch((error) => {
-            console.log(error)
-        })
-        //Alert
-        alert("Your post has been successfully created and posted")
-}
 
 
 const app = Vue.createApp({
@@ -62,21 +30,24 @@ const app = Vue.createApp({
         return {
             loggedUser : "handsome",
             forum : [],
+            postCategory:"Office Chair",
+            postHeader:"",
+            postBody:"",
+            postCaption:"",
+            upvotes: "",
+            downvotes: "",
+            comments: "",
+            postComment:"",
+
         };
 
     },
 
     created() {
-
+        this.getDatabase()
         if (localStorage.loggedUser) {
             this.loggedUser = localStorage.loggedUser;
         } 
-        db.once("value").then((snapshot) => {
-            if(snapshot.exists()) {
-                this.forum = snapshot.val();
-                console.log(this.forum)
-            }
-        })
     },
 
 
@@ -104,9 +75,14 @@ const app = Vue.createApp({
                     }, 3000)
                     }
                 })
-            },
+        },
 
-
+        getDatabase() {db.once("value").then((snapshot) => {
+            if(snapshot.exists()) {
+                this.forum = snapshot.val();
+            }
+        })
+        },
         categoryfilter(x) {
             db.once("value").then((snapshot) => {
                     this.forum = snapshot.val();
@@ -125,54 +101,114 @@ const app = Vue.createApp({
             })
         },
 
-    //     newPost(){
+        newPost(){
+            console.log("fuck")
+            //Get Form Values
 
-    //         //Get Form Values
-    //         let postHeader = document.getElementById('postHeader').value
-    //         let postCaption = document.getElementById('postCaption').value
-    //         let postCategory = document.getElementById('postCategory').value
-    //         let postBody = document.getElementById('postBody').value
-    //         let postID = 5 + 1
-    //         console.log(postID)
-    //         console.log(postHeader)
-    //         console.log(postCaption)
-    //         console.log(postCategory)
-    //         console.log(postHeader)
-    
-    //         //Save Form Data to Firebase
-    //         firebase.database().ref("forum").set({
-    //             postID: postID,
-    //             category:postCategory,
-    //             postDate: this.dateTime,
-    //             postHeader:postHeader,
-    //             postCaption:postCaption,
-    //             postBody:postBody,
-    //             pUserId:"",
-    //             upvotes:[],
-    //             downvotes:[],
-    //             comments:[],
-    
-    //         }). then( () =>{
-    //             console.log("Data saved")
-    //         }).catch((error) => {
-    //             console.log(error)
-    //         })
-    //         //Alert
-    //         alert("Your post has been successfully created and posted")
-    // },
-    
+            let postID = this.forum.length
+            console.log(postID)
+            console.log(this.postHeader)
+            console.log(this.postCaption)
+            console.log(this.postCategory)
+            console.log(this.postBody)
 
-    //     upVote(x) {
-    //         firebase.database().ref('forum/' + x ).set({
-    //             hello = byebye
-    //             })
+    
+            //Save Form Data to Firebase
+            firebase.database().ref("forum/" + postID).set({
+                postID: postID,
+                category:this.postCategory,
+                postDate: dateTime,
+                postHeader:this.postHeader,
+                postCaption:this.postCaption,
+                postBody:this.postBody,
+                pUserId:this.loggedUser,
+                upvotes:this.upvotes,
+                downvotes:this.downvotes,
+                comments:this.comments,
+    
+            }). then( () =>{
+                console.log("Data saved")
+                this.postCaption = ""
+                this.postCategory = "Office Chair"
+                this.postBody = ""
+                this.postHeader = ""
+            }).catch((error) => {
+                console.log(error)
+            })
+            //Alert
+            alert("Your post has been successfully created and posted")
+            this.getDatabase()
+        },
+    
+        addComment(x){
+            console.log(x)
+            console.log(this.postComment)
+            if (this.postComment == "Comment") {
+                alert("FUCK OFF")
+            }
+            else if(this.postComment == "") {
+                alert("FUCK YOU")
+            }
+            else{
+                var commentThread = this.forum[x].comments
+                if(commentThread == "") {
+                    commentThread = []
+                }
+                commentThread.push([this.loggedUser,this.postComment])
+                console.log(commentThread)
+                var commentRef = firebase.database().ref("forum").child(x).child("comments");
+                commentRef.set(commentThread)
+                this.postComment = ""
+                this.getDatabase()
+            }
+            
+        },
 
-    // },
+        upVote(x) {
+            var upvotesRef = firebase.database().ref("forum").child(x).child("upvotes");
+
+            var upvoteList = this.forum[x].upvotes
+            if(upvoteList == "") {
+                upvoteList = []
+            }
+            if(upvoteList.includes(this.loggedUser)){
+                    upvoteList.pop(this.loggedUser)
+                    if(upvoteList.length >= 1 || upvoteList === []){
+                        upvotesRef.set(upvoteList)
+                    }
+                    else{
+                        upvotesRef.set("")
+                    }
+            }
+            else{
+                upvoteList.push(this.loggedUser)
+                upvotesRef.set(upvoteList)
+            }
+            this.getDatabase()
+        },
+        downVote(x) {
+            var downvotesRef = firebase.database().ref("forum").child(x).child("downvotes");
+            var downvoteList = this.forum[x].downvotes
+            if(downvoteList == "") {
+                downvoteList = []
+            }
+            if(downvoteList.includes(this.loggedUser)){
+                    downvoteList.pop(this.loggedUser)
+                    if(downvoteList.length >= 1 || downvoteList === []){
+                        downvotesRef.set(downvoteList)
+                    }
+                    else{
+                        downvotesRef.set("")
+                    }
+            }
+            else{
+                downvoteList.push(this.loggedUser)
+                downvotesRef.set(downvoteList)
+            }
+            this.getDatabase()
+        },
         
 
-            newPost() {
-
-            },
 
 
     },
