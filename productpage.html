@@ -26,8 +26,8 @@
     <!-- This is the API from Firebase Realtime Database -->
     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-database.js"></script>
 
-    <link href="http://www.cssscript.com/wp-includes/css/sticky.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="productpagecss/sticky.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="productpagecss/font-awesome.min.css">
 
     <!--for the dropdown list-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
@@ -542,16 +542,23 @@
                 }
         },
         async created(){
+            //get chair id from url
             this.extractchair();
 
+            //load data from firebase db
             firebase.initializeApp(this.firebaseConfig);
             await this.getDatabaseOnce();
+
+            //defualt load chair reviews
             this.arrangechairAssen();
             console.log(this.chairsDB)
 
+            //check for logged user
             if (localStorage.loggedUser) {
                     this.loggedUser = localStorage.loggedUser;
             }
+
+            //create sketchfab viewer 
             this.createsketchfab();
         }   
     })
