@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Forum :: Home Page</title>
+        <title>Forum Page</title>
 
         <!-- Ajax jquery -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -34,7 +34,6 @@
             <!-- Create New post -->
             <div id = "overlay">
                 <div id ="overlayform">
-                    <form>
                         <label for="postHeader">Header</label><br>
                         <input type="text" id="postHeader" name="postHeader" value="" placeholder="Enter your Post Heading here"><br>
                         <label for="postCaption">Caption</label><br>
@@ -49,13 +48,11 @@
                             <option value="Budget Chair">Budget Chair</option>
                             <option value="Luxurious Chair">Luxurious Chair</option>
                         </select><br>
-    
                         <label for="postBody">Body</label><br>
                         <textarea id="postBody" name="postBody" rows ="8" style="width:500px;font-size:14pt;" value="" placeholder=""></textarea><br>
-                        <br><input type="submit" id="submit"><br><br>
-                    </form>
+                        <br><button id="submit">Submit</button><br><br>
                     <button onclick="off()">Discard Form</button>
-                </div>>
+                </div>
 
             </div>
 
@@ -139,7 +136,7 @@
 
                         <div class="col-lg-4 col-xs-12 col-sm-5 col-md-4 avt">
                             <div class="stnt pull-left">                            
-                                    <button class="btn btn-primary collapsiblebtn" onclick="on()">Start New Post</button>
+                                    <button class="btn btn-primary" onclick="on()">Start New Post</button>
                             </div>
 
                             <div class="clearfix"></div>
@@ -156,28 +153,17 @@
                             <div class="wraput" style="padding-bottom: 10px;">
                                 <h2>{{ post.postHeader }}</h2>
                                 <div>{{ post.postCaption }} </div>
-                                <button type ="button" class="collapsible">Read More..</button>
+                                <button type ="button" class="collapsible" >Read More..</button>
                                 <div class="content" style="font-weight: lighter;">
                                     {{ post.postBody }}
                                 </div>
                             </div>
                             <div class="row comments">
-                                    <!-- old table format -->
-                                    <!-- <table class="table table-bordered table-responsive header">
-                                        <thead>
-                                            <tr style="text-align:center;">
-                                            <td colspan="2"><a data-toggle="reply-form" :data-target="post.postID">comment: {{post.comments.length}}</a>
-                                            <td colspan="2">upvote: <span class="vote">&#8679;</span> {{post.upvotes.length}}
-                                            <td colspan="2">downvote: <span class="vote">&#8681;</span> {{post.downvotes.length}} 
-                                            <td colspan="6">Posted by {{ post.pUserId }} at {{ post.postDate }}
-                                            </tr>
-                                        </thead>
-                                    </table> -->
                                     <table class="table table-borderless" style ="border-top:solid #687074 2px">
-                                        <td class="btn-group" role="group" style="width: 70%;">
+                                        <td class="btn-group" role="group" style="width: 80%;">
                                             <button type="button" class="btn btn-outline-secondary" data-toggle="reply-form" :data-target="post.postID" style="color: black;">comment: {{post.comments.length}}</button>
                                             <button type="button" class="btn btn-outline-secondary vote">upvote: {{post.upvotes.length}} </button>
-                                            <button type="button" class="btn btn-outline-secondary vote"> downvote: {{post.downvotes.length}} </button>
+                                            <button type="button" class="btn btn-outline-secondary vote">downvote: {{post.downvotes.length}} </button>
                                         </td>
                                         <td colspan="6" style="text-align: right;">Posted by {{ post.pUserId }} at {{ post.postDate }}</td>
                                     </table>
@@ -260,69 +246,35 @@
                             </div>
                         </div>
         
-        
-                        <div class="sidebarblock">
-                            <h3>Popular Threads</h3>
-                            <div class="divline"></div>
-                            <div class="blocktxt">
-                                <a href="#">This Dock Turns Your iPhone Into a Bedside Lamp</a>
-                            </div>
-                            <div class="divline"></div>
-                            <div class="blocktxt">
-                                <a href="#">Who Wins in the Battle for Power on the Internet?</a>
-                            </div>
-                            <div class="divline"></div>
-                            <div class="blocktxt">
-                                <a href="#">Sony QX10: A Funky, Overpriced Lens Camera for Your Smartphone</a>
-                            </div>
-                            <div class="divline"></div>
-                            <div class="blocktxt">
-                                <a href="#">FedEx Simplifies Shipping for Small Businesses</a>
-                            </div>
-                            <div class="divline"></div>
-                            <div class="blocktxt">
-                                <a href="#">Loud and Brave: Saudi Women Set to Protest Driving Ban</a>
-                            </div>
-                        </div>
                     </div> <!-- Side bar container end -->
 
                 </div>
 
             </div>
+        </div>
             
 
-        <!-- Firebase -->
-        <!-- The core Firebase JS SDK is always required and must be listed first -->
-        <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
-        <!-- This is the API from Firebase Realtime Database -->
-        <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-database.js"></script> 
-        
-        <!-- Vue.js -->
-        <script src="https://unpkg.com/vue@next"></script>
-        <!--Vuefire-->
-        <script src="https://unpkg.com/vuefire/dist/vuefire.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" 
-        integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
-        <!-- App -->
-        <script src="data.js"></script>
+
 
         
         <!-- Collapsible function for post -->
         <script>
+
             var coll = document.getElementsByClassName("collapsible");
             var i;
-            console.log(coll)
+            console.log(coll);
             for (i = 0; i < coll.length; i++) {
-              coll[i].addEventListener("click", function() {
-                this.classList.toggle("active");
-                var content = this.nextElementSibling;
-                if (content.style.display === "block") {
-                  content.style.display = "none";
-                } 
-                else {
-                  content.style.display = "block";
-                }
-              });
+                console.log(coll)
+                coll[i].addEventListener("click", function() {
+                    this.classList.toggle("active");
+                    var content = this.nextElementSibling;
+                    if (content.style.display === "block") {
+                    content.style.display = "none";
+                    } 
+                    else {
+                    content.style.display = "block";
+                    }
+                });
             }
         </script>
         <script>
@@ -332,24 +284,7 @@
             for (i = 0; i < coll.length; i++) {
                 coll[i].addEventListener("click", function() {
                 this.classList.toggle("active");
-                var content = this.nextSibling;
-                if (content.style.display === "block") {
-                    content.style.display = "none";
-                } 
-                else {
-                    content.style.display = "block";
-                }
-                });
-            }
-        </script>
-        <script>
-            var coll = document.getElementsByClassName("collapsiblecomment");
-            var i;
-            for (i = 0; i < coll.length; i++) {
-                coll[i].addEventListener("click", function() {
-                this.classList.toggle("active");
-                var content = this.
-                console.log("content");
+                var content = this.nextElementSibling;
                 if (content.style.display === "block") {
                     content.style.display = "none";
                 } 
@@ -392,9 +327,23 @@
                     }
                 },
                 false
-);
+            );
         </script>
     
+        <!-- Firebase -->
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+        <!-- This is the API from Firebase Realtime Database -->
+        <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-database.js"></script> 
+        
+        <!-- Vue.js -->
+        <script src="https://unpkg.com/vue@next"></script>
+        <!--Vuefire-->
+        <script src="https://unpkg.com/vuefire/dist/vuefire.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" 
+        integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+        <!-- App -->
+        <script src="data.js"></script>
 
     </body>
 

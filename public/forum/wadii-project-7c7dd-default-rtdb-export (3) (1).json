@@ -1,0 +1,198 @@
+{
+  "chairs" : {
+    "basic_chair_1" : {
+      "apiKey" : "2ba6a87c89a7467fad910420aae99ed7",
+      "date" : {
+        "dateStr" : "2020/11/13",
+        "day" : 2020,
+        "month" : 11,
+        "year" : 13
+      },
+      "description" : "a template basic chair",
+      "imageURL" : "https://media.giphy.com/media/XGU4CyI27f5xBWGJlY/giphy.gif",
+      "name" : "basic chair 1",
+      "pageURL" : "productpage.html?name=basic_chair_1",
+      "price" : 200,
+      "rating" : 5,
+      "reviewObjList" : [ {
+        "rating" : 3,
+        "reviewDescription" : "I wanna lick this chair so bad",
+        "reviewId" : 832,
+        "userId" : "TestUser2"
+      } ],
+      "type" : "basic"
+    },
+    "gaming_chair_1" : {
+      "apiKey" : "2QpgjMeXKHq6L8KIBAJjRrFV3jg",
+      "date" : {
+        "dateStr" : "16/11/2020",
+        "day" : 16,
+        "month" : 11,
+        "year" : 2020
+      },
+      "description" : "a template gaming chair",
+      "imageURL" : "https://media.giphy.com/media/cgCMnZr84zE40/giphy.gif",
+      "name" : "gaming_chair_1",
+      "pageURL" : "./productpage.html?chairName=gaming_chair_1",
+      "price" : 200,
+      "rating" : 5,
+      "reviewObjList" : [ {
+        "dislikeCount" : 0,
+        "likeCount" : 10,
+        "reviewDescription" : "PogChamp",
+        "reviewId" : 122,
+        "userId" : 1772
+      }, {
+        "dislikeCount" : 5,
+        "likeCount" : 1,
+        "reviewDescription" : "NICE CHAIR LOL",
+        "reviewId" : 145,
+        "userId" : 6969
+      } ],
+      "type" : "gaming"
+    },
+    "gaming_chair_2" : {
+      "apiKey" : "83b5dc561c9a454aace80c80d87981e2",
+      "date" : {
+        "dateStr" : "19/11/2020",
+        "day" : 19,
+        "month" : 11,
+        "year" : 2020
+      },
+      "description" : "a template gaming chair",
+      "imageURL" : "https://media.giphy.com/media/3o6MbmQnyTKNWGHK8g/giphy.gif",
+      "name" : "gaming_chair_2",
+      "pageURL" : "./productpage.html?chairName=gaming_chair_2",
+      "price" : 600,
+      "rating" : 4,
+      "reviewObjList" : [ {
+        "dislikeCount" : 0,
+        "likeCount" : 10,
+        "reviewDescription" : "PogChamp",
+        "reviewId" : 122,
+        "userId" : 1772
+      }, {
+        "dislikeCount" : 5,
+        "likeCount" : 1,
+        "reviewDescription" : "NICE CHAIR LOL",
+        "reviewId" : 145,
+        "userId" : 6969
+      }, {
+        "dislikeCount" : 6,
+        "likeCount" : 99,
+        "reviewDescription" : "I wanna lick this chair so bad",
+        "reviewId" : 832,
+        "userId" : 1234
+      } ],
+      "type" : "gaming"
+    },
+    "office_chair_1" : {
+      "apiKey" : "1fded5bd02c94164abc39c98640050d6",
+      "date" : {
+        "dateStr" : "21/11/2020",
+        "day" : 21,
+        "month" : 11,
+        "year" : 2020
+      },
+      "description" : "a template office chair",
+      "imageURL" : "https://media0.giphy.com/media/8twZKibtk0gyPu4dC0/giphy.gif?cid=ecf05e47y9ohq0f08s4rkthtvxodi7agq6vn7yoeon1441pw&rid=giphy.gif&ct=g",
+      "name" : "office_chair_1",
+      "pageURL" : "./productpage.html?chairName=office_chair_1",
+      "price" : 800,
+      "rating" : 3,
+      "reviewObjList" : [ {
+        "dislikeCount" : 0,
+        "likeCount" : 2,
+        "reviewDescription" : "My chair died within 2 weeks",
+        "reviewId" : 452,
+        "userId" : 5555
+      }, {
+        "dislikeCount" : 6,
+        "likeCount" : 99,
+        "reviewDescription" : "I wanna lick this chair so bad",
+        "reviewId" : 832,
+        "userId" : 1234
+      }, {
+        "dislikeCount" : 6,
+        "likeCount" : 99,
+        "reviewDescription" : "I wanna lick this chair so bad",
+        "reviewId" : 832,
+        "userId" : 1234
+      } ],
+      "type" : "office"
+    },
+    "office_chair_2" : {
+      "apiKey" : "5f7334fcade8415d98e239039011b8ab",
+      "date" : {
+        "dateStr" : "26/12/2020",
+        "day" : 26,
+        "month" : 12,
+        "year" : 2020
+      },
+      "description" : "a office chair chair",
+      "imageURL" : "https://media.giphy.com/media/8vJcTuZHB7U8U/giphy.gif",
+      "name" : "office_chair_2",
+      "pageURL" : "./productpage.html?chairName=office_chair_2",
+      "price" : 1000,
+      "rating" : 4,
+      "type" : "office"
+    },
+    "wooden_chair_1" : {
+      "apiKey" : "9145e102a2b341b8a38fca9b610a496c",
+      "date" : {
+        "dateStr" : "11/11/2020",
+        "day" : 11,
+        "month" : 11,
+        "year" : 2020
+      },
+      "description" : "a template wooden chair",
+      "imageURL" : "https://media2.giphy.com/media/ypBQolo0HfDej1W1X9/giphy.gif?cid=ecf05e474m6rw2v9o0zic290wlr3k410ffngtmcwkhsunvgm&rid=giphy.gif&ct=g",
+      "name" : "wooden_chair_1",
+      "pageURL" : "./productpage.html?chairName=wooden_chair_1",
+      "price" : 400,
+      "rating" : 2,
+      "reviewObjList" : [ {
+        "dislikeCount" : 10,
+        "likeCount" : 0,
+        "reviewDescription" : "Spooderman is just a sticky boy",
+        "reviewId" : 942,
+        "userId" : 3333
+      }, {
+        "dislikeCount" : 3,
+        "likeCount" : 5,
+        "reviewDescription" : "Puke, low effort chair",
+        "reviewId" : 465,
+        "userId" : 4444
+      } ],
+      "type" : "wooden"
+    }
+  },
+
+  "users" : {
+    "TestUser2" : {
+      "password" : "wj2m07dN",
+      "recovery" : "b8P7R",
+      "userId" : "TestUser2"
+    },
+    "admin" : {
+      "password" : "adminpass1",
+      "recovery" : "H93gX",
+      "userId" : "admin"
+    },
+    "donaldtrump" : {
+      "password" : "Whitehouse",
+      "recovery" : "0C7IH",
+      "userId" : "donaldtrump"
+    },
+    "test" : {
+      "password" : "testpass",
+      "recovery" : "Y6Bxk",
+      "userId" : "test"
+    },
+    "test2" : {
+      "password" : "testpass",
+      "recovery" : "X8rRU",
+      "userId" : "test2"
+    }
+  }
+}

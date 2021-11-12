@@ -1,0 +1,59 @@
+{
+    "forum" : [ {
+        "postID" : 1,
+        "category" : "Gaming Chair",
+        "postDate" : "Mon Nov 08 2021",
+        "postHeader" : "Secret Chair Lab: Is it worth your hard-earned money?",
+        "postCaption" : "Tldr:It's Not worth it",
+        "postBody" : "fuck fuck fuck fuckfuck fuck fuck fuckfuck fuck fuck fuckfuck fuck fuck fuckfuck fuck fuck fuckfuck fuck fuck fuckfuck fuck fuck fuckfuck fuck fuck fuckfuck fuck fuck fuck",
+        "pUserId" : "Spongebob",
+        "upvotes" : [ "Mary", "Ali" ],
+        "downvotes" : [ "Mary", "Ali" ],
+        "comments" : [ [ "Mary", "Secret Lab sucks" ], [ "John", "Secret Lab soo good" ] ]
+    }, {
+        "postID" : 2,
+        "category" : "Gaming Chair",
+        "postDate" : "Mon Nov 08 2021",
+        "postHeader" : "DO NOT GET GAMING CHAIR!!",
+        "postCaption" : "Spend that money somewhere else",
+        "postBody" : "Gaming Chair is not worth the mone, my secret lab broke down in a year where it starts peeling and compare to an ergonomic office chair, secret lab can be thrown into a dustbin.",
+        "pUserId" : "Mr.Krabs",
+        "upvotes" : [ "Mary", "Ali" ],
+        "downvotes" : [ "Mary", "Ali" ],
+        "comments" : [ [ "Mary", "Secret Lab sucks" ], [ "John", "Secret Lab soo good" ] ]
+    }, {
+        "postID" : 3,
+        "category" : "Office Chair",
+        "postDate" : "Mon Nov 08 2021",
+        "postHeader" : "Herman Miller Aeron is the best",
+        "postCaption" : "No competition",
+        "postBody" : "I didn't believe in the Premium Chair Supremacy, but once you seat, u will never con'seat'.",
+        "pUserId" : "Sandy",
+        "upvotes" : [ "Mary", "Ali" ],
+        "downvotes" : [ "Mary", "Ali" ],
+        "comments" : [ [ "Mary", "Too broke to try out" ], [ "John", "Secret Lab still the best!" ] ]
+    }, {
+        "postID" : 4,
+        "category" : "Wheelchair",
+        "postDate" : "Mon Nov 08 2021",
+        "postHeader" : "Any Recommendation for armchair that gives me wings?",
+        "postCaption" : "Temporarily crippled",
+        "postBody" : "Fall down until break my ankle now need to find wheelchair to seat for atleast 1yr, any good recommendation for cheap wheelchair?",
+        "pUserId" : "Patrick",
+        "upvotes" : [ "Mary", "Ali" ],
+        "downvotes" : [ "Mary", "Ali" ],
+        "comments" : [ [ "Mary", "Get out" ], [ "John", "Secret Lab the best!" ] ]
+    }, {
+        "postID" : 5,
+        "category" : "Office Chair",
+        "postDate" : "Mon Nov 08 2021",
+        "postHeader" : "Any prefer arm chair over other chair?",
+        "postCaption" : "Tldr:It's Not worth it",
+        "postBody" : "What is your favourite armchair? Mine is",
+        "pUserId" : "John",
+        "upvotes" : [ "Mary", "Ali" ],
+        "downvotes" : [ "Mary", "Ali" ],
+        "comments" : [ [ "Mary", "Secret Lab sucks" ], [ "John", "Secret Lab soo good" ] ]
+    } ]
+}
+
