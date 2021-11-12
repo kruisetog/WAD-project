@@ -22,6 +22,16 @@ TO RESET PASSWORD:
 3. Enter valid User ID & Recovery Code
 4. Click on blue Reset button
 
+TO CHANGE PASSWORD (Only available when you're logged in):
+1. Click on your userId link on navbar
+2. Click on Password Change in dropdown menu
+3. Enter valid old password
+4. Choose new password and re-enter to confirm
+
+TO LOG OUT:
+1. Click on your userId link on navbar
+2. Click on Log Out in dropdown menu
+
 TO ENTER CATALOGUE:
 1. Click on Buy A Chair from navbar OR click on Buy A Chair on the homepage
 
