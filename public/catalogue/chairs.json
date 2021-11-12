@@ -10,7 +10,7 @@
       "description": "a template gaming chair",
       "imageURL": "https://i.imgur.com/C7yP21c.png",
       "name": "gaming chair 1",
-      "pageURL": "productpage.html?name=gaming_chair_1",
+      "pageURL": "../productpage.html?name=gaming_chair_1",
       "price": 200,
       "rating": 5,
       "reviewObjList": [
@@ -46,7 +46,7 @@
       "description": "a template gaming chair",
       "imageURL": "https://i.imgur.com/9DAGJSS.png",
       "name": "gaming chair 2",
-      "pageURL": "productpage.html?name=gaming_chair_2",
+      "pageURL": "../productpage.html?name=gaming_chair_2",
       "price": 600,
       "rating": 4,
       "reviewObjList": [
@@ -70,7 +70,7 @@
       "description": "a template gaming chair",
       "imageURL": "https://i.imgur.com/iFVHJYN.png",
       "name": "gaming chair 3",
-      "pageURL": "productpage.html?name=gaming_chair_3",
+      "pageURL": "../productpage.html?name=gaming_chair_3",
       "price": 600,
       "rating": 4,
       "reviewObjList": [
@@ -94,7 +94,7 @@
       "description": "a template gaming chair",
       "imageURL": "https://i.imgur.com/030KjDL.png",
       "name": "gaming chair 4",
-      "pageURL": "productpage.html?name=gaming_chair_4",
+      "pageURL": "../productpage.html?name=gaming_chair_4",
       "price": 600,
       "rating": 4,
       "reviewObjList": [
@@ -118,7 +118,7 @@
       "description": "a template office chair",
       "imageURL": "https://i.imgur.com/RhHF2DT.png",
       "name": "office chair 1",
-      "pageURL": "productpage.html?name=office_chair_1",
+      "pageURL": "../productpage.html?name=office_chair_1",
       "price": 800,
       "rating": 3,
       "reviewObjList": [
@@ -143,7 +143,7 @@
       "description": "a office chair chair",
       "imageURL": "https://i.imgur.com/NfZ6JoH.png",
       "name": "office chair 2",
-      "pageURL": "productpage.html?name=office_chair_2",
+      "pageURL": "../productpage.html?name=office_chair_2",
       "price": 1000,
       "rating": 4,
       "reviewObjList": [
@@ -168,7 +168,7 @@
       "description": "a office chair chair",
       "imageURL": "https://i.imgur.com/rJ2fjho.png",
       "name": "office chair 3",
-      "pageURL": "productpage.html?name=office_chair_3",
+      "pageURL": "../productpage.html?name=office_chair_3",
       "price": 1000,
       "rating": 4,
       "reviewObjList": [
@@ -192,7 +192,7 @@
       "description": "a template wooden chair",
       "imageURL": "https://i.imgur.com/k7pJvyv.png",
       "name": "wooden chair 1",
-      "pageURL": "productpage.html?name=wooden_chair_1",
+      "pageURL": "../productpage.html?name=wooden_chair_1",
       "price": 400,
       "rating": 2,
       "reviewObjList": [
@@ -222,7 +222,7 @@
       "description": "a template basic chair",
       "imageURL": "https://i.imgur.com/k3nxJRF.png",
       "name": "wooden chair 2",
-      "pageURL": "productpage.html?name=wooden_chair_2",
+      "pageURL": "../productpage.html?name=wooden_chair_2",
       "price": 200,
       "rating": 5,
       "reviewObjList": [
@@ -246,7 +246,7 @@
       "description": "a template basic chair",
       "imageURL": "https://i.imgur.com/SVYwy00.png",
       "name": "wooden chair 3",
-      "pageURL": "productpage.html?name=wooden_chair_3",
+      "pageURL": "../productpage.html?name=wooden_chair_3",
       "price": 200,
       "rating": 5,
       "reviewObjList": [
