@@ -142,14 +142,19 @@
 
         function resetChairs(){
             chairs = []
-
-            fetch('chairs.JSON').then(response => response.json())
-            .then((json) => {
+            if (confirm("Press a button!")) {
+                console.log('confirm')
+                fetch('chairs.JSON').then(response => response.json())
+                .then((json) => {
                 for(chair_name in json){
                 console.log(json[chair_name])
                 writeUserDataWithCompletion(json[chair_name])
                 }
             })
+            } else {
+                console.log('cancel')
+            }
+            
 
             
             // console.log('chairs',chairs)
@@ -312,7 +317,6 @@
                 <label for="Type">Chair Type</label>
                 
                 <select id="Type" class="input-group form-control mb-3">
-                    <option value="Basic">Basic</option>
                     <option value="Office">Office</option>
                     <option value="Gaming">Gaming</option>
                     <option value="Garden">Garden</option>
@@ -473,10 +477,14 @@
                 console.log(this.chairsDB)
                 if (localStorage.loggedUser) { 
                     this.loggedUser = localStorage.loggedUser;
+                    console.log(this.loggedUser)
                     if(localStorage.loggedUser != 'admin'){
                         alert('Non-admins are not allowed to access this page!')
                         window.location.href = "./catalogue1.html";
                     } 
+                }else{
+                    alert('Please login with an admin account!')
+                        window.location.href = "../account/login.html";
                 }
             },
             computed:{
