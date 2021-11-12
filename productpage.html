@@ -43,7 +43,7 @@
         <nav id="myNavbar" class="navbar navbar-expand-md navbar-custom navbar-dark fixed-top px-3">
 
             <!-- Brand -->
-            <a class="navbar-brand" href="account/homePage.html">ChairGod69</a>
+            <a class="navbar-brand" href="homePage.html">ChairGod69</a>
             <!-- Navbar toggler -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".dual-collapse2" aria-controls=".dual-collapse2" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -53,13 +53,13 @@
             <div class="collapse navbar-collapse dual-collapse2" id="navbarCollapseLeft">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a class="nav-link linkText" href="account/homePage.html#landingPage">Home</a>
+                    <a class="nav-link linkText" href="homePage.html#landingPage">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link linkText" href="account/homePage.html#aboutUsPage">About Us</a>
+                    <a class="nav-link linkText" href="homePage.html#aboutUsPage">About Us</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link linkText" href="account/homePage.html#guidePage">Choosing Guide</a>
+                    <a class="nav-link linkText" href="homePage.html#guidePage">Choosing Guide</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle linkText" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Buy A Chair</a>
@@ -316,13 +316,13 @@
         </div>
     </footer>
 </div>
-
+<script type="text/javascript" src="data.json"></script>
 <script type="text/javascript">
     let url = window.location.href;
 
     console.log(url);
     
-
+    
 
     //vue constructor 
     const app= Vue.createApp({
@@ -425,23 +425,6 @@
                 console.error(error);
                 });
             },
-/*             async getname(userid){
-                let name ="";
-                const dbRef = firebase.database().ref();
-                await dbRef.child("users").child(userid).child("name").get().then((snapshot) => {
-                if (snapshot.exists()) {
-                    //console.log(snapshot.val());
-                    name = snapshot.val();
-                    //console.log(this.chairsDB);
-                    //return snapshot.val();
-                } else {
-                    console.log("No data available");
-                }
-                }).catch((error) => {
-                console.error(error);
-                });
-                return name;
-            }, */
             extractchair(){
 
                 let url = window.location.href;
