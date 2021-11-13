@@ -38,66 +38,64 @@
 <body data-bs-spy="scroll" data-bs-offset="0">
 <div id="mainapp">
 <!-- header -->
-<div class="container-fluid">
-    <div class="row">
-        <!-- Navbar -- Change collapse breakpoint with navbar-expand-*breakpoint* -- -->
-        <nav id="myNavbar" class="navbar navbar-expand-md navbar-custom navbar-dark fixed-top px-3">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Navbar -- Change collapse breakpoint with navbar-expand-*breakpoint* -- -->
+            <nav id="myNavbar" class="navbar navbar-expand-md navbar-custom navbar-dark fixed-top px-3">
 
-            <!-- Brand -->
-            <a class="navbar-brand" href="index.html">ChairGod</a>
-            <!-- Navbar toggler -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".dual-collapse2" aria-controls=".dual-collapse2" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+                <!-- Brand -->
+                <a class="navbar-brand" href="index.html">ChairGod</a>
+                <!-- Navbar toggler -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".dual-collapse2" aria-controls=".dual-collapse2" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-            <!-- Left aligned links -->
-            <div class="collapse navbar-collapse dual-collapse2" id="navbarCollapseLeft">
-            <ul class="navbar-nav me-auto">
-                <li class="nav-item">
-                    <a class="nav-link linkText" href="index.html#landingPage">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link linkText" href="index.html#aboutUsPage">About Us</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link linkText" href="index.html#guidePage">Choosing Guide</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle linkText" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Buy A Chair</a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="catalogue/catalogue1.html">Catalogue</a></li>
-                        <li><a class="dropdown-item" href="forum/forum.html">See What Others Recommend</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="index.html#footer">Get Support</a></li>
-                    </ul>
-                </li>
-                
-            </ul>
-            </div>
-            <!-- End of left aligned links -->
+                <!-- Left aligned links -->
+                <div class="collapse navbar-collapse dual-collapse2" id="navbarCollapseLeft">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link linkText" href="index.html#landingPage">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link linkText" href="index.html#aboutUsPage">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link linkText" href="index.html#guidePage">Choosing Guide</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link linkText" href="catalogue/catalogue1.html">Catalogue</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link linkText" href="forum/forum.html">Forum</a>
+                    </li>
+                    
+                </ul>
+                </div>
+                <!-- End of left aligned links -->
 
-            <!-- Right aligned links -->
-            <div class="collapse navbar-collapse dual-collapse2" id="navbarCollapseRight">
-            <ul class="navbar-nav ms-auto navPadding">
-                <li class="nav-item" v-if="loggedUser == ''">
-                    <a class="nav-link linkText" href="account/login.html">Login</a>
-                </li>
-                <li class="nav-item dropdown" v-if="loggedUser != ''">
-                    <a class="nav-link dropdown-toggle linkText" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">{{ loggedUser }}</a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="account/passwordChange.html">Password Change</a></li>
-                        <li><a class="dropdown-item" v-on:click="logout()" >Log Out</a></li>
-                    </ul>
-                </li>
-            </ul>
-            </div>
-            <!-- End of right aligned links -->
+                <!-- Right aligned links -->
+                <div class="collapse navbar-collapse dual-collapse2" id="navbarCollapseRight">
+                <ul class="navbar-nav ms-auto navPadding">
+                    <li class="nav-item" v-if="loggedUser == ''">
+                        <a class="nav-link linkText" href="account/login.html">Login</a>
+                    </li>
+                    <li class="nav-item dropdown" v-if="loggedUser != ''">
+                        <a class="nav-link dropdown-toggle linkText" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">{{ loggedUser }}</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="account/passwordChange.html">Password Change</a></li>
+                            <li><a class="dropdown-item" v-on:click="logout()" >Log Out</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                </div>
+                <!-- End of right aligned links -->
 
-        </nav>
-        <!-- End of navbar -->
+            </nav>
+            <!-- End of navbar -->
 
+        </div>
     </div>
-</div>
+
 <!-- header -->
 
 <div class="container" id="reviews">
@@ -129,7 +127,7 @@
                         <span class="select2 select2-container select2-container--default" dir="ltr" data-select2-id="2" style="width: 188px;">
                             <span class="selection">
                                 <span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-qd66-container">
-                                    <button class="btn btn-primary m-1" role="button" style="bottom:1rem;display:inline-block" onclick="alert('Leaving the website')" href="https://www.ikea.com/sg/en/cat/office-chairs-computer-chairs-20652/">Buy chair!</button>
+                                    <a class="btn btn-primary m-1" role="button" style="bottom:1rem;display:inline-block" onclick="alert('Leaving the website')" href="https://www.ikea.com/sg/en/cat/office-chairs-computer-chairs-20652/">Buy chair!</a>
                                     <span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span>
                                 </span>
                             </span>
@@ -536,7 +534,7 @@
                     this.loggedUser = ""; 
                     localStorage.removeItem("loggedUser"); 
                     alert("Logged Out Successfully"); 
-                    window.location.href = "account/homePage.html"; 
+                    window.location.href = "index.html"; 
                 }
         },
         async created(){
