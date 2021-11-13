@@ -1,15 +1,27 @@
 var dateTime = (new Date()).toDateString()
 
+// const firebaseConfig = {
+//     apiKey: "AIzaSyCgxQMgggon4MDJ6Yj0wExgGMnUTPZsRCw",
+//     authDomain: "wad-test-4f31e.firebaseapp.com",
+//     databaseURL: "https://wad-test-4f31e-default-rtdb.asia-southeast1.firebasedatabase.app",
+//     projectId: "wad-test-4f31e",
+//     storageBucket: "wad-test-4f31e.appspot.com",
+//     messagingSenderId: "705410623197",
+//     appId: "1:705410623197:web:31f5e58f95f3edd566dd34",
+//     measurementId: "G-WMJF9DQC3W"
+//   };
+
+// Ryan's firebase
+
 const firebaseConfig = {
-    apiKey: "AIzaSyCgxQMgggon4MDJ6Yj0wExgGMnUTPZsRCw",
-    authDomain: "wad-test-4f31e.firebaseapp.com",
-    databaseURL: "https://wad-test-4f31e-default-rtdb.asia-southeast1.firebasedatabase.app",
-    projectId: "wad-test-4f31e",
-    storageBucket: "wad-test-4f31e.appspot.com",
-    messagingSenderId: "705410623197",
-    appId: "1:705410623197:web:31f5e58f95f3edd566dd34",
-    measurementId: "G-WMJF9DQC3W"
-  };
+    apiKey: "AIzaSyAuj6iX0Hqp9owZpvWyZRVEiQYLfnKbT2o",
+    authDomain: "wadii-project-7c7dd.firebaseapp.com",
+    projectId: "wadii-project-7c7dd",
+    storageBucket: "wadii-project-7c7dd.appspot.com",
+    messagingSenderId: "987135629921",
+    appId: "1:987135629921:web:50fd77c89ec38592682820",
+    measurementId: "G-PZBNMH36L8"
+};
 
 //Initialize Firebase
 firebase.initializeApp(firebaseConfig);
@@ -28,7 +40,7 @@ const app = Vue.createApp({
 
     data() {
         return {
-            loggedUser : "handsome",
+            loggedUser : "",
             forum : [],
             postCategory:"Office Chair",
             postHeader:"",
@@ -83,6 +95,7 @@ const app = Vue.createApp({
             }
         })
         },
+
         categoryfilter(x) {
             db.once("value").then((snapshot) => {
                     this.forum = snapshot.val();
@@ -102,66 +115,76 @@ const app = Vue.createApp({
         },
 
         newPost(){
-            console.log("fuck")
             //Get Form Values
-
-            let postID = this.forum.length
-            console.log(postID)
-            console.log(this.postHeader)
-            console.log(this.postCaption)
-            console.log(this.postCategory)
-            console.log(this.postBody)
-
+            if(this.loggedUser === ""){
+                alert("You need to be login to post new thread!")
+            }
+            else{
+                let postID = this.forum.length
+                console.log(postID)
+                console.log(this.postHeader)
+                console.log(this.postCaption)
+                console.log(this.postCategory)
+                console.log(this.postBody)
+                if(this.postHeader === "" || this.postCaption === "" || this.postBody === ""){
+                    alert("Please fill up all the field")
+                }
+                else{
     
-            //Save Form Data to Firebase
-            firebase.database().ref("forum/" + postID).set({
-                postID: postID,
-                category:this.postCategory,
-                postDate: dateTime,
-                postHeader:this.postHeader,
-                postCaption:this.postCaption,
-                postBody:this.postBody,
-                pUserId:this.loggedUser,
-                upvotes:this.upvotes,
-                downvotes:this.downvotes,
-                comments:this.comments,
+                //Save Form Data to Firebase
+                firebase.database().ref("forum/" + postID).set({
+                    postID: postID,
+                    category:this.postCategory,
+                    postDate: dateTime,
+                    postHeader:this.postHeader,
+                    postCaption:this.postCaption,
+                    postBody:this.postBody,
+                    pUserId:this.loggedUser,
+                    upvotes:this.upvotes,
+                    downvotes:this.downvotes,
+                    comments:this.comments,
+        
+                }). then( () =>{
+                    console.log("Data saved")
+                    this.postCaption = ""
+                    this.postCategory = "Office Chair"
+                    this.postBody = ""
+                    this.postHeader = ""
+                }).catch((error) => {
+                    console.log(error)
+                })
+                //Alert
+                alert("Your post has been successfully created and posted")
+                this.getDatabase()
     
-            }). then( () =>{
-                console.log("Data saved")
-                this.postCaption = ""
-                this.postCategory = "Office Chair"
-                this.postBody = ""
-                this.postHeader = ""
-            }).catch((error) => {
-                console.log(error)
-            })
-            //Alert
-            alert("Your post has been successfully created and posted")
-            this.getDatabase()
+                }
+            }
+            
+    
+
         },
     
         addComment(x){
-            console.log(x)
-            console.log(this.postComment)
-            if (this.postComment == "Comment") {
-                alert("FUCK OFF")
-            }
-            else if(this.postComment == "") {
-                alert("FUCK YOU")
+            if(this.loggedUser === ""){
+                alert("You need to be login to post comment!")
             }
             else{
-                var commentThread = this.forum[x].comments
-                if(commentThread == "") {
-                    commentThread = []
+                if (this.postComment == "Comment" || this.postComment == "") {
+                    alert("Please fill out the comment")
                 }
-                commentThread.push([this.loggedUser,this.postComment])
-                console.log(commentThread)
-                var commentRef = firebase.database().ref("forum").child(x).child("comments");
-                commentRef.set(commentThread)
-                this.postComment = ""
-                this.getDatabase()
+                else{
+                    var commentThread = this.forum[x].comments
+                    if(commentThread == "") {
+                        commentThread = []
+                    }
+                    commentThread.push([this.loggedUser,this.postComment,"less than a day ago"])
+                    console.log(commentThread)
+                    var commentRef = firebase.database().ref("forum").child(x).child("comments");
+                    commentRef.set(commentThread)
+                    this.postComment = ""
+                    this.getDatabase()
+                }
             }
-            
         },
 
         upVote(x) {
@@ -209,12 +232,7 @@ const app = Vue.createApp({
         },
         
 
-
-
     },
-    computed: {
-        
-    }
 })
 
 
