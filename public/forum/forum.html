@@ -95,7 +95,7 @@
             <div class="collapse navbar-collapse dual-collapse2" id="navbarCollapseRight">
             <ul class="navbar-nav ms-auto navPadding">
                 <li class="nav-item">
-                    <a class="nav-link linkText" href="../account/login.html">Login</a>
+                    <a class="nav-link linkText" href="../account/login.html" v-if="loggedUser == ''">Login</a>
                 </li>
                 <li class="nav-item dropdown" v-if="loggedUser != ''">
                     <a class="nav-link dropdown-toggle linkText" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">{{ loggedUser }}</a>
