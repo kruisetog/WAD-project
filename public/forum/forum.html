@@ -18,7 +18,8 @@
         <!-- CSS STYLE -->
         <link rel="stylesheet" type="text/css" href="href/style.css" media="screen" />
         <link rel="stylesheet" type="text/css" href="href/custom.css" media="screen" />
-
+        <link rel="stylesheet" type="text/css" href="../account/project.css" media="screen" />
+        
 
 
         <!-- Vue.js -->
@@ -82,10 +83,10 @@
                             <a class="nav-link linkText" href="../index.html#guidePage">Choosing Guide</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle linkText" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Buy A Chair</a>
+                            <a class="nav-link dropdown-toggle linkText" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Others</a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="../catalogue/catalogue1.html">Catalogue</a></li>
-                                <li><a class="dropdown-item" href="../forum/forum.html">See What Others Recommend</a></li>
+                                <li><a class="dropdown-item" href="forum.html">Forum</a></li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item" href="../index.html#footer">Get Support</a></li>
                             </ul>
@@ -120,26 +121,11 @@
                     <div class="row">
                         <div class="col-lg-3 col-xs-9 col-sm-5 col-md-3 selecttopic">
                         </div>
-
-                        <div class="col-lg-4 search hidden-xs hidden-sm col-md-3">
-                            <div class="wrap">
-                                <form action="#" method="post" class="form">
-                                    
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="Search Topics">
-                                        <button class="btn-secondary" style="border-radius: 5px;">Search</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-4 col-xs-12 col-sm-5 col-md-4 avt">
-                            <div class="stnt pull-left">                            
+                            <div>                            
                                     <button class="btn btn-primary" onclick="on()">Start New Post</button>
                             </div>
 
                             <div class="clearfix"></div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -149,7 +135,7 @@
                     <div class="col-lg-8 col-md-8"> 
                         <!-- POST -->
                         <div class="post" v-for = "(post,index) of forum">
-                            <div class="wraput" style="padding-bottom: 10px;">
+                            <div class="wraput" style="padding-bottom: 1%;">
                                 <h2>{{ post.postHeader }}</h2>
                                 <div>{{ post.postCaption }} </div>
                                 <button type ="button" class="collapsible" >Read More..</button>
@@ -169,8 +155,8 @@
 
                                     
 
-                                    <div class="comment-thread d-none" :id="post.postID" style="margin-left: 25px;">
-                                        <button type="button" data-toggle="reply-form" :data-target="post.postHeader" style="margin-bottom: 10px;margin-left: -10px;">Post Comment</button>
+                                    <div class="comment-thread d-none" :id="post.postID" style = "padding:auto;margin:auto">
+                                        <button type="button" data-toggle="reply-form" :data-target="post.postHeader" style="margin-bottom: 10px;">Post Comment</button>
                                         <!-- Reply form start -->
                                         <div class="reply-form d-none" :id="post.postHeader">
                                             <textarea rows="4" placeholder = "Comment" v-model="postComment"></textarea>
@@ -180,25 +166,25 @@
                                             <br><br>
                                         </div>
                                         <!-- Reply form end -->
-                                        <h1 style ="font-size: 20px; margin-left: -10px;margin-bottom: -5px;">Comments</h1>
+                                        <h1 style ="font-size: 20px; margin-left: -10px;">Comments</h1>
                                         <div class="comment-thread" v-for = "comment of post.comments" style="border-bottom:solid 1px rgb(199, 199, 199);">
                                             <!-- Comment 1 start -->
                                             <div class="comment" id="comment-1">
                                                 <div class="comment-heading">
                                                     <div class="comment-voting">
-                                                        <button type="button" class="vote">
+                                                        <button type="button" id="vote">
                                                             <span aria-hidden="true" >&#9650;</span>
                                                             <span class="sr-only">Vote up</span>
                                                         </button>
-                                                        <button type="button" class="vote">
+                                                        <button type="button" id="vote">
                                                             <span aria-hidden="true">&#9660;</span>
                                                             <span class="sr-only">Vote down</span>
                                                         </button>
                                                     </div>
                                                     <div class="comment-info">
-                                                        <a class="comment-author">{{comment[0]}}</a>
+                                                        <span class="comment-author">{{comment[0]}}</span>
                                                         <p class="m-0">
-                                                            22 points &bull; 4 days ago
+                                                            {{comment[2]}}
                                                         </p>
                                                     </div>
                                                 </div>
@@ -232,7 +218,7 @@
                             <h3>Categories</h3>
                             <div class="divline"></div>
                             <div class="blocktxt">
-                                <ul class="cats" style="list-style-type:none;" >
+                                <ul style="list-style-type:none;" >
                                     <li><input type="radio" name="postCategory" value="all" id="category" v-on:click="categoryfilter('all')"><label for="category">All Category</label></li>
                                     <li><input type="radio" name="postCategory" value="Office Chair" id="category1" v-on:click="categoryfilter('Office Chair')"><label for="category1">Office Chair</label></li>
                                     <li><input type="radio" name="postCategory" value="Gaming Chair" id="category2" v-on:click="categoryfilter('Gaming Chair')"><label for="category2">Gaming Chair</label></li>
@@ -297,7 +283,8 @@
                         console.log("fuck")
                         event.target.classList.toggle('on');
                     }
-                    
+
+
                 },
                 false
             );
