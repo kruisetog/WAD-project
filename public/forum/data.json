@@ -9,7 +9,7 @@
         "pUserId" : "Spongebob",
         "upvotes" : [ "Mary", "Ali" ],
         "downvotes" : [ "Mary", "Ali" ],
-        "comments" : [ [ "Mary", "Secret Lab sucks", "4 days ago"], [ "John", "Secret Lab soo good", "4 days ago" ] ]
+        "comments" : [ [ "Mary", "Secret Lab sucks", "4 days ago", [ "Mary", "Ali" ], [ "Mary", "Ali" ]], [ "John", "Secret Lab soo good", "4 days ago", [ "Mary", "Ali" ], [ "Mary", "Ali" ]] ]
     }, {
         "postID" : 1,
         "category" : "Gaming Chair",
@@ -20,7 +20,7 @@
         "pUserId" : "Mr.Krabs",
         "upvotes" : [ "Mary", "Ali" ],
         "downvotes" : [ "Mary", "Ali" ],
-        "comments" : [ [ "Mary", "Secret Lab sucks" , "4 days ago"], [ "John", "Secret Lab soo good" , "4 days ago"] ]
+        "comments" : [ [ "Mary", "Secret Lab sucks" , "4 days ago", [ "Mary", "Ali" ], [ "Mary", "Ali" ]], [ "John", "Secret Lab soo good" , "4 days ago", [ "Mary", "Ali" ], [ "Mary", "Ali" ]] ]
     }, {
         "postID" : 2,
         "category" : "Luxurious Chair",
@@ -31,7 +31,7 @@
         "pUserId" : "Sandy",
         "upvotes" : [ "Mary", "Ali" ],
         "downvotes" : [ "Mary", "Ali" ],
-        "comments" : [ [ "Mary", "Too broke to try out", "4 days ago" ], [ "John", "Secret Lab still the best!", "4 days ago" ] ]
+        "comments" : [ [ "Mary", "Too broke to try out", "4 days ago", [ "Mary", "Ali" ], [ "Mary", "Ali" ]], [ "John", "Secret Lab still the best!", "4 days ago", [ "Mary", "Ali" ], [ "Mary", "Ali" ]] ]
     }, {
         "postID" : 3,
         "category" : "Wheelchair",
@@ -42,7 +42,7 @@
         "pUserId" : "Patrick",
         "upvotes" : [ "Mary", "Ali" ],
         "downvotes" : [ "Mary", "Ali" ],
-        "comments" : [ [ "Mary", "Get out" , "4 days ago"], [ "John", "Secret Lab the best!" , "4 days ago"] ]
+        "comments" : [ [ "Mary", "Get out" , "4 days ago", [ "Mary", "Ali" ], [ "Mary", "Ali" ]], [ "John", "Secret Lab the best!" , "4 days ago", [ "Mary", "Ali" ], [ "Mary", "Ali" ]] ]
     }, {
         "postID" : 4,
         "category" : "Armchair",
@@ -53,7 +53,7 @@
         "pUserId" : "Squidward",
         "upvotes" : [ "Mary", "Ali" ],
         "downvotes" : [ "Mary", "Ali" ],
-        "comments" : [ [ "Mary", "LOLOLOL", "4 days ago" ], [ "John", "Secret Lab the best screw armchair", "4 days ago" ] ]
+        "comments" : [ [ "Mary", "LOLOLOL", "4 days ago", [ "Mary", "Ali" ], [ "Mary", "Ali" ] ], [ "John", "Secret Lab the best screw armchair", "4 days ago", [ "Mary", "Ali" ], [ "Mary", "Ali" ] ]  ]
     },
     {
         "postID" : 5,
@@ -65,7 +65,7 @@
         "pUserId" : "Plankton",
         "upvotes" : [ "Mary", "Ali" ],
         "downvotes" : [ "Mary", "Ali" ],
-        "comments" : [ [ "Mary", "Just get any taobao chairs with good review", "4 days ago" ], [ "John", "Save up for secret lab", "4 days ago" ] ]
+        "comments" : [ [ "Mary", "Just get any taobao chairs with good review", "4 days ago", [ "Mary", "Ali" ], [ "Mary", "Ali" ] ], [ "John", "Save up for secret lab", "4 days ago", [ "Mary", "Ali" ], [ "Mary", "Ali" ] ] ]
     },
     {
         "postID" : 6,
@@ -77,7 +77,7 @@
         "pUserId" : "Gary",
         "upvotes" : [ "Mary", "Ali" ],
         "downvotes" : [ "Mary", "Ali" ],
-        "comments" : [ [ "Mary", "Just get any taobao chairs with good review or if u have enough budget go for herman miller aeron", "4 days ago" ], [ "John", "Screw Office chair, save up for secret lab", "4 days ago" ] ]
+        "comments" : [ [ "Mary", "Just get any taobao chairs with good review or if u have enough budget go for herman miller aeron", "4 days ago", [ "Mary", "Ali" ], [ "Mary", "Ali" ] ], [ "John", "Screw Office chair, save up for secret lab", "4 days ago", [ "Mary", "Ali" ], [ "Mary", "Ali" ] ] ]
     } 
 
 ]

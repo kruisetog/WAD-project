@@ -40,7 +40,7 @@ const app = Vue.createApp({
 
     data() {
         return {
-            loggedUser : "",
+            loggedUser : "Xina",
             forum : [],
             postCategory:"Office Chair",
             postHeader:"",
@@ -50,6 +50,8 @@ const app = Vue.createApp({
             downvotes: "",
             comments: "",
             postComment:"",
+            // upvoteClick = false,
+            // upvoteClick = false,
 
         };
 
@@ -164,7 +166,8 @@ const app = Vue.createApp({
 
         },
     
-        addComment(x){
+        addComment(x){            
+            this.addEventListener()
             if(this.loggedUser === ""){
                 alert("You need to be login to post comment!")
             }
@@ -177,7 +180,7 @@ const app = Vue.createApp({
                     if(commentThread == "") {
                         commentThread = []
                     }
-                    commentThread.push([this.loggedUser,this.postComment,"less than a day ago"])
+                    commentThread.push([this.loggedUser,this.postComment,"less than a day ago","",""])
                     console.log(commentThread)
                     var commentRef = firebase.database().ref("forum").child(x).child("comments");
                     commentRef.set(commentThread)
@@ -187,48 +190,229 @@ const app = Vue.createApp({
             }
         },
 
-        upVote(x) {
-            var upvotesRef = firebase.database().ref("forum").child(x).child("upvotes");
+        addEventListener(){
+            document.addEventListener(
+                "click",
+                function(event) {
+                    var target = event.target;
+                    var replyForm;
+    
+                    // Voting Colour
+                    if (target.matches("[id=vote]")){
+                        event.target.classList.toggle('on');
 
-            var upvoteList = this.forum[x].upvotes
-            if(upvoteList == "") {
-                upvoteList = []
-            }
-            if(upvoteList.includes(this.loggedUser)){
-                    upvoteList.pop(this.loggedUser)
-                    if(upvoteList.length >= 1 || upvoteList === []){
-                        upvotesRef.set(upvoteList)
                     }
-                    else{
-                        upvotesRef.set("")
-                    }
+
+                },
+                false
+            );
+        },        
+        // Post upvote function
+        checkDownvote(x){
+            if(this.forum[x].downvotes.includes(this.loggedUser)){
+                return true
             }
             else{
-                upvoteList.push(this.loggedUser)
-                upvotesRef.set(upvoteList)
+                return false
             }
-            this.getDatabase()
         },
-        downVote(x) {
-            var downvotesRef = firebase.database().ref("forum").child(x).child("downvotes");
-            var downvoteList = this.forum[x].downvotes
-            if(downvoteList == "") {
-                downvoteList = []
+
+        checkUpvote(x){
+            if(this.forum[x].upvotes.includes(this.loggedUser)){
+                return true
             }
-            if(downvoteList.includes(this.loggedUser)){
+            else{
+                return false
+            }
+        },
+        
+        upVote(x) {
+            this.addEventListener()
+            if(this.loggedUser === ""){
+                alert("You need to be login to upvote!")
+            }
+            else{
+                console.log(this.forum[x].downvotes.includes(this.loggedUser))
+                if(this.forum[x].downvotes.includes(this.loggedUser)){
+                    var downvotesRef = firebase.database().ref("forum").child(x).child("downvotes");
+                    var downvoteList = this.forum[x].downvotes
                     downvoteList.pop(this.loggedUser)
-                    if(downvoteList.length >= 1 || downvoteList === []){
+                    if(downvoteList.length >= 1){
                         downvotesRef.set(downvoteList)
                     }
                     else{
                         downvotesRef.set("")
                     }
+                    this.checkDownvote(x)
+                }
+                var upvotesRef = firebase.database().ref("forum").child(x).child("upvotes");
+
+                var upvoteList = this.forum[x].upvotes
+                if(upvoteList == "") {
+                    upvoteList = []
+                }
+                if(upvoteList.includes(this.loggedUser)){
+                        upvoteList.pop(this.loggedUser)
+                        if(upvoteList.length >= 1){
+                            upvotesRef.set(upvoteList)
+                        }
+                        else{
+                            upvotesRef.set("")
+                        }
+                }
+                else{
+                    upvoteList.push(this.loggedUser)
+                    upvotesRef.set(upvoteList)
+                }
+                this.getDatabase()
+            }
+        },
+
+        downVote(x) {
+            if(this.loggedUser === ""){
+                alert("You need to be login to downvote!")
             }
             else{
-                downvoteList.push(this.loggedUser)
-                downvotesRef.set(downvoteList)
+                console.log(this.forum[x].upvotes.includes(this.loggedUser))
+                if(this.forum[x].upvotes.includes(this.loggedUser)){
+                    var upvotesRef = firebase.database().ref("forum").child(x).child("upvotes");
+                    var upvoteList = this.forum[x].upvotes
+                    upvoteList.pop(this.loggedUser)
+                    if(upvoteList.length >= 1){
+                        upvotesRef.set(upvoteList)
+                    }
+                    else{
+                        upvotesRef.set("")
+                    }
+                    this.checkUpvote(x)
+                }
+
+                var downvotesRef = firebase.database().ref("forum").child(x).child("downvotes");
+                var downvoteList = this.forum[x].downvotes
+                if(downvoteList == "") {
+                    downvoteList = []
+                }
+                if(downvoteList.includes(this.loggedUser)){
+                        downvoteList.pop(this.loggedUser)
+                        if(downvoteList.length >= 1){
+                            downvotesRef.set(downvoteList)
+                        }
+                        else{
+                            downvotesRef.set("")
+                        }
+                }
+                else{
+                    downvoteList.push(this.loggedUser)
+                    downvotesRef.set(downvoteList)
+                }
+                this.getDatabase()
+                }
+        },
+
+
+        // Comment upvote function
+        checkCDownvote(x,y){
+            if (this.forum[x].comments[y][4].includes(this.loggedUser)){
+                return true
             }
-            this.getDatabase()
+            else{
+                return false
+            }
+        },
+
+        checkCUpvote(x,y){
+            console.log(this.forum[x].comments[y][3].includes(this.loggedUser))
+            if (this.forum[x].comments[y][3].includes(this.loggedUser)){
+                return true
+            }
+            else{
+                return false
+            }
+        },
+        
+        upCVote(x,y) {
+            this.addEventListener()
+            if(this.loggedUser === ""){
+                alert("You need to be login to upvote!")
+            }
+            else{
+                if(this.forum[x].comments[y][4].includes(this.loggedUser)){
+                    var downvotesRef = firebase.database().ref("forum").child(x).child("comments").child(y).child(4);
+                    var downvoteList = this.forum[x].comments[y][4]
+
+                    downvoteList.pop(this.loggedUser)
+                    if(downvoteList.length >= 1){
+                        downvotesRef.set(downvoteList)
+                    }
+                    else{
+                        downvotesRef.set("")
+                    }
+                    this.checkCDownvote(x,y)
+                }
+
+                var upvotesRef = firebase.database().ref("forum").child(x).child("comments").child(y).child(3);
+                var upvoteList = this.forum[x].comments[y][3]
+                if(upvoteList == "") {
+                    upvoteList = []
+                }
+                if(upvoteList.includes(this.loggedUser)){
+                        upvoteList.pop(this.loggedUser)
+                        if(upvoteList.length >= 1){
+                            upvotesRef.set(upvoteList)
+                        }
+                        else{
+                            upvotesRef.set("")
+                        }
+                }
+                else{
+                    upvoteList.push(this.loggedUser)
+                    upvotesRef.set(upvoteList)
+                }
+                this.getDatabase()
+            }
+        },
+
+        downCVote(x,y) {
+            this.addEventListener()
+            if(this.loggedUser === ""){
+                alert("You need to be login to upvote!")
+            }
+
+            else{
+
+                if(this.forum[x].comments[y][3].includes(this.loggedUser)){
+                    var upvotesRef = firebase.database().ref("forum").child(x).child("comments").child(y).child(3);
+                    var upvoteList = this.forum[x].comments[y][3]
+                    upvoteList.pop(this.loggedUser)
+                    if(upvoteList.length >= 1){
+                        upvotesRef.set(upvoteList)
+                    }
+                    else{
+                        upvotesRef.set("")
+                    }
+                    this.checkCUpvote(x,y)
+                }
+
+                var downvotesRef = firebase.database().ref("forum").child(x).child("comments").child(y).child(4);
+                var downvoteList = this.forum[x].comments[y][4]
+                if(downvoteList == "") {
+                    downvoteList = []
+                }
+                if(downvoteList.includes(this.loggedUser)){
+                        downvoteList.pop(this.loggedUser)
+                        if(downvoteList.length >= 1){
+                            downvotesRef.set(downvoteList)
+                        }
+                        else{
+                            downvotesRef.set("")
+                        }
+                }
+                else{
+                    downvoteList.push(this.loggedUser)
+                    downvotesRef.set(downvoteList)
+                }
+                this.getDatabase()
+            }
         },
         
 

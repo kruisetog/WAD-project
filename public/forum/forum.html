@@ -20,6 +20,7 @@
         <link rel="stylesheet" type="text/css" href="href/custom.css" media="screen" />
         <link rel="stylesheet" type="text/css" href="../account/project.css" media="screen" />
         
+        
 
 
         <!-- Vue.js -->
@@ -58,60 +59,51 @@
             </div>
 
         <!-- Navigation Bar -->
-        <div class="container-fluid">
-            <div class="row">
-                <!-- Navbar -- Change collapse breakpoint with navbar-expand-*breakpoint* -- -->
-                <nav id="myNavbar" class="navbar navbar-expand-md navbar-custom navbar-dark fixed-top px-3">
-    
-                    <!-- Brand -->
-                    <a class="navbar-brand" href="../index.html">ChairGod</a>
-                    <!-- Navbar toggler -->
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".dual-collapse2" aria-controls=".dual-collapse2" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-    
-                    <!-- Left aligned links -->
-                    <div class="collapse navbar-collapse dual-collapse2" id="navbarCollapseLeft">
-                    <ul class="navbar-nav me-auto">
-                        <li class="nav-item">
-                            <a class="nav-link linkText" href="../index.html#landingPage">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link linkText" href="../index.html#aboutUsPage">About Us</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link linkText" href="../index.html#guidePage">Choosing Guide</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle linkText" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Others</a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="../catalogue/catalogue1.html">Catalogue</a></li>
-                                <li><a class="dropdown-item" href="forum.html">Forum</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="../index.html#footer">Get Support</a></li>
-                            </ul>
-                        
-                    </ul>
-                    </div>
-                    <!-- End of left aligned links -->
-    
-                    <!-- Right aligned links -->
-                    <div class="collapse navbar-collapse dual-collapse2" id="navbarCollapseRight">
-                    <ul class="navbar-nav ms-auto navPadding">
-                        <li class="nav-item">
-                            <a class="nav-link linkText" href="#loginPage">Login</a>
-                        </li>
-                    </ul>
-                    </div>
-                    <!-- End of right aligned links -->
-    
-                </nav>
-                <!-- End of navbar -->
-    
+        <nav id="myNavbar" class="navbar navbar-expand-md navbar-custom navbar-dark fixed-top px-3">
+
+            <!-- Brand -->
+            <a class="navbar-brand" href="../index.html">ChairGod</a>
+            <!-- Navbar toggler -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".dual-collapse2" aria-controls=".dual-collapse2" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Left aligned links -->
+            <div class="collapse navbar-collapse dual-collapse2" id="navbarCollapseLeft">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link linkText" href="../index.html#landingPage">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link linkText" href="../index.html#aboutUsPage">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link linkText" href="../index.html#guidePage">Choosing Guide</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link linkText" href="../catalogue/catalogue1.html">Catalogue</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link linkText" href="../forum/forum.html">Forum</a>
+                </li>
+                
+            </ul>
             </div>
-        </div>
+            <!-- End of left aligned links -->
+
+            <!-- Right aligned links -->
+            <div class="collapse navbar-collapse dual-collapse2" id="navbarCollapseRight">
+            <ul class="navbar-nav ms-auto navPadding">
+                <li class="nav-item">
+                    <a class="nav-link linkText" href="#loginPage">Login</a>
+                </li>
+            </ul>
+            </div>
+            <!-- End of right aligned links -->
+
+        </nav>
         <!-- End of navbar -->
-        <!-- End of navbar -->
+
 
         
 
@@ -146,11 +138,13 @@
                             <div class="row comments">
                                     <table class="table table-borderless" style ="border-top:solid #687074 2px">
                                         <td class="btn-group" role="group" style="width: 80%;">
-                                            <button type="button" class="btn btn-outline-secondary" data-toggle="reply-form" :data-target="post.postID" style="color: black;">comment: {{post.comments.length}}</button>
-                                            <button type="button" class="btn btn-outline-secondary vote" id="vote" v-on:click = "upVote(index)">upvote: {{post.upvotes.length}} </button>
-                                            <button type="button" class="btn btn-outline-secondary vote" id="vote" v-on:click = "downVote(index)">downvote: {{post.downvotes.length}} </button>
+                                            <button type="button" class="btn btn-outline-secondary" data-toggle="reply-form" :data-target="post.postID">comment: {{post.comments.length}}</button>
+                                            <button type="button" class="btn btn-outline-secondary vote" id="vote" v-on:click = "upVote(index)" v-if="checkUpvote(index)" style = "color:#5ff800;">Upvote</button>
+                                            <button type="button" class="btn btn-outline-secondary vote" id="vote" v-on:click = "upVote(index)" v-else>Upvote</button>
+                                            <button type="button" class="btn btn-outline-secondary vote" id="vote" v-on:click = "downVote(index)" v-if="checkDownvote(index)" style = "color:#5ff800;">Downvote</button>
+                                            <button type="button" class="btn btn-outline-secondary vote" id="vote" v-on:click = "downVote(index)" v-else>Downvote</button>
                                         </td>
-                                        <td colspan="6" style="text-align: right;">Posted by {{ post.pUserId }} at {{ post.postDate }}</td>
+                                        <td colspan="6" style="text-align: right;"><span style="text-align: left;">ChairGod Points: {{post.upvotes.length - post.downvotes.length}}</span>   Posted by {{ post.pUserId }} at {{ post.postDate }}</td>
                                     </table>
 
                                     
@@ -167,16 +161,24 @@
                                         </div>
                                         <!-- Reply form end -->
                                         <h1 style ="font-size: 20px; margin-left: -10px;">Comments</h1>
-                                        <div class="comment-thread" v-for = "comment of post.comments" style="border-bottom:solid 1px rgb(199, 199, 199);">
+                                        <div class="comment-thread" v-for = "(comment,id) of post.comments" style="border-bottom:solid 1px rgb(199, 199, 199);">
                                             <!-- Comment 1 start -->
                                             <div class="comment" id="comment-1">
                                                 <div class="comment-heading">
                                                     <div class="comment-voting">
-                                                        <button type="button" id="vote">
+                                                        <button type="button" id="vote" v-on:click="upCVote(index,id)" v-if="checkCUpvote(index,id)" style = "color:#5ff800;">
                                                             <span aria-hidden="true" >&#9650;</span>
                                                             <span class="sr-only">Vote up</span>
                                                         </button>
-                                                        <button type="button" id="vote">
+                                                        <button type="button" id="vote" v-on:click="upCVote(index,id)" v-else>
+                                                            <span aria-hidden="true" >&#9650;</span>
+                                                            <span class="sr-only">Vote up</span>
+                                                        </button>
+                                                        <button type="button" id="vote" v-on:click="downCVote(index,id)" v-if="checkCDownvote(index,id)" style = "color:#5ff800;">
+                                                            <span aria-hidden="true">&#9660;</span>
+                                                            <span class="sr-only">Vote down</span>
+                                                        </button>
+                                                        <button type="button" id="vote" v-on:click="downCVote(index,id)" v-else>
                                                             <span aria-hidden="true">&#9660;</span>
                                                             <span class="sr-only">Vote down</span>
                                                         </button>
@@ -184,7 +186,7 @@
                                                     <div class="comment-info">
                                                         <span class="comment-author">{{comment[0]}}</span>
                                                         <p class="m-0">
-                                                            {{comment[2]}}
+                                                            Points: {{comment[3].length - comment[4].length}} &#8226; {{comment[2]}}
                                                         </p>
                                                     </div>
                                                 </div>
@@ -277,13 +279,6 @@
                             content.style.display = "block";
                         }
                     }
-
-                    // Voting Colour
-                    if (target.matches("[id=vote]")){
-                        console.log("fuck")
-                        event.target.classList.toggle('on');
-                    }
-
 
                 },
                 false
