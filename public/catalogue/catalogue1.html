@@ -220,7 +220,7 @@
         methods:{
           sortByPopularity(){
             //idk how to quantify this yet
-            console.log('sortByPopularity');
+            // //console.log('sortByPopularity');
             this.filterChairs = this.chairs.slice();
             this.filterChange();
           },
@@ -269,8 +269,8 @@
 
 
           filterByPriceRange(){
-            console.log('min:',this.selectedMinPrice);
-            console.log('max:',this.selectedMaxPrice);
+            //console.log('min:',this.selectedMinPrice);
+            //console.log('max:',this.selectedMaxPrice);
             if(this.selectedMaxPrice > this.selectedMinPrice){
               for (let i = this.filterChairs.length; i > 0;i--){
                 if(this.filterChairs[i-1].price < this.selectedMinPrice || this.filterChairs[i-1].price > this.selectedMaxPrice ){
@@ -285,7 +285,7 @@
           },
           
           filterByType(){
-            console.log(this.selectedChairType);
+            //console.log(this.selectedChairType);
             if(this.selectedChairType == 'all'){
               return
             }
@@ -304,15 +304,15 @@
           },
 
           filterChange(){
-            setTimeout(()=>{console.log('this is to not spam changes while the person is using the slider')},1000);
+            setTimeout(()=>{//console.log('this is to not spam changes while the person is using the slider')},1000);
             this.filterChairs = this.chairs.slice();
-            console.log('initial chair:', this.filterChairs)
+            //console.log('initial chair:', this.filterChairs)
             this.filterByType();
-            console.log(this.filterChairs)
+            //console.log(this.filterChairs)
             this.filterByRating();
-            console.log(this.filterChairs)
+            //console.log(this.filterChairs)
             this.filterByPriceRange();
-            console.log(this.filterChairs)
+            //console.log(this.filterChairs)
           },
           
                 //this retrieves the database as an object
@@ -321,7 +321,7 @@
             const dbRef = firebase.database().ref();
             dbRef.child("chairs").get().then((snapshot) => {
             if (snapshot.exists()) {
-                console.log(snapshot.val());
+                //console.log(snapshot.val());
                 for (chair_name in snapshot.val()){
                   chair_obj = snapshot.val()[chair_name]
                   this.chairs.push(chair_obj)
@@ -330,7 +330,7 @@
                 this.featuredChair= this.filterChairs.slice(0,1)[0]
                 return snapshot.val();
             } else {
-                console.log("No data available");
+                //console.log("No data available");
             }
             }).catch((error) => {
             console.error(error);

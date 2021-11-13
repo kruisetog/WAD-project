@@ -55,12 +55,12 @@
         function chairObjList(){
             
             chairList = []
-            console.log('computed')
-            console.log(getDatabaseOnce());
+            // console.log('computed')
+            // console.log(getDatabaseOnce());
             for (a_chair of getDatabaseOnce()){
                 chairList.push(a_chair);
             }
-            console.log(chairList);
+            // console.log(chairList);
             return chairList
         }
         
@@ -154,7 +154,7 @@
       
         function addChair(){
             var inputIds = ['Name', 'Description', 'Rating', 'Price', 'Type', 'Date', 'imageURL', 'apiKey' ];
-            console.log('addChair has been clicked')
+            // console.log('addChair has been clicked')
             //error validation
             error_list = document.getElementById('error_list');
             error_msg = '';
@@ -168,7 +168,7 @@
                 error_msg += `<li>Please format date in (DD/MM/YYYY) format</li>`;
             }
             else{
-                console.log('date.split = ', document.getElementById('Date').value.split('/'))
+                // console.log('date.split = ', document.getElementById('Date').value.split('/'))
                 let [day, month, year] = document.getElementById('Date').value.split('/');
                 if(day.length != 2 || month.length != 2 || year.length != 4){
                     error_msg +=  `<li>Please format date in (DD/MM/YYYY) format</li>`;
@@ -423,7 +423,7 @@
                 if (snapshot.exists()) {
                     
                     this.chairsDB = snapshot.val();
-                    console.log(snapshot.val())
+                    // console.log(snapshot.val())
                     
                     return snapshot.val();
                 } else {
@@ -463,10 +463,10 @@
                     });
                 },
                 delete_entry(event){
-                    console.log('delete_entry')
+                    // console.log('delete_entry')
                     
                     name= event.target.name
-                    console.log(firebase.database().ref('chairs/' + name))
+                    // console.log(firebase.database().ref('chairs/' + name))
                     firebase.database().ref('chairs/' + name).set(null)
                     
                     this.getDatabaseOnce();
@@ -475,11 +475,11 @@
                 async resetChairs(){
                     chairs = []
                     if (confirm("Confirm reset")) {
-                        console.log('confirm')
+                        // console.log('confirm')
                         await firebase.database().ref('chairs').set({})
                         await fetch('wadii-project-7c7dd-default-rtdb-export (2) (5).json').then(response => response.json())
                         .then((json) => {
-                        console.log(json);
+                        // console.log(json);
                     
                         // console.log(json[chair_name])
                     
@@ -499,7 +499,7 @@
                             });
                     })
                     } else {
-                        console.log('cancel')
+                        // console.log('cancel')
                     }
                     this.getDatabaseOnce()
 
@@ -511,10 +511,10 @@
             created(){
                 firebase.initializeApp(this.firebaseConfig);
                 this.getDatabaseOnce();
-                console.log(this.chairsDB)
+                // console.log(this.chairsDB)
                 if (localStorage.loggedUser) { 
                     this.loggedUser = localStorage.loggedUser;
-                    console.log(this.loggedUser)
+                    // console.log(this.loggedUser)
                     if(localStorage.loggedUser != 'admin'){
                         alert('Non-admins are not allowed to access this page!')
                         window.location.href = "./catalogue1.html";
