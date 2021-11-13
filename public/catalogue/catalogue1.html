@@ -235,10 +235,12 @@
             lastestList = [];
             while (this.filterChairs.length > 1){
               currIndex = 0;
-              maxDate = this.filterChairs[0].date;
+              maxDate = new Date( this.filterChairs[0].date.year, this.filterChairs[0].date.month, this.filterChairs[0].date.day);
+              
               for(let i=1;i < this.filterChairs.length; i++){
-                if(this.filterChairs[i].date > maxDate){
-                  maxDate = this.filterChairs[i].date;
+                curr_date = new Date(this.filterChairs[i].date.year, this.filterChairs[i].date.month, this.filterChairs[i].date.day)
+                if(curr_date > maxDate){
+                  maxDate = curr_date;
                   currIndex = i;
                 }
               }
