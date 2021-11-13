@@ -13,25 +13,25 @@
     
     <!-- this is the start of firebase script -->
     <script>
-        // const firebaseConfig ={
-        // apiKey: "AIzaSyAuj6iX0Hqp9owZpvWyZRVEiQYLfnKbT2o",
-        // authDomain: "wadii-project-7c7dd.firebaseapp.com",
-        // projectId: "wadii-project-7c7dd",
-        // storageBucket: "wadii-project-7c7dd.appspot.com",
-        // messagingSenderId: "987135629921",
-        // appId: "1:987135629921:web:50fd77c89ec38592682820",
-        // measurementId: "G-PZBNMH36L8"
-        // };
-        const firebaseConfig = {
-            apiKey: "AIzaSyAiym6Wu9dKGrrf4DMbWvSIq55ueqMa4pU",
-            authDomain: "wad-project-test.firebaseapp.com",
-            databaseURL: "https://wad-project-test-default-rtdb.asia-southeast1.firebasedatabase.app",
-            projectId: "wad-project-test",
-            storageBucket: "wad-project-test.appspot.com",
-            messagingSenderId: "662948509887",
-            appId: "1:662948509887:web:50db4fc23c13746e6dae0a",
-            measurementId: "G-LRN6N246B5"
+        const firebaseConfig ={
+        apiKey: "AIzaSyAuj6iX0Hqp9owZpvWyZRVEiQYLfnKbT2o",
+        authDomain: "wadii-project-7c7dd.firebaseapp.com",
+        projectId: "wadii-project-7c7dd",
+        storageBucket: "wadii-project-7c7dd.appspot.com",
+        messagingSenderId: "987135629921",
+        appId: "1:987135629921:web:50fd77c89ec38592682820",
+        measurementId: "G-PZBNMH36L8"
         };
+        // const firebaseConfig = {
+        //     apiKey: "AIzaSyAiym6Wu9dKGrrf4DMbWvSIq55ueqMa4pU",
+        //     authDomain: "wad-project-test.firebaseapp.com",
+        //     databaseURL: "https://wad-project-test-default-rtdb.asia-southeast1.firebasedatabase.app",
+        //     projectId: "wad-project-test",
+        //     storageBucket: "wad-project-test.appspot.com",
+        //     messagingSenderId: "662948509887",
+        //     appId: "1:662948509887:web:50db4fc23c13746e6dae0a",
+        //     measurementId: "G-LRN6N246B5"
+        // };
     // firebase.initializeApp(firebaseConfig);
     // var chairsDB = firebase.database().ref('chairs');
 
@@ -104,8 +104,6 @@
                 document.getElementById("status").innerText = "Chair Registration Done!";
                 setTimeout(()=>{
                     document.getElementById("status").innerText = "Status";
-                    document.getElementById("status").classList.toggle('bg-info');
-                    document.getElementById("status").classList.toggle('bg-danger');
 
                 }, 3000)
                 }
@@ -160,6 +158,7 @@
             //error validation
             error_list = document.getElementById('error_list');
             error_msg = '';
+            error_list.innerHTML = '';
             for(a_id of inputIds){
                     if(document.getElementById(a_id).value == ''){
                     error_msg += `<li>${a_id} is empty</li>`;
@@ -189,6 +188,7 @@
                 writeUserDataWithCompletion(addChairObj);
                 return
             }
+            
             
             addDateObj = new dateObj(document.getElementById('Date').value.split('/')[0],document.getElementById('Date').value.split('/')[1],document.getElementById('Date').value.split('/')[2])
 
@@ -293,8 +293,8 @@
         <div class="p-3 mb-2 bg-info text-white"  style="font-size: x-large;"id="status">Status</div>
         
         
-        <h5>Register new chair</h5>
-        <div class="row" >
+        <h5 style="text-align: center;">Register new chair</h5>
+        <div class="row d-flex justify-content-center  " >
             
             
             <!-- <div class="col-5">
@@ -312,7 +312,7 @@
                 <select id="Type" class="input-group form-control mb-3">
                     <option value="Office">Office</option>
                     <option value="Gaming">Gaming</option>
-                    <option value="Garden">Garden</option>
+                    <option value="Wooden">Wooden</option>
                 </select>
                 
             </div>
@@ -321,7 +321,7 @@
             
             
         </div>
-        <button class="btn btn-warning m-1" v-on:click="resetChairs">Reset chairs</button>
+        <button class="btn btn-warning " v-on:click="resetChairs" style="margin-left:8.5%">Reset chairs</button>
         <button class="btn btn-primary m-1" onclick="addChair()" v-on:click="getDatabaseOnce">Add chair</button>
         <!-- this is the error msg if any -->
         <div>
@@ -331,11 +331,12 @@
         </div>
         
         
-        <div class= "row ">
-            <table class="table table-striped d-flex overflow-scroll">
+        <div class= "row">
+            <div>
+            <table class="table table-striped overflow-scroll ">
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col" v-for="col_name of chairInputText1">{{col_name}}</th>
+                    <th scope="col" v-for="col_name of chairInputText1" >{{col_name}}</th>
                     <th scope="col" v-for="col_name of chairInputNum">{{col_name}}</th>
                     <th scope="col">Type</th>
                     <th scope="col" >pageURL</th>
@@ -345,7 +346,7 @@
                     <th scope="col" >Delete</th>    
                   </tr>
                 <tr v-for="chairProps, chairName, index in chairsDB" :name="chairName" >
-                    <td>{{index}}</td>
+                    <td>{{index +1}}</td>
                     <td>{{chairName}}</td>
                     <td>{{chairProps.description}}</td>
                     <td>{{chairProps.date.dateStr}}</td>
@@ -360,8 +361,8 @@
 
                 </tr>
             </table>
+            </div>
         </div>
-        
     </div>
 </div>
     <!-- end of Vue -->
@@ -379,16 +380,28 @@
                     chairInputText2: ['imageURL', 'apiKey'],
                     chairDatabase : [],
                     loggedUser : "", 
-                    firebaseConfig : {
-                    apiKey: "AIzaSyAiym6Wu9dKGrrf4DMbWvSIq55ueqMa4pU",
-                    authDomain: "wad-project-test.firebaseapp.com",
-                    databaseURL: "https://wad-project-test-default-rtdb.asia-southeast1.firebasedatabase.app",
-                    projectId: "wad-project-test",
-                    storageBucket: "wad-project-test.appspot.com",
-                    messagingSenderId: "662948509887",
-                    appId: "1:662948509887:web:50db4fc23c13746e6dae0a",
-                    measurementId: "G-LRN6N246B5"
+
+                    //ryans db
+                    firebaseConfig :{
+                        apiKey: "AIzaSyAuj6iX0Hqp9owZpvWyZRVEiQYLfnKbT2o",
+                        authDomain: "wadii-project-7c7dd.firebaseapp.com",
+                        projectId: "wadii-project-7c7dd",
+                        storageBucket: "wadii-project-7c7dd.appspot.com",
+                        messagingSenderId: "987135629921",
+                        appId: "1:987135629921:web:50fd77c89ec38592682820",
+                        measurementId: "G-PZBNMH36L8"
                     },
+                    //Kruise db
+                    // firebaseConfig : {
+                    // apiKey: "AIzaSyAiym6Wu9dKGrrf4DMbWvSIq55ueqMa4pU",
+                    // authDomain: "wad-project-test.firebaseapp.com",
+                    // databaseURL: "https://wad-project-test-default-rtdb.asia-southeast1.firebasedatabase.app",
+                    // projectId: "wad-project-test",
+                    // storageBucket: "wad-project-test.appspot.com",
+                    // messagingSenderId: "662948509887",
+                    // appId: "1:662948509887:web:50db4fc23c13746e6dae0a",
+                    // measurementId: "G-LRN6N246B5"
+                    // },
                     chairsDB : {},
                     chairsList: [],
 
@@ -472,9 +485,9 @@
                     
                         // console.log(json[chair_name])
                     
-                        firebase.database().ref().set({
+                        firebase.database().ref().update({
                                 chairs : json.chairs
-                            }, 
+                        }, 
                             function(error) {
                                 if (error) {
                                 document.getElementById("status").innerText = "Reset Failed!";
