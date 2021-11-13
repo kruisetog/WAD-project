@@ -304,7 +304,7 @@
           },
 
           filterChange(){
-            setTimeout(()=>{//console.log('this is to not spam changes while the person is using the slider')},1000);
+            setTimeout(()=>{console.log('this is to not spam changes while the person is using the slider')},1000);
             this.filterChairs = this.chairs.slice();
             //console.log('initial chair:', this.filterChairs)
             this.filterByType();
@@ -313,6 +313,7 @@
             //console.log(this.filterChairs)
             this.filterByPriceRange();
             //console.log(this.filterChairs)
+            
           },
           
                 //this retrieves the database as an object
