@@ -40,7 +40,7 @@ const app = Vue.createApp({
 
     data() {
         return {
-            loggedUser : "Xina",
+            loggedUser : "",
             forum : [],
             postCategory:"Office Chair",
             postHeader:"",
@@ -50,8 +50,6 @@ const app = Vue.createApp({
             downvotes: "",
             comments: "",
             postComment:"",
-            // upvoteClick = false,
-            // upvoteClick = false,
 
         };
 
