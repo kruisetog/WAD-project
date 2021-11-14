@@ -123,11 +123,15 @@
       <div class="col-12 col-md-9 col-xl-10 py-md-3 pl-md-5 bd-content bg-light " style="margin-top: 50px;">
         
         <!-- THIS SORT BY IS A FUNCTION TO BE COMPUTED -->
-        <p class="d-inline">Sort by:</p>
-        <input class="btn btn-primary m-md-1" data-bs-toggle="button" type="submit" :id="button1" :value="button1" v-on:click="sortByPopularity" >
-        <input class="btn btn-primary m-md-1" data-bs-toggle="button" type="submit" :id="button2" :value="button2" v-on:click="sortByLatest">
-        <input class="btn btn-primary m-md-1" data-bs-toggle="button" type="submit" :id="button3" :value="button3" v-on:click="sortByRating">
-        <input class="btn btn-success m-md-1 float-end" v-if="loggedUser == 'admin'" value="Go to admin page" onclick="location.href='catalogueAdmin.html'">
+        <div class="row">
+        <span class="d-inline col text-center">Sort by:</span>
+        
+        <input class="btn btn-primary m-md-1 col" data-bs-toggle="button" type="submit" :id="button1" :value="button1" v-on:click="sortByPopularity" >
+        <input class="btn btn-primary m-md-1 col" data-bs-toggle="button" type="submit" :id="button2" :value="button2" v-on:click="sortByLatest">
+        <input class="btn btn-primary m-md-1 col" data-bs-toggle="button" type="submit" :id="button3" :value="button3" v-on:click="sortByRating">
+       <div class="col-md-2 col-lg-3 col-xl-5"></div>
+        <input class="btn btn-success m-md-1 col-md-3 col-12" v-if="loggedUser == 'admin'" value="Go to admin page" onclick="location.href='catalogueAdmin.html'">
+      </div>  
         <div class="row justify-content-around align-right">
           <div class="col-5 my-md-1 card bg-dark text-dark">
             <img v-bind:src="featuredChair.imageURL" class="card-img" alt="...">
