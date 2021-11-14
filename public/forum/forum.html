@@ -95,16 +95,8 @@
             <div class="collapse navbar-collapse dual-collapse2" id="navbarCollapseRight">
             <ul class="navbar-nav ms-auto navPadding">
                 <li class="nav-item">
-                    <a class="nav-link linkText" href="../account/login.html" v-if="loggedUser == ''">Login</a>
+                    <a class="nav-link linkText" href="../account/login">Login</a>
                 </li>
-                <li class="nav-item dropdown" v-if="loggedUser != ''">
-                    <a class="nav-link dropdown-toggle linkText" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">{{ loggedUser }}</a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="account/passwordChange.html">Password Change</a></li>
-                        <li><a class="dropdown-item" v-on:click="logout()" >Log Out</a></li>
-                    </ul>
-                </li>
-
             </ul>
             </div>
             <!-- End of right aligned links -->

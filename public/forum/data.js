@@ -1,27 +1,27 @@
 var dateTime = (new Date()).toDateString()
 
-// const firebaseConfig = {
-//     apiKey: "AIzaSyCgxQMgggon4MDJ6Yj0wExgGMnUTPZsRCw",
-//     authDomain: "wad-test-4f31e.firebaseapp.com",
-//     databaseURL: "https://wad-test-4f31e-default-rtdb.asia-southeast1.firebasedatabase.app",
-//     projectId: "wad-test-4f31e",
-//     storageBucket: "wad-test-4f31e.appspot.com",
-//     messagingSenderId: "705410623197",
-//     appId: "1:705410623197:web:31f5e58f95f3edd566dd34",
-//     measurementId: "G-WMJF9DQC3W"
-//   };
+const firebaseConfig = {
+    apiKey: "AIzaSyCgxQMgggon4MDJ6Yj0wExgGMnUTPZsRCw",
+    authDomain: "wad-test-4f31e.firebaseapp.com",
+    databaseURL: "https://wad-test-4f31e-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "wad-test-4f31e",
+    storageBucket: "wad-test-4f31e.appspot.com",
+    messagingSenderId: "705410623197",
+    appId: "1:705410623197:web:31f5e58f95f3edd566dd34",
+    measurementId: "G-WMJF9DQC3W"
+  };
 
 // Ryan's firebase
 
-const firebaseConfig = {
-    apiKey: "AIzaSyAuj6iX0Hqp9owZpvWyZRVEiQYLfnKbT2o",
-    authDomain: "wadii-project-7c7dd.firebaseapp.com",
-    projectId: "wadii-project-7c7dd",
-    storageBucket: "wadii-project-7c7dd.appspot.com",
-    messagingSenderId: "987135629921",
-    appId: "1:987135629921:web:50fd77c89ec38592682820",
-    measurementId: "G-PZBNMH36L8"
-};
+// const firebaseConfig = {
+//     apiKey: "AIzaSyAuj6iX0Hqp9owZpvWyZRVEiQYLfnKbT2o",
+//     authDomain: "wadii-project-7c7dd.firebaseapp.com",
+//     projectId: "wadii-project-7c7dd",
+//     storageBucket: "wadii-project-7c7dd.appspot.com",
+//     messagingSenderId: "987135629921",
+//     appId: "1:987135629921:web:50fd77c89ec38592682820",
+//     measurementId: "G-PZBNMH36L8"
+// };
 
 //Initialize Firebase
 firebase.initializeApp(firebaseConfig);
@@ -40,7 +40,7 @@ const app = Vue.createApp({
 
     data() {
         return {
-            loggedUser : "",
+            loggedUser : "empty",
             forum : [],
             postCategory:"Office Chair",
             postHeader:"",
@@ -50,6 +50,7 @@ const app = Vue.createApp({
             downvotes: "",
             comments: "",
             postComment:"",
+            currentCategory:"all",
 
         };
 
@@ -66,37 +67,23 @@ const app = Vue.createApp({
     methods: {
 
         logout() {
-            this.loggedUser = "";
+            this.loggedUser = "empty";
             localStorage.removeItem("loggedUser");
             alert("Logged Out Successfully")
-            window.location.href = "homepage.html"
+            window.location.href = "../index.html"
         },
 
-        writeUserDataWithCompletion() {
-                firebase.database().ref('forum').set({
-                    forum: this.forum,
-                    },
-                function (error) {
-                    if (error) {
-                    document.getElementById("status").innerText = "Chair Registration Failed!";
-                    } else {
-                    document.getElementById("status").innerText = "Chair Registration Done!";
-                    setTimeout(()=>{
-                        document.getElementById("status").innerText = "Status";
-                
-                    }, 3000)
-                    }
-                })
-        },
 
         getDatabase() {db.once("value").then((snapshot) => {
             if(snapshot.exists()) {
-                this.forum = snapshot.val();
+                this.categoryfilter(this.currentCategory)
             }
         })
         },
 
         categoryfilter(x) {
+            this.currentCategory = x;
+            console.log("this.currentCateogry")
             db.once("value").then((snapshot) => {
                     this.forum = snapshot.val();
                     if (x == "all") {
@@ -116,16 +103,11 @@ const app = Vue.createApp({
 
         newPost(){
             //Get Form Values
-            if(this.loggedUser === ""){
+            if(this.loggedUser === "empty"){
                 alert("You need to be login to post new thread!")
             }
             else{
                 let postID = this.forum.length
-                console.log(postID)
-                console.log(this.postHeader)
-                console.log(this.postCaption)
-                console.log(this.postCategory)
-                console.log(this.postBody)
                 if(this.postHeader === "" || this.postCaption === "" || this.postBody === ""){
                     alert("Please fill up all the field")
                 }
@@ -166,7 +148,7 @@ const app = Vue.createApp({
     
         addComment(x){            
             this.addEventListener()
-            if(this.loggedUser === ""){
+            if(this.loggedUser === "empty"){
                 alert("You need to be login to post comment!")
             }
             else{
@@ -179,32 +161,14 @@ const app = Vue.createApp({
                         commentThread = []
                     }
                     commentThread.push([this.loggedUser,this.postComment,"less than a day ago","",""])
-                    console.log(commentThread)
                     var commentRef = firebase.database().ref("forum").child(x).child("comments");
-                    commentRef.set(commentThread)
                     this.postComment = ""
                     this.getDatabase()
                 }
             }
         },
 
-        addEventListener(){
-            document.addEventListener(
-                "click",
-                function(event) {
-                    var target = event.target;
-                    var replyForm;
-    
-                    // Voting Colour
-                    if (target.matches("[id=vote]")){
-                        event.target.classList.toggle('on');
-
-                    }
-
-                },
-                false
-            );
-        },        
+        
         // Post upvote function
         checkDownvote(x){
             if(this.forum[x].downvotes.includes(this.loggedUser)){
@@ -225,14 +189,13 @@ const app = Vue.createApp({
         },
         
         upVote(x) {
-            this.addEventListener()
-            if(this.loggedUser === ""){
+            if(this.loggedUser === "empty"){
                 alert("You need to be login to upvote!")
             }
             else{
-                console.log(this.forum[x].downvotes.includes(this.loggedUser))
+                var postID = this.forum[x].postID
                 if(this.forum[x].downvotes.includes(this.loggedUser)){
-                    var downvotesRef = firebase.database().ref("forum").child(x).child("downvotes");
+                    var downvotesRef = firebase.database().ref("forum").child(postID).child("downvotes");
                     var downvoteList = this.forum[x].downvotes
                     downvoteList.pop(this.loggedUser)
                     if(downvoteList.length >= 1){
@@ -243,7 +206,8 @@ const app = Vue.createApp({
                     }
                     this.checkDownvote(x)
                 }
-                var upvotesRef = firebase.database().ref("forum").child(x).child("upvotes");
+
+                var upvotesRef = firebase.database().ref("forum").child(postID).child("upvotes");
 
                 var upvoteList = this.forum[x].upvotes
                 if(upvoteList == "") {
@@ -267,13 +231,13 @@ const app = Vue.createApp({
         },
 
         downVote(x) {
-            if(this.loggedUser === ""){
+            if(this.loggedUser === "empty"){
                 alert("You need to be login to downvote!")
             }
             else{
-                console.log(this.forum[x].upvotes.includes(this.loggedUser))
+                var postID = this.forum[x].postID
                 if(this.forum[x].upvotes.includes(this.loggedUser)){
-                    var upvotesRef = firebase.database().ref("forum").child(x).child("upvotes");
+                    var upvotesRef = firebase.database().ref("forum").child(postID).child("upvotes");
                     var upvoteList = this.forum[x].upvotes
                     upvoteList.pop(this.loggedUser)
                     if(upvoteList.length >= 1){
@@ -285,7 +249,7 @@ const app = Vue.createApp({
                     this.checkUpvote(x)
                 }
 
-                var downvotesRef = firebase.database().ref("forum").child(x).child("downvotes");
+                var downvotesRef = firebase.database().ref("forum").child(postID).child("downvotes");
                 var downvoteList = this.forum[x].downvotes
                 if(downvoteList == "") {
                     downvoteList = []
@@ -319,7 +283,7 @@ const app = Vue.createApp({
         },
 
         checkCUpvote(x,y){
-            console.log(this.forum[x].comments[y][3].includes(this.loggedUser))
+
             if (this.forum[x].comments[y][3].includes(this.loggedUser)){
                 return true
             }
@@ -329,13 +293,13 @@ const app = Vue.createApp({
         },
         
         upCVote(x,y) {
-            this.addEventListener()
-            if(this.loggedUser === ""){
+            if(this.loggedUser === "empty"){
                 alert("You need to be login to upvote!")
             }
             else{
+                var postID = this.forum[x].postID
                 if(this.forum[x].comments[y][4].includes(this.loggedUser)){
-                    var downvotesRef = firebase.database().ref("forum").child(x).child("comments").child(y).child(4);
+                    var downvotesRef = firebase.database().ref("forum").child(postID).child("comments").child(y).child(4);
                     var downvoteList = this.forum[x].comments[y][4]
 
                     downvoteList.pop(this.loggedUser)
@@ -348,7 +312,7 @@ const app = Vue.createApp({
                     this.checkCDownvote(x,y)
                 }
 
-                var upvotesRef = firebase.database().ref("forum").child(x).child("comments").child(y).child(3);
+                var upvotesRef = firebase.database().ref("forum").child(postID).child("comments").child(y).child(3);
                 var upvoteList = this.forum[x].comments[y][3]
                 if(upvoteList == "") {
                     upvoteList = []
@@ -371,15 +335,14 @@ const app = Vue.createApp({
         },
 
         downCVote(x,y) {
-            this.addEventListener()
-            if(this.loggedUser === ""){
+            if(this.loggedUser === "empty"){
                 alert("You need to be login to upvote!")
             }
 
             else{
-
+                var postID = this.forum[x].postID
                 if(this.forum[x].comments[y][3].includes(this.loggedUser)){
-                    var upvotesRef = firebase.database().ref("forum").child(x).child("comments").child(y).child(3);
+                    var upvotesRef = firebase.database().ref("forum").child(postID).child("comments").child(y).child(3);
                     var upvoteList = this.forum[x].comments[y][3]
                     upvoteList.pop(this.loggedUser)
                     if(upvoteList.length >= 1){
@@ -391,7 +354,7 @@ const app = Vue.createApp({
                     this.checkCUpvote(x,y)
                 }
 
-                var downvotesRef = firebase.database().ref("forum").child(x).child("comments").child(y).child(4);
+                var downvotesRef = firebase.database().ref("forum").child(postID).child("comments").child(y).child(4);
                 var downvoteList = this.forum[x].comments[y][4]
                 if(downvoteList == "") {
                     downvoteList = []
@@ -413,6 +376,9 @@ const app = Vue.createApp({
             }
         },
         
+        checker(x){
+            console.log(x)
+        }
 
     },
 })
