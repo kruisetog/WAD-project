@@ -133,6 +133,8 @@
         <input class="btn btn-success m-md-1 col-md-3 col-12" v-if="loggedUser == 'admin'" value="Go to admin page" onclick="location.href='catalogueAdmin.html'">
       </div>  
         <div class="row justify-content-around align-right">
+          
+          <h3 class="text-center"><br>Featured Chair</h3>
           <div class="col-md-3 " ></div>
           <div class="col-12 col-md-5 my-md-1 card bg-dark text-dark">
             <img v-bind:src="featuredChair.imageURL" class="card-img" alt="...">
@@ -149,7 +151,7 @@
               
               <img :src="chair.imageURL" class="card-img-top" alt="...">
               <div class="card-body">
-                <h3 class="card-text bold">{{chair.name.split('_').join(' ')}}</h3>
+                <h4 class="card-text bold">{{chair.name.split('_').join(' ')}}</h4>
                 <div class="m-3">
                   <p class="card-text"><span class="text-muted">Rating:<img src="../images/star.png" v-for="index in chair.rating" style="height:1rem"></p>
                   <p class="card-text"><span class="text-muted">Price:</span>  ${{chair.price}}</p>
