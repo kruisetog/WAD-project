@@ -114,7 +114,8 @@
                         <div class="col-lg-3 col-xs-9 col-sm-5 col-md-3 selecttopic">
                         </div>
                             <div>                            
-                                    <button class="btn btn-primary" onclick="on()">Start New Post</button>
+                                    <button class="btn btn-primary" onclick="on()" v-if="checkLoggedIn()">Start New Post</button>
+                                    <button class="btn btn-secondary" onclick="alert('You need to be login to post new thread!')" v-else>Start New Post</button>
                             </div>
 
                             <div class="clearfix"></div>
@@ -138,7 +139,7 @@
                             <div class="row comments">
                                     <table class="table table-borderless" style ="border-top:solid #687074 2px">
                                         <td class="btn-group" role="group" style="width: 80%;">
-                                            <button type="button" class="btn btn-outline-secondary" data-toggle="reply-form" :data-target="post.postID">comment: {{post.comments.length}}</button>
+                                            <button type="button" class="btn btn-outline-secondary" data-toggle="reply-form" :data-target="post.postID" style="color: black;">comment: {{post.comments.length}}</button>
                                             <button type="button" class="btn btn-outline-secondary vote" id="vote" v-on:click = "upVote(index)" v-if="checkUpvote(index)" style = "color:#5ff800;">Upvote</button>
                                             <button type="button" class="btn btn-outline-secondary vote" id="vote" v-on:click = "upVote(index)" v-else>Upvote</button>
                                             <button type="button" class="btn btn-outline-secondary vote" id="vote" v-on:click = "downVote(index)" v-if="checkDownvote(index)" style = "color:#5ff800;">Downvote</button>

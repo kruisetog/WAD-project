@@ -1,38 +1,33 @@
 var dateTime = (new Date()).toDateString()
 
-const firebaseConfig = {
-    apiKey: "AIzaSyCgxQMgggon4MDJ6Yj0wExgGMnUTPZsRCw",
-    authDomain: "wad-test-4f31e.firebaseapp.com",
-    databaseURL: "https://wad-test-4f31e-default-rtdb.asia-southeast1.firebasedatabase.app",
-    projectId: "wad-test-4f31e",
-    storageBucket: "wad-test-4f31e.appspot.com",
-    messagingSenderId: "705410623197",
-    appId: "1:705410623197:web:31f5e58f95f3edd566dd34",
-    measurementId: "G-WMJF9DQC3W"
-  };
+// const firebaseConfig = {
+//     apiKey: "AIzaSyCgxQMgggon4MDJ6Yj0wExgGMnUTPZsRCw",
+//     authDomain: "wad-test-4f31e.firebaseapp.com",
+//     databaseURL: "https://wad-test-4f31e-default-rtdb.asia-southeast1.firebasedatabase.app",
+//     projectId: "wad-test-4f31e",
+//     storageBucket: "wad-test-4f31e.appspot.com",
+//     messagingSenderId: "705410623197",
+//     appId: "1:705410623197:web:31f5e58f95f3edd566dd34",
+//     measurementId: "G-WMJF9DQC3W"
+//   };
 
 // Ryan's firebase
 
-// const firebaseConfig = {
-//     apiKey: "AIzaSyAuj6iX0Hqp9owZpvWyZRVEiQYLfnKbT2o",
-//     authDomain: "wadii-project-7c7dd.firebaseapp.com",
-//     projectId: "wadii-project-7c7dd",
-//     storageBucket: "wadii-project-7c7dd.appspot.com",
-//     messagingSenderId: "987135629921",
-//     appId: "1:987135629921:web:50fd77c89ec38592682820",
-//     measurementId: "G-PZBNMH36L8"
-// };
+const firebaseConfig = {
+    apiKey: "AIzaSyAuj6iX0Hqp9owZpvWyZRVEiQYLfnKbT2o",
+    authDomain: "wadii-project-7c7dd.firebaseapp.com",
+    projectId: "wadii-project-7c7dd",
+    storageBucket: "wadii-project-7c7dd.appspot.com",
+    messagingSenderId: "987135629921",
+    appId: "1:987135629921:web:50fd77c89ec38592682820",
+    measurementId: "G-PZBNMH36L8"
+};
 
 //Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
 //Variable to access database collection
 const db = firebase.database().ref("forum")
-
-var postHeader = document.getElementById('postHeader').value
-var postCaption = document.getElementById('postCaption').value
-var postCategory = document.getElementById('postCategory').value
-var postBody = document.getElementById('postBody').value
 
 
 
@@ -51,7 +46,6 @@ const app = Vue.createApp({
             comments: "",
             postComment:"",
             currentCategory:"all",
-
         };
 
     },
@@ -83,7 +77,6 @@ const app = Vue.createApp({
 
         categoryfilter(x) {
             this.currentCategory = x;
-            console.log("this.currentCateogry")
             db.once("value").then((snapshot) => {
                     this.forum = snapshot.val();
                     if (x == "all") {
@@ -147,11 +140,11 @@ const app = Vue.createApp({
         },
     
         addComment(x){            
-            this.addEventListener()
             if(this.loggedUser === "empty"){
                 alert("You need to be login to post comment!")
             }
             else{
+                var postID = this.forum[x].postID
                 if (this.postComment == "Comment" || this.postComment == "") {
                     alert("Please fill out the comment")
                 }
@@ -161,7 +154,8 @@ const app = Vue.createApp({
                         commentThread = []
                     }
                     commentThread.push([this.loggedUser,this.postComment,"less than a day ago","",""])
-                    var commentRef = firebase.database().ref("forum").child(x).child("comments");
+                    var commentRef = firebase.database().ref("forum").child(postID).child("comments");
+                    commentRef.set(commentThread)
                     this.postComment = ""
                     this.getDatabase()
                 }
@@ -376,8 +370,13 @@ const app = Vue.createApp({
             }
         },
         
-        checker(x){
-            console.log(x)
+        checkLoggedIn(){
+            if(this.loggedUser === "empty"){
+                return false
+            }
+            else{
+                return true
+            }
         }
 
     },
