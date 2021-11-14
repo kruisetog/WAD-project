@@ -96,12 +96,12 @@ const app = Vue.createApp({
 
         newPost(){
             //Get Form Values
-            if(this.loggedUser === "empty"){
+            if(this.loggedUser == "empty"){
                 alert("You need to be login to post new thread!")
             }
             else{
                 let postID = this.forum.length
-                if(this.postHeader === "" || this.postCaption === "" || this.postBody === ""){
+                if(this.postHeader == "" || this.postCaption == "" || this.postBody == ""){
                     alert("Please fill up all the field")
                 }
                 else{
@@ -140,7 +140,7 @@ const app = Vue.createApp({
         },
     
         addComment(x){            
-            if(this.loggedUser === "empty"){
+            if(this.loggedUser == "empty"){
                 alert("You need to be login to post comment!")
             }
             else{
@@ -183,7 +183,7 @@ const app = Vue.createApp({
         },
         
         upVote(x) {
-            if(this.loggedUser === "empty"){
+            if(this.loggedUser == "empty"){
                 alert("You need to be login to upvote!")
             }
             else{
@@ -225,7 +225,7 @@ const app = Vue.createApp({
         },
 
         downVote(x) {
-            if(this.loggedUser === "empty"){
+            if(this.loggedUser == "empty"){
                 alert("You need to be login to downvote!")
             }
             else{
@@ -287,7 +287,7 @@ const app = Vue.createApp({
         },
         
         upCVote(x,y) {
-            if(this.loggedUser === "empty"){
+            if(this.loggedUser == "empty"){
                 alert("You need to be login to upvote!")
             }
             else{
@@ -329,7 +329,7 @@ const app = Vue.createApp({
         },
 
         downCVote(x,y) {
-            if(this.loggedUser === "empty"){
+            if(this.loggedUser == "empty"){
                 alert("You need to be login to upvote!")
             }
 
@@ -371,7 +371,7 @@ const app = Vue.createApp({
         },
         
         checkLoggedIn(){
-            if(this.loggedUser === "empty"){
+            if(this.loggedUser == "empty"){
                 return false
             }
             else{
