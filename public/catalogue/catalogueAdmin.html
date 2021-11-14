@@ -210,6 +210,11 @@
             }
 
             writeUserDataWithCompletion(addChairObj);
+
+            for(a_id of inputIds){
+                document.getElementById(a_id).value = ''
+            }
+            document.getElementById('Type').value = 'Office'
         }
     </script>
     <!-- this is the end of firebase script -->
