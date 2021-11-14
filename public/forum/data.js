@@ -26,7 +26,7 @@ const app = Vue.createApp({
 
     data() {
         return {
-            loggedUser : "admin",
+            loggedUser : "empty",
             forum : [],
             postCategory:"Office Chair",
             postHeader:"",
