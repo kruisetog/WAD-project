@@ -16,7 +16,7 @@ input[type="radio"] {
 }
 
 input{
-    width: 500px;
+    width: 100%;
 }
 /* Navbar Class */
 
@@ -170,7 +170,11 @@ input{
     font-size: 20px;
     transform: translate(-50%,-50%);
     -ms-transform: translate(-50%,-50%);
+    width: 50%;
+    max-width: 500px;
+    min-width: 250px;
   }
+
 /* Button Class */
 
 
@@ -269,7 +273,6 @@ button:active {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     font-size: 16px;
     width: 100%;
-    max-width: 100%;
     margin-top: 15px;
     margin-bottom: 5px;
 }
