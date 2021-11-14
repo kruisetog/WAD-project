@@ -1,15 +1,6 @@
 var dateTime = (new Date()).toDateString()
 
-// const firebaseConfig = {
-//     apiKey: "AIzaSyCgxQMgggon4MDJ6Yj0wExgGMnUTPZsRCw",
-//     authDomain: "wad-test-4f31e.firebaseapp.com",
-//     databaseURL: "https://wad-test-4f31e-default-rtdb.asia-southeast1.firebasedatabase.app",
-//     projectId: "wad-test-4f31e",
-//     storageBucket: "wad-test-4f31e.appspot.com",
-//     messagingSenderId: "705410623197",
-//     appId: "1:705410623197:web:31f5e58f95f3edd566dd34",
-//     measurementId: "G-WMJF9DQC3W"
-//   };
+
 
 // Ryan's firebase
 
@@ -35,7 +26,7 @@ const app = Vue.createApp({
 
     data() {
         return {
-            loggedUser : "empty",
+            loggedUser : "admin",
             forum : [],
             postCategory:"Office Chair",
             postHeader:"",
@@ -131,7 +122,7 @@ const app = Vue.createApp({
                 //Alert
                 alert("Your post has been successfully created and posted")
                 this.getDatabase()
-    
+                document.getElementById("overlay").style.display = "none";
                 }
             }
             

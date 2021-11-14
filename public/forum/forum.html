@@ -19,12 +19,9 @@
         <link rel="stylesheet" type="text/css" href="href/style.css" media="screen" />
         <link rel="stylesheet" type="text/css" href="href/custom.css" media="screen" />
         <link rel="stylesheet" type="text/css" href="../account/project.css" media="screen" />
-        
-        
-
 
         <!-- Vue.js -->
-        <script src="href/vue.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
 
     </head>
 
@@ -121,7 +118,7 @@
                         <div class="col-lg-3 col-xs-9 col-sm-5 col-md-3 selecttopic">
                         </div>
                             <div>                            
-                                    <button class="btn btn-primary" onclick="on()" v-if="checkLoggedIn()">Start New Post</button>
+                                    <button class="btn btn-primary" onclick="on(true)" v-if="checkLoggedIn()">Start New Post</button>
                                     <button class="btn btn-secondary" onclick="alert('You need to be login to post new thread!')" v-else>Start New Post</button>
                             </div>
 
@@ -130,7 +127,7 @@
                 </div>
             </div>
 
-            <div class="container"> <!-- POST container -->
+            <div class="container"> <!-- Whole POST container -->
                 <div class="row flex-column-reverse flex-lg-row">
                     <div class="col-lg-8 col-md-8"> 
                         <!-- POST -->
@@ -154,8 +151,6 @@
                                         </td>
                                         <td colspan="6" style="text-align: right;"><span style="text-align: left;">ChairGod Points: {{post.upvotes.length - post.downvotes.length}}</span>   Posted by {{ post.pUserId }} at {{ post.postDate }}</td>
                                     </table>
-
-                                    
 
                                     <div class="comment-thread d-none" :id="post.postID" style = "padding:auto;margin:auto">
                                         <button type="button" data-toggle="reply-form" :data-target="post.postHeader" style="margin-bottom: 10px;">Post Comment</button>
@@ -212,11 +207,6 @@
                                         </div>
 
                                     </div>
-
-                                    
-                                    
-                            
-
                             </div>
                         </div> <!-- POST -->
                     </div> <!-- POST container end -->
@@ -244,7 +234,7 @@
 
                 </div>
 
-            </div>
+            </div><!-- Whole POST container end -->
         </div>
             
 
